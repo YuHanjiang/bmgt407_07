@@ -1,10 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+    />
+    <title>Schedule</title>
 </head>
 <body>
-$END$
+
+<nav class="navbar navbar-expand-sm bg-danger navbar-dark">
+    <ul class="navbar-nav">
+        <a class="navbar-brand">
+            <img src="assets/img/logo.png" alt="Logo" style="height:30px;">
+        </a>
+        <li class="nav-item">
+            <a class="nav-link" href="homepage.html">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="schedule.html">Schedule</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Calendar</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Dashboard</a>
+        </li>
+    </ul>
+</nav>
+
+<br>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="ml-5 mt-3">
+            <iframe src="https://calendar.google.com/calendar/u/0/selfsched?sstoken=UVBmbm5yZEM3S2xwfGRlZmF1bHR8OTFlY2FkOWVhOGIyZGY0YzFhNjQxZjI4ZmQ3N2E3YTE" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        </div>
+    </div>
+
+    <div class="col-sm-8">
+        <div class="p-2">
+            <div class="text-center">
+                <h4>Schedule Appointments</h4>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <form>
+                <div class="form-group">
+                    <label for="course">Select Course:</label>
+                    <select class="form-control" id="course" style="width:300px">
+                        <option>BMGT220</option>
+                        <option>BMGT221</option>
+                        <option>BMGT230</option>
+                        <option>BMGT340</option>
+                        <option>BSCI170</option>
+                        <option>CHEM131</option>
+                        <option>CHEM135</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="comment">Comments:</label>
+                    <textarea class="form-control" id="comment"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
