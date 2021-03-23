@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+    />
+    <title>Nav Bar Test</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-danger navbar-dark">
+    <ul class="navbar-nav">
+        <a class="navbar-brand">
+            <img src="assets/img/logo.png" alt="Logo" style="height:30px;">
+        </a>
+        <li class="nav-item">
+            <a class="nav-link" href="homepage.html">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Schedule</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Calendar</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Tutor Applications</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Sign Out</a>
+        </li>
+    </ul>
+</nav>
+
+<br>
+
+<div class="container">
+		<div class="row">
+			<div class="col">
+				<h1>Tutor Applications Form</h1>
+				<!-- Begin my form -->
+				<form>
+					<label>First Name: </label>
+					<input type="text" name="fname">
+					<br>
+					<label>Last Name: </label>
+					<input type="text" name="lname">
+					<br>
+					<label>Gender</label>
+					<select name="Gender">
+						<option value=""> --select-- </option>
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+					</select>
+					<br>
+					<label>Grade Year</label>
+					<select name="Grade">
+						<option value=""> --select-- </option>
+						<option value="Sp2021">Spring 2021</option>
+						<option value="Fall2021">Fall 2021</option>
+						<option value="Sp2022">Spring 2022</option>
+						<option value="Fall2022">Fall 2022</option>
+						<option value="Sp2023">Spring 2023</option>
+						<option value="Fall2023">Fall 2023</option>
+						<option value="Sp2024">Spring 2024</option>
+						<option value="Fall2024">Fall 2024</option>
+						<option value="Sp2025">Spring 2025</option>
+						<option value="Fall2025">Fall 2025</option>
+					</select>
+					<br>
+					<label>Student ID: </label>
+					<input type="Number" name="StudentID">
+					<br>
+					<label>Phone Number: </label>
+					<input type="Number" name="Phone">
+					<br>
+					<label>Course Focus: </label>
+					<input type="text" name="Course">
+					<br>
+					<input type="submit" name="Submit">
+				</form>
+				<!-- This page will go into my group information table in the DB -->
+			</div>
+<!--Register Time
+Basic Information (Gender, Grade year, StudentID, year, Email, Phone Number, Grade year)
+Current Course Grade
+Course Focus
+Worked hours
+Short-answer question
+Feedback Form
+-->
+
+</body>
+</html>
