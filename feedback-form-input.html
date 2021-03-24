@@ -21,7 +21,7 @@
     <ul class="navbar-nav">
         <a class="navbar-brand">
             <img src="assets/img/logo.png" alt="Logo" style="height:30px;">
-       
+        </a>
         <li class="nav-item">
             <a class="nav-link active" href="homepage.html">Home</a>
         </li>
@@ -32,8 +32,8 @@
             <a class="nav-link" href="calendar.html">Calendar</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="hire.html">Apply Now!</a>
-        </li>    
+            <a class="nav-link" href="hire.html">Become a Tutor</a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" href="DashBoard.html">Dashboard</a>
         </li>
@@ -44,7 +44,7 @@
 </nav>
 
 <div class="container" style="margin-top: 50px">
-    <div class="col-md-6 col-md-offset-3 form-container">
+    <div class="form-container" style="width:600px">
         <h2>Feedback</h2>
         <p>
             Please provide your feedback below:
@@ -55,17 +55,17 @@
                     <label>How do you rate your overall experience?</label>
                     <p>
                         <label class="radio-inline">
-                            <input type="radio" name="experience" id="radio_experience" value="Below Average">
+                            <input type="radio" name="experience" id="below-average" value="Below Average">
                             Below Average
                         </label>
 
                         <label class="radio-inline">
-                            <input type="radio" name="experience" id="radio_experience" value="Average">
+                            <input type="radio" name="experience" id="average" value="Average">
                             Average
                         </label>
 
                         <label class="radio-inline">
-                            <input type="radio" name="experience" id="radio_experience" value="Above Average">
+                            <input type="radio" name="experience" id="above-average" value="Above Average">
                             Above Average
                         </label>
                     </p>
@@ -90,25 +90,25 @@
                         Email:</label>
                     <input type="email" class="form-control" id="email" name="email" required>
                 </div>
-             <div class="row">
-                    <div class="col-sm-6 form-group">
-                        <label for="Tutor Name">
-                            Tutor Name:</label>
-                        <input type="text" class="form-control" id="name" name="Tutor Name" required>
-                    </div>
-
-                    <div class="col-sm-6 form-group">
-                        <label for="Course">
-                            Course:</label>
-                        <input type="text" class="form-control" id="Course" name="Course" required>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 form-group">
+                    <label for="tutor-name">
+                        Tutor Name:</label>
+                    <input type="text" class="form-control" id="tutor-name" name="Tutor Name" required>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-12 form-group">
-                        <button type="submit" class="btn btn-lg btn-warning btn-block">Submit</button>
-                    </div>
+                <div class="col-sm-6 form-group">
+                    <label for="course">
+                        Course:</label>
+                    <input type="text" class="form-control" id="course" name="Course" required>
                 </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-lg btn-danger btn-block">Submit</button>
+
+            </div>
         </form>
     </div>
 </div>
