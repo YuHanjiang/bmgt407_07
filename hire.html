@@ -46,60 +46,124 @@
 <br>
 
 <div class="container">
-		<div class="row">
-			<div class="col">
-				<h1>Tutor Applications Form</h1>
+		<div class="container">
+    <div class="row justify-content-center">
+        <div class="p-5">
+            <picture>
+                <img src="assets/img/logo.png" alt="ASTS Logo">
+            </picture>
+
+            <div class="p-2">
+                <div class="text-center">
+                    <h2>Tutor Registration From</h2>
+                </div>
+            </div>
 				<!-- Begin my form -->
 				<form>
-					<label>First Name: </label>
-					<input type="text" name="fname">
-					<br>
-					<label>Last Name: </label>
-					<input type="text" name="lname">
-					<br>
-					<label>Gender</label>
-					<select name="Gender">
-						<option value=""> --select-- </option>
-						<option value="Male">Male</option>
-						<option value="Female">Female</option>
-					</select>
-					<br>
-					<label>Grade Year</label>
-					<select name="Grade">
-						<option value=""> --select-- </option>
-						<option value="Sp2021">Spring 2021</option>
-						<option value="Fall2021">Fall 2021</option>
-						<option value="Sp2022">Spring 2022</option>
-						<option value="Fall2022">Fall 2022</option>
-						<option value="Sp2023">Spring 2023</option>
-						<option value="Fall2023">Fall 2023</option>
-						<option value="Sp2024">Spring 2024</option>
-						<option value="Fall2024">Fall 2024</option>
-						<option value="Sp2025">Spring 2025</option>
-						<option value="Fall2025">Fall 2025</option>
-					</select>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="firstName">First Name:</label>
+                            <input class="form-control" type="text" id="firstName" placeholder="First Name">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="lastName">Last Name:</label>
+                            <input class="form-control" type="text" id="lastName" placeholder="Last Name">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="loginEmail">Email:</label>
+                    <input class="form-control" type="email" id="loginEmail"
+                           aria-describedby="emailHelp" placeholder="Email Address">
+                </div>
+
+				<div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                        	<label for="Gender">Gender:</label>
+                    		<select class="form-control" name="Gender">
+								<option value=""> --select-- </option>
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+							</select>
+                		</div>
+                		<div class="col-sm-6">
+							<label>Grade Year</label>
+							<select class="form-control" name="Grade">
+								<option value=""> --select-- </option>
+								<option value="Sp2021">Spring 2021</option>
+								<option value="Fall2021">Fall 2021</option>
+								<option value="Sp2022">Spring 2022</option>
+								<option value="Fall2022">Fall 2022</option>
+								<option value="Sp2023">Spring 2023</option>
+								<option value="Fall2023">Fall 2023</option>
+								<option value="Sp2024">Spring 2024</option>
+								<option value="Fall2024">Fall 2024</option>
+								<option value="Sp2025">Spring 2025</option>
+								<option value="Fall2025">Fall 2025</option>
+							</select>
+						</div>
+					</div>
 					<br>
 					<label>Student ID: </label>
-					<input type="Number" name="StudentID">
+					<input class="form-control" type="Number" name="StudentID" placeholder="StudentID">
 					<br>
 					<label>Phone Number: </label>
-					<input type="Number" name="Phone">
+					<input class="form-control" type="Number" name="Phone" placeholder="Phone Number">
 					<br>
-					<label>Course Focus: </label>
-					<input type="text" name="Course">
+					<div class="form-group">
+	                    <div class="row">
+	                        <div class="col-sm-7">
+								<label>Course Focus 1: </label>
+								<input class="form-control" type="text" name="Course1" placeholder="Course Focus 1">
+							</div>
+	                        <div class="col-sm-5">
+								<label>Course Grade 1: </label>
+								<input class="form-control" type="text" name="Grade1" placeholder="Course Grade 1">
+							</div>
+						</div>
+					</div>
+						<br>
+					<div class="form-group">
+	                    <div class="row">
+	                        <div class="col-sm-7">
+								<label>Course Focus 2: </label>
+								<input class="form-control" type="text" name="Course2" placeholder="Course Focus 2">
+							</div>
+	                        <div class="col-sm-5">
+								<label>Course Grade 2: </label>
+								<input class="form-control" type="text" name="Grade2" placeholder="Course Grade 2">
+							</div>
+						</div>
+					</div>
+						<br>
+					<div class="form-group">
+	                    <div class="row">
+	                        <div class="col-sm-7">
+								<label>Course Focus 3: </label>
+								<input class="form-control" type="text" name="Course3" placeholder="Course Focus 3">
+							</div>
+	                        <div class="col-sm-5">
+								<label>Course Grade 3: </label>
+								<input class="form-control" type="text" name="Grade3" placeholder="Course Grade 3">
+							</div>
+						</div>
+					</div>
+						<br>
+					<label>Work hours: </label>
+					<input class="form-control" type="text" name="WorkHours" placeholder="Work hours">
 					<br>
-					<input type="submit" name="Submit">
+					<label>Short-answer question: </label>
+					<input class="form-control" type="text" name="Short_answer" placeholder="Short-answer question">
+					<br>
+					<input type="submit" name="Submit" >
+
 				</form>
-				<!-- This page will go into my group information table in the DB -->
+				<!-- This page will go into tutor information table in the DB -->
 			</div>
-<!--Register Time
-Basic Information (Gender, Grade year, StudentID, year, Email, Phone Number, Grade year)
-Current Course Grade
-Course Focus
-Worked hours
-Short-answer question
-Feedback Form
--->
+
 
 </body>
 </html>
