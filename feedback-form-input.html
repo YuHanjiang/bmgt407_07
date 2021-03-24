@@ -17,15 +17,35 @@
 </head>
 <body>
 
-
 <nav class="navbar navbar-expand-sm bg-danger navbar-dark">
     <ul class="navbar-nav">
         <a class="navbar-brand">
             <img src="assets/img/logo.png" alt="Logo" style="height:30px;">
         </a>
-        <div class="imagebg"></div>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Sign In</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="homepage.html">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Schedule</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Calendar</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="hire.html">Apply Now!</a>
+        </li>    
+        <li class="nav-item">
+            <a class="nav-link" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Sign Out</a>
+        </li>
     </ul>
 </nav>
+
 <div class="container" style="margin-top: 50px">
     <div class="col-md-6 col-md-offset-3 form-container">
         <h2>Feedback</h2>
@@ -38,18 +58,18 @@
                     <label>How do you rate your overall experience?</label>
                     <p>
                         <label class="radio-inline">
-                            <input type="radio" name="experience" id="radio_experience" value="bad">
-                            Bad
+                            <input type="radio" name="experience" id="radio_experience" value="Below Average">
+                            Below Average
                         </label>
 
                         <label class="radio-inline">
-                            <input type="radio" name="experience" id="radio_experience" value="average">
+                            <input type="radio" name="experience" id="radio_experience" value="Average">
                             Average
                         </label>
 
                         <label class="radio-inline">
-                            <input type="radio" name="experience" id="radio_experience" value="good">
-                            Good
+                            <input type="radio" name="experience" id="radio_experience" value="Above Average">
+                            Above Average
                         </label>
                     </p>
                 </div>
@@ -73,13 +93,25 @@
                         Email:</label>
                     <input type="email" class="form-control" id="email" name="email" required>
                 </div>
-            </div>
+             <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <label for="Tutor Name">
+                            Tutor Name:</label>
+                        <input type="text" class="form-control" id="name" name="Tutor Name" required>
+                    </div>
 
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <button type="submit" class="btn btn-lg btn-warning btn-block">Submit</button>
+                    <div class="col-sm-6 form-group">
+                        <label for="Course">
+                            Course:</label>
+                        <input type="text" class="form-control" id="Course" name="Course" required>
+                    </div>
                 </div>
-            </div>
+
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <button type="submit" class="btn btn-lg btn-warning btn-block">Submit</button>
+                    </div>
+                </div>
         </form>
     </div>
 </div>
