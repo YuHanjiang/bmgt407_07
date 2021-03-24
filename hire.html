@@ -13,7 +13,7 @@
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
             crossorigin="anonymous"
     />
-    <title>Nav Bar Test</title>
+    <title>Become a Tutor</title>
 </head>
 <body>
 
@@ -26,19 +26,16 @@
             <a class="nav-link" href="homepage.html">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Schedule</a>
+            <a class="nav-link" href="schedule.html">Schedule</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Calendar</a>
+            <a class="nav-link" href="calendar.html">Calendar</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Dashboard</a>
+            <a class="nav-link" href="DashBoard.html">Dashboard</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Tutor Applications</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Sign Out</a>
+            <a class="nav-link" href="index.html">Sign Out</a>
         </li>
     </ul>
 </nav>
@@ -55,114 +52,118 @@
 
             <div class="p-2">
                 <div class="text-center">
-                    <h2>Tutor Registration From</h2>
+                    <h2>Tutor Application Form</h2>
+                    	<p> Please fill out the following information to apply for a tutoring position. Give us about two weeks to inform you of the status of your application. For questions, contact us at <u>aaptutoring@umd.edu</u></p>
                 </div>
-            </div>
-				<!-- Begin my form -->
-				<form>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <label for="firstName">First Name:</label>
-                            <input class="form-control" type="text" id="firstName" placeholder="First Name">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="lastName">Last Name:</label>
-                            <input class="form-control" type="text" id="lastName" placeholder="Last Name">
-                        </div>
-                    </div>
-                </div>
+	            </div>
+					<!-- Begin my form -->
+					<form>
+	                <div class="form-group">
+	                    <div class="row">
+	                        <div class="col-sm-6">
+	                            <label for="firstName">First Name:</label>
+	                            <input class="form-control" type="text" id="firstName" placeholder="First Name">
+	                        </div>
+	                        <div class="col-sm-6">
+	                            <label for="lastName">Last Name:</label>
+	                            <input class="form-control" type="text" id="lastName" placeholder="Last Name">
+	                        </div>
+	                    </div>
+	                </div>
 
-                <div class="form-group">
-                    <label for="loginEmail">Email:</label>
-                    <input class="form-control" type="email" id="loginEmail"
-                           aria-describedby="emailHelp" placeholder="Email Address">
-                </div>
+	                <div class="form-group">
+	                    <label for="loginEmail">Email:</label>
+	                    <input class="form-control" type="email" id="loginEmail"
+	                           aria-describedby="emailHelp" placeholder="Email Address">
+	                </div>
 
-				<div class="form-group">
-                    <div class="row">
-                        <div class="col-sm-6">
-                        	<label for="Gender">Gender:</label>
-                    		<select class="form-control" name="Gender">
-								<option value=""> --select-- </option>
-								<option value="Male">Male</option>
-								<option value="Female">Female</option>
-							</select>
-                		</div>
-                		<div class="col-sm-6">
-							<label>Grade Year</label>
-							<select class="form-control" name="Grade">
-								<option value=""> --select-- </option>
-								<option value="Sp2021">Spring 2021</option>
-								<option value="Fall2021">Fall 2021</option>
-								<option value="Sp2022">Spring 2022</option>
-								<option value="Fall2022">Fall 2022</option>
-								<option value="Sp2023">Spring 2023</option>
-								<option value="Fall2023">Fall 2023</option>
-								<option value="Sp2024">Spring 2024</option>
-								<option value="Fall2024">Fall 2024</option>
-								<option value="Sp2025">Spring 2025</option>
-								<option value="Fall2025">Fall 2025</option>
-							</select>
-						</div>
-					</div>
-					<br>
-					<label>Student ID: </label>
-					<input class="form-control" type="Number" name="StudentID" placeholder="StudentID">
-					<br>
-					<label>Phone Number: </label>
-					<input class="form-control" type="Number" name="Phone" placeholder="Phone Number">
-					<br>
 					<div class="form-group">
 	                    <div class="row">
-	                        <div class="col-sm-7">
-								<label>Course Focus 1: </label>
-								<input class="form-control" type="text" name="Course1" placeholder="Course Focus 1">
-							</div>
-	                        <div class="col-sm-5">
-								<label>Course Grade 1: </label>
-								<input class="form-control" type="text" name="Grade1" placeholder="Course Grade 1">
+	                        <div class="col-sm-6">
+	                        	<label for="Gender">Gender:</label>
+	                    		<select class="form-control" name="Gender">
+									<option value=""> --select-- </option>
+									<option value="Male">Male</option>
+									<option value="Female">Female</option>
+								</select>
+	                		</div>
+	                		<div class="col-sm-6">
+								<label>Grade Year</label>
+								<select class="form-control" name="Grade">
+									<option value=""> --select-- </option>
+									<option value="freshman">Freshman</option>
+									<option value="Sophomore">Sophomore</option>
+									<option value="Junior">Junior</option>
+									<option value="Senior">Senior</option>
+								</select>
 							</div>
 						</div>
-					</div>
 						<br>
-					<div class="form-group">
+						<div class="form-group">
 	                    <div class="row">
-	                        <div class="col-sm-7">
-								<label>Course Focus 2: </label>
-								<input class="form-control" type="text" name="Course2" placeholder="Course Focus 2">
-							</div>
-	                        <div class="col-sm-5">
-								<label>Course Grade 2: </label>
-								<input class="form-control" type="text" name="Grade2" placeholder="Course Grade 2">
+	                        <div class="col-sm-6">
+	                            <label>Student ID: </label>
+								<input class="form-control" type="Number" name="StudentID" placeholder="StudentID">
+	                        </div>
+	                        <div class="col-sm-6">
+	                            <label>Phone Number: </label>
+								<input class="form-control" type="Number" name="Phone" placeholder="Phone Number">
+	                        </div>
+	                    </div>
+						<br>
+						<div class="form-group">
+		                    <div class="row">
+		                        <div class="col-sm-6">
+									<label>Course Focus 1: </label>
+									<input class="form-control" type="text" name="Course1" placeholder="Course Focus 1">
+								</div>
+		                        <div class="col-sm-6">
+									<label>Course Grade 1: </label>
+									<input class="form-control" type="text" name="Grade1" placeholder="Course Grade 1">
+								</div>
 							</div>
 						</div>
-					</div>
-						<br>
-					<div class="form-group">
-	                    <div class="row">
-	                        <div class="col-sm-7">
-								<label>Course Focus 3: </label>
-								<input class="form-control" type="text" name="Course3" placeholder="Course Focus 3">
-							</div>
-	                        <div class="col-sm-5">
-								<label>Course Grade 3: </label>
-								<input class="form-control" type="text" name="Grade3" placeholder="Course Grade 3">
+							<br>
+						<div class="form-group">
+		                    <div class="row">
+		                        <div class="col-sm-6">
+									<label>Course Focus 2:(Option) </label>
+									<input class="form-control" type="text" name="Course2" placeholder="Course Focus 2">
+								</div>
+		                        <div class="col-sm-6">
+									<label>Course Grade 2: (Option) </label>
+									<input class="form-control" type="text" name="Grade2" placeholder="Course Grade 2">
+								</div>
 							</div>
 						</div>
-					</div>
+							<br>
+						<div class="form-group">
+		                    <div class="row">
+		                        <div class="col-sm-6">
+									<label>Course Focus 3:(Option) </label>
+									<input class="form-control" type="text" name="Course3" placeholder="Course Focus 3">
+								</div>
+		                        <div class="col-sm-6">
+									<label>Course Grade 3: (Option)</label>
+									<input class="form-control" type="text" name="Grade3" placeholder="Course Grade 3">
+								</div>
+							</div>
+						</div>
+							<br>
+						<label>Work Hours: </label>
+						<input class="form-control" type="text" name="WorkHours" placeholder="Work Hours">
 						<br>
-					<label>Work hours: </label>
-					<input class="form-control" type="text" name="WorkHours" placeholder="Work hours">
-					<br>
-					<label>Short-answer question: </label>
-					<input class="form-control" type="text" name="Short_answer" placeholder="Short-answer question">
-					<br>
-					<input type="submit" name="Submit" >
+						<label>What makes you a good candidate for this position? </label>
+						<input class="form-control" type="text" name="Short_answer" placeholder="Short-answer Question">
+						<br>
+	          			<label for="exampleFormControlFile1">Attach Your Resume</label>
+	          			<input type="file" class="form-control-file" id="exampleFormControlFile1">
+						<br>
+						<input type="submit" name="Submit" >
 
-				</form>
-				<!-- This page will go into tutor information table in the DB -->
-			</div>
+					</form>
+					<!-- This page will go into tutor information table in the DB -->
+				</div>
 
 
 </body>
