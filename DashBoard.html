@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <title>DashBoard</title>
+    <link rel="stylesheet" type="text/css" href="Table style.css">
     <meta
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -23,7 +24,7 @@
             <img src="assets/img/logo.png" alt="Logo" style="height:30px;">
         </a>
         <li class="nav-item">
-            <a class="nav-link active" href="homepage.html">Home</a>
+            <a class="nav-link" href="homepage.html">Home</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="schedule.html">Schedule</a>
@@ -32,86 +33,82 @@
             <a class="nav-link" href="calendar.html">Calendar</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="application_page.html">Apply Now!</a>
+            <a class="nav-link" href="hire.html">Become a Tutor</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="Sign Out.html">Sign Out</a>
+            <a class="nav-link active" href="DashBoard.html">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="index.html">Sign Out</a>
         </li>
     </ul>
 </nav>
 
-        <title>DashBoard</title>
-        <link rel="stylesheet" type="text/css" href="Table style.css">
-</head>
-<body>
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="p-5">
-        <div class="text-center">
-            <picture>
-                <img src="assets/img/logo.png" alt="ASTS Logo">
-            </picture>
-            <div class="p-2">
-                <div class="text-center">
+            <div class="text-center">
+                <picture>
+                    <img src="assets/img/logo.png" alt="ASTS Logo">
+                </picture>
+                <div class="p-2">
+                    <div class="text-center">
+                        <div>
+                            <iframe src="Feedback_Form.html" target="Feedback_Form"
+                                    loading="lazy" src="demo_iframe.htm" width="700" height="300"
+                                    src="demo_iframe.htm" frameborder="0">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+                <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+                <script src="https://code.highcharts.com/highcharts.js"></script>
+                <div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
+                <script language="JavaScript">
+                    $(document).ready(function () {
+                        var title = {
+                            text: ' Tutoring Session Trends '
+                        };
+                        var subtitle = {
+                            text: 'Source: Tutoring Appointments DB'
+                        };
+                        var xAxis = {
+                            categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5']
+                        };
+                        var yAxis = {
+                            title: {
+                                text: 'Session Counts '
+                            }
+                        };
+                        var plotOptions = {
+                            line: {
+                                dataLabels: {
+                                    enabled: true
+                                },
+                                enableMouseTracking: false
+                            }
+                        };
+                        var series = [{
+                            name: 'Tutor 01',
+                            data: [3, 4, 6, 5, 3]
+                        },
+                        ];
 
+                        var json = {};
 
-<div>
-    <iframe src="Feedback_Form.html" target="Feedback_Form"
-    loading="lazy" src="demo_iframe.htm" width="700" height="500"
-    src="demo_iframe.htm" frameborder="0">
-    </iframe>
+                        json.title = title;
+                        json.subtitle = subtitle;
+                        json.xAxis = xAxis;
+                        json.yAxis = yAxis;
+                        json.series = series;
+                        json.plotOptions = plotOptions;
+                        $('#container').highcharts(json);
 
-</div>
-
-</ol>
+                    });
+                </script>
+            </div>
         </div>
- </div>
-
-<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://code.highcharts.com/highcharts.js"></script>           
-<div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
-    <script language="JavaScript">
-    $(document).ready(function() {   
-   var title = {
-      text: ' Tutoring Session Trends '   
-   };
-   var subtitle = {
-      text: 'Source: Tutoring Appointments DB'
-   };
-   var xAxis = {
-      categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5']
-   };
-   var yAxis = {
-      title: {
-         text: 'Session Counts '
-      }
-   };
-   var plotOptions = {
-      line: {
-         dataLabels: {
-            enabled: true
-         },   
-         enableMouseTracking: false
-      }
-   };
-   var series= [{
-         name: 'Tutor 01',
-         data: [3, 4, 6, 5, 3]
-      },
-   ];
-   
-   var json = {};
-
-   json.title = title;
-   json.subtitle = subtitle;
-   json.xAxis = xAxis;
-   json.yAxis = yAxis;  
-   json.series = series;
-   json.plotOptions = plotOptions;
-   $('#container').highcharts(json);
-  
-});
-    </script>
+    </div>
+</div>
 </body>
 </html>
