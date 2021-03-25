@@ -27,19 +27,13 @@
             <img src="assets/img/logo.png" alt="Logo" style="height:30px;">
         </a>
         <li class="nav-item">
-            <a class="nav-link" href="homepage.html">Home</a>
+            <a class="nav-link" href="student-homepage.html">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="schedule.html">Schedule</a>
+            <a class="nav-link active" href="student-schedule.html">Schedule</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="calendar.html">Calendar</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="hire.html">Become a Tutor</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="DashBoard.html">Dashboard</a>
+            <a class="nav-link" href="student-hire.html">Become a Tutor</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="index.html">Sign Out</a>
@@ -64,6 +58,7 @@
             </div>
         </div>
     </div>
+
     <div class="col-4">
         <div class="container">
             <div class="row justify-content-center">
@@ -99,13 +94,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="date">Date: </label>
-                        <input type="date" id="date" required>
+                        <label for="session-date">Date: </label>
+                        <input type="date" id="session-date" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="time">Time: </label>
-                        <input type="time" id="time">
+                        <label for="session-time">Time: </label>
+                        <input type="time" id="session-time">
                     </div>
 
                     <div class="form-group">
@@ -119,10 +114,10 @@
                     </div>
 
                     <!--div class="form-group">
-                        <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                        <button hrefclass="btn btn-primary btn-block" type="submit">Submit</button>
                     </div-->
                     <div class="p-2">
-                    <a href="confirmation-page.html" class="btn btn-primary btn-block" type="submit">Submit</a>
+                        <a href="student-confirmation-page.html" class="btn btn-primary btn-block" type="submit">Submit</a>
                     </div>
                 </form>
             </div>
@@ -130,15 +125,6 @@
     </div>
 </div>
 
-            <div class="form-group">
-                <label for="date">Date: </label>
-                <input type="date" id="date" required>
-            </div>
-
-            <div class="form-group">
-                <label for="time">Time: </label>
-                <input type="time" id="time">
-            </div>
 <script type="text/javascript">
     const nav = new DayPilot.Navigator("nav");
     nav.showMonths = 3;

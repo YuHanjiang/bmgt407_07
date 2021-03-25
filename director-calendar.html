@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="assets/css/page-dim.css">
+    <link rel="stylesheet" href="assets/css/calendar.css">
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+    />
+    <title>Calendar</title>
+
+    <script src="assets/js/daypilot-all.min.js"></script>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-sm bg-danger navbar-dark">
+    <ul class="navbar-nav">
+        <a class="navbar-brand">
+            <img src="assets/img/logo.png" alt="Logo" style="height:30px;">
+        </a>
+        <li class="nav-item">
+            <a class="nav-link" href="director-homepage.html">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="director-schedule.html">Schedule</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="director-calendar.html">Calendar</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="director-dashboard.html">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="director-status.html">Application Status</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="director-app-decision.html">Submitted Applications</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="index.html">Sign Out</a>
+        </li>
+    </ul>
+</nav>
+
+<br>
+
+<div class="container">
+    <div class="main">
+        <div style="display: flex">
+            <div style="margin-right: 10px;">
+                <div id="nav"></div>
+            </div>
+            <div style="flex-grow: 1;">
+                <div id="dp"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--JavaScript that utilizes php to create and modify calendar events-->
+<script type="text/javascript">
+
+    const nav = new DayPilot.Navigator("nav");
+    nav.showMonths = 3;
+    nav.skipMonths = 3;
+    nav.selectMode = "week";
+    const dp = new DayPilot.Calendar("dp");
+    nav.onTimeRangeSelected = function (args) {
+        dp.startDate = args.day;
+        dp.update();
+        loadEvents();
+    };
+    nav.init();
+
+    dp.viewType = "Week";
+
+    dp.eventDeleteHandling = "Update";
+
+    dp.onEventDeleted = function (args) {
+        DayPilot.Http.ajax({
+            url: "backend_delete.php",
+            data: {
+                id: args.e.id()
+            },
+            success: function () {
+                console.log("Deleted.");
+            }
+        })
+
+    };
+
+    dp.onEventMoved = function (args) {
+        DayPilot.Http.ajax({
+            url: "backend_move.php",
+            data: {
+                id: args.e.id(),
+                newStart: args.newStart,
+                newEnd: args.newEnd
+            },
+            success: function () {
+                console.log("Moved.");
+            }
+        });
+    };
+
+    dp.onEventResized = function (args) {
+        DayPilot.Http.ajax({
+            url: "backend_move.php",
+            data: {
+                id: args.e.id(),
+                newStart: args.newStart,
+                newEnd: args.newEnd
+            },
+            success: function () {
+                console.log("Resized.");
+            }
+        });
+    };
+
+    // event creating
+    dp.onTimeRangeSelected = function (args) {
+        const name = prompt("New event name:", "Event");
+        dp.clearSelection();
+        if (!name) {
+            return;
+        }
+
+        DayPilot.Http.ajax({
+            url: "backend_create.php",
+            data: {
+                start: args.start,
+                end: args.end,
+                text: name
+            },
+            success: function (ajax) {
+                const data = ajax.data;
+                dp.events.add(new DayPilot.Event({
+                    start: args.start,
+                    end: args.end,
+                    id: data.id,
+                    text: name
+                }));
+                console.log("Created.");
+            }
+        });
+    };
+
+    dp.onEventClick = function (args) {
+        alert("clicked: " + args.e.id());
+    };
+
+    dp.init();
+
+    loadEvents();
+
+    function loadEvents() {
+        dp.events.load("backend_events.php");
+    }
+
+</script>
+
+<script type="text/javascript">
+    const elements = {
+        theme: document.querySelector("#theme")
+    };
+
+    elements.theme.addEventListener("change", function () {
+        dp.theme = this.value;
+        dp.update();
+    });
+
+</script>
+
+
+</body>
+</html>
