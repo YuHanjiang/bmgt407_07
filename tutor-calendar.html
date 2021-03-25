@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="assets/css/page-dim.css">
-    <link rel="stylesheet" href="assets/css/calendar.css">
     <meta
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -16,8 +15,6 @@
             crossorigin="anonymous"
     />
     <title>Calendar</title>
-
-    <script src="assets/js/daypilot-all.min.js"></script>
 
 </head>
 
@@ -46,132 +43,45 @@
 <br>
 
 <div class="container">
-    <div class="main">
-        <div style="display: flex">
-            <div style="margin-right: 10px;">
-                <div id="nav"></div>
+    <div class="row">
+        <div class="col">
+            <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FNew_York&amp;src=Y19lbWQ3YzA0aGptdHZjcDdua2c0MWlsNmIxc0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%237CB342&amp;showTitle=0&amp;showNav=0&amp;showDate=0&amp;showTz=1&amp;showCalendars=0&amp;showTabs=1&amp;showPrint=0&amp;mode=WEEK"
+                    style="border-width:0" width="600" height="600"></iframe>
+        </div>
+        <div class="col">
+            <div class="row justify-content-center">
+                <a class="btn btn-danger btn-lg" href="https://calendar.google.com">Edit Calendar</a>
             </div>
-            <div style="flex-grow: 1;">
-                <div id="dp"></div>
+            <div class="p-3">
+                <h4>Upcoming Sessions: </h4>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Student</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mar. 25</td>
+                        <td>15:00</td>
+                        <td>Student1</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Mar. 26</td>
+                        <td>10:00</td>
+                        <td>Student2</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-
         </div>
     </div>
 </div>
-
-<!--JavaScript that utilizes php to create and modify calendar events-->
-<script type="text/javascript">
-
-    const nav = new DayPilot.Navigator("nav");
-    nav.showMonths = 3;
-    nav.skipMonths = 3;
-    nav.selectMode = "week";
-    const dp = new DayPilot.Calendar("dp");
-    nav.onTimeRangeSelected = function (args) {
-        dp.startDate = args.day;
-        dp.update();
-        loadEvents();
-    };
-    nav.init();
-
-    dp.viewType = "Week";
-
-    dp.eventDeleteHandling = "Update";
-
-    dp.onEventDeleted = function (args) {
-        DayPilot.Http.ajax({
-            url: "backend_delete.php",
-            data: {
-                id: args.e.id()
-            },
-            success: function () {
-                console.log("Deleted.");
-            }
-        })
-
-    };
-
-    dp.onEventMoved = function (args) {
-        DayPilot.Http.ajax({
-            url: "backend_move.php",
-            data: {
-                id: args.e.id(),
-                newStart: args.newStart,
-                newEnd: args.newEnd
-            },
-            success: function () {
-                console.log("Moved.");
-            }
-        });
-    };
-
-    dp.onEventResized = function (args) {
-        DayPilot.Http.ajax({
-            url: "backend_move.php",
-            data: {
-                id: args.e.id(),
-                newStart: args.newStart,
-                newEnd: args.newEnd
-            },
-            success: function () {
-                console.log("Resized.");
-            }
-        });
-    };
-
-    // event creating
-    dp.onTimeRangeSelected = function (args) {
-        const name = prompt("New event name:", "Event");
-        dp.clearSelection();
-        if (!name) {
-            return;
-        }
-
-        DayPilot.Http.ajax({
-            url: "backend_create.php",
-            data: {
-                start: args.start,
-                end: args.end,
-                text: name
-            },
-            success: function (ajax) {
-                const data = ajax.data;
-                dp.events.add(new DayPilot.Event({
-                    start: args.start,
-                    end: args.end,
-                    id: data.id,
-                    text: name
-                }));
-                console.log("Created.");
-            }
-        });
-    };
-
-    dp.onEventClick = function (args) {
-        alert("clicked: " + args.e.id());
-    };
-
-    dp.init();
-
-    loadEvents();
-
-    function loadEvents() {
-        dp.events.load("backend_events.php");
-    }
-
-</script>
-
-<script type="text/javascript">
-    const elements = {
-        theme: document.querySelector("#theme")
-    };
-
-    elements.theme.addEventListener("change", function () {
-        dp.theme = this.value;
-        dp.update();
-    });
-
-</script>
 
 
 </body>

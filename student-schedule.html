@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="assets/css/page-dim.css">
-    <link rel="stylesheet" href="assets/css/calendar.css">
     <meta
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -16,7 +15,6 @@
             crossorigin="anonymous"
     />
     <title>Schedule</title>
-    <script src="assets/js/daypilot-all.min.js"></script>
 
 </head>
 <body>
@@ -44,22 +42,14 @@
 <br>
 
 <div class="row">
-    <div class="col-8">
-        <div class="scale">
-            <div class="main">
-                <div style="display: flex">
-                    <div style="margin-right: 10px;">
-                        <div id="nav"></div>
-                    </div>
-                    <div style="flex-grow: 1;">
-                        <div id="dp"></div>
-                    </div>
-                </div>
-            </div>
+    <div class="col">
+        <div class="container">
+            <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FNew_York&amp;src=Y19lbWQ3YzA0aGptdHZjcDdua2c0MWlsNmIxc0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%237CB342&amp;showTitle=0&amp;showNav=0&amp;showDate=0&amp;showTz=1&amp;showCalendars=0&amp;showTabs=1&amp;showPrint=0&amp;mode=WEEK"
+                    style="border-width:0" width="600" height="600"></iframe>
         </div>
     </div>
 
-    <div class="col-4">
+    <div class="col">
         <div class="container">
             <div class="row justify-content-center">
                 <form>
@@ -117,7 +107,8 @@
                         <button hrefclass="btn btn-primary btn-block" type="submit">Submit</button>
                     </div-->
                     <div class="p-2">
-                        <a href="student-confirmation-page.html" class="btn btn-primary btn-block" type="submit">Submit</a>
+                        <a href="student-confirmation-page.html" class="btn btn-primary btn-block"
+                           type="submit">Submit</a>
                     </div>
                 </form>
             </div>
@@ -125,57 +116,5 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    const nav = new DayPilot.Navigator("nav");
-    nav.showMonths = 3;
-    nav.skipMonths = 3;
-    nav.selectMode = "week";
-    const dp = new DayPilot.Calendar("dp");
-    nav.onTimeRangeSelected = function (args) {
-        dp.startDate = args.day;
-        dp.update();
-        loadEvents();
-    };
-    nav.init();
-
-    dp.viewType = "Week";
-
-    dp.eventDeleteHandling = "Update";
-
-    dp.onEventResized = function (args) {
-        DayPilot.Http.ajax({
-            url: "backend_move.php",
-            data: {
-                id: args.e.id(),
-                newStart: args.newStart,
-                newEnd: args.newEnd
-            },
-            success: function () {
-                console.log("Resized.");
-            }
-        });
-    };
-
-    dp.init();
-
-    loadEvents();
-
-    function loadEvents() {
-        dp.events.load("backend_events.php");
-    }
-
-</script>
-
-<script type="text/javascript">
-    const elements = {
-        theme: document.querySelector("#theme")
-    };
-
-    elements.theme.addEventListener("change", function () {
-        dp.theme = this.value;
-        dp.update();
-    });
-
-</script>
 </body>
 </html>
