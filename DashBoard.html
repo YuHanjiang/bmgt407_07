@@ -53,62 +53,80 @@
                 </picture>
                 <div class="p-2">
                     <div class="text-center">
-                        <div>
-                            <iframe src="Feedback_Form.html" target="Feedback_Form"
-                                    loading="lazy" src="demo_iframe.htm" width="700" height="300"
-                                    src="demo_iframe.htm" frameborder="0">
-                            </iframe>
-                        </div>
                     </div>
                 </div>
-                <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-                <script src="https://code.highcharts.com/highcharts.js"></script>
-                <div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
-                <script language="JavaScript">
-                    $(document).ready(function () {
-                        var title = {
-                            text: ' Tutoring Session Trends '
-                        };
-                        var subtitle = {
-                            text: 'Source: Tutoring Appointments DB'
-                        };
-                        var xAxis = {
-                            categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5']
-                        };
-                        var yAxis = {
-                            title: {
-                                text: 'Session Counts '
-                            }
-                        };
-                        var plotOptions = {
-                            line: {
-                                dataLabels: {
-                                    enabled: true
-                                },
-                                enableMouseTracking: false
-                            }
-                        };
-                        var series = [{
-                            name: 'Tutor 01',
-                            data: [3, 4, 6, 5, 3]
-                        },
-                        ];
+                <div>
+                    <h3>Tutor Performence</h3>
 
-                        var json = {};
 
-                        json.title = title;
-                        json.subtitle = subtitle;
-                        json.xAxis = xAxis;
-                        json.yAxis = yAxis;
-                        json.series = series;
-                        json.plotOptions = plotOptions;
-                        $('#container').highcharts(json);
+                </div>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
 
-                    });
-                </script>
-            </div>
-        </div>
-    </div>
-</div>
+<body>
+<div id="container" style="width: 750px; height: 500px; margin: 0 auto"></div>
+<script language="JavaScript">
+$(document).ready(function() {  
+   var title = {
+      text: 'Tutor 01'   
+   };
+   var xAxis = {
+      categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5']
+   };
+   var labels = {
+      items: [{
+         html: 'Ratting',
+            style: {
+               left: '50px',
+               top: '18px',
+               color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+            }
+      }]
+   };
+   var series= [{
+        type: 'spline',
+            name: 'Passing tutoring session',
+            data: [7, 10, 13, 9, 15]
+        }, {
+            type: 'spline',
+            name: 'Student Grade',
+            data: [60, 75, 90, 85, 95],
+            marker: {
+                lineWidth: 2,
+                lineColor: Highcharts.getOptions().colors[3],
+                fillColor: 'white'
+            }
+        }, {
+            type: 'pie',
+            name: 'Ratting',
+            data: [{
+                name: 'Above Average',
+                y: 13,
+                color: Highcharts.getOptions().colors[0]}, 
+                   {
+                name: 'Average',
+                y: 23,
+                color: Highcharts.getOptions().colors[1]}, 
+                   {
+                name: 'Below Average',
+                y: 19,
+                color: Highcharts.getOptions().colors[2]}],
+            center: [100, 80],
+            size: 100,
+            showInLegend: false,
+            dataLabels: {
+                enabled: false
+            }
+      }
+   ];     
+      
+   var json = {};   
+   json.title = title;   
+   json.xAxis = xAxis;
+   json.labels = labels;  
+   json.series = series;
+   $('#container').highcharts(json);  
+});
+</script>
 </body>
 </html>
