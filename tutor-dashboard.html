@@ -39,10 +39,9 @@
         </li>
     </ul>
 </nav>
-
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="p-5">
+<div class="row">
+    <div class="col-8">
+        <div class="p-3">
             <div class="text-center">
                 <picture>
                     <img src="assets/img/logo.png" alt="ASTS Logo">
@@ -57,13 +56,13 @@
                 <div id="container" style="width: 750px; height: 500px; margin: 0 auto"></div>
                 <script>
                     $(document).ready(function () {
-                        var title = {
+                        const title = {
                             text: 'Tutor 01'
                         };
-                        var xAxis = {
+                        const xAxis = {
                             categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5']
                         };
-                        var labels = {
+                        const labels = {
                             items: [{
                                 html: 'Rating',
                                 style: {
@@ -73,7 +72,7 @@
                                 }
                             }]
                         };
-                        var series = [{
+                        const series = [{
                             type: 'spline',
                             name: 'Passing tutoring session',
                             data: [7, 10, 13, 9, 15]
@@ -113,7 +112,7 @@
                         }
                         ];
 
-                        var json = {};
+                        const json = {};
                         json.title = title;
                         json.xAxis = xAxis;
                         json.labels = labels;
@@ -122,6 +121,29 @@
                     });
                 </script>
             </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="p-3">
+            <div class="text-center">
+                <h4>View Feedback Forms</h4>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Session Number</th>
+                    <th scope="col">Tutor Name</th>
+                    <th scope="col">Link</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>01</td>
+                    <td>Tutor 01</td>
+                    <td><a class="btn btn-danger" href="tutor-feedback-form.html">Feedback Form</a></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
