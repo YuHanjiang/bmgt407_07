@@ -22,23 +22,13 @@
         <img src="assets/img/logo.png" alt="Logo" style="height:30px;">
       </a>
       <li class="nav-item">
-        <a class="nav-link" href="director-homepage.html">Home</a>
+        <a class="nav-link" href="tutor-homepage.html">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="director-schedule.html">Schedule</a>
+        <a class="nav-link" href="tutor-calendar.html">Calendar</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="director-calendar.html">Calendar</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="director-dashboard.html">Dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="director-status.html">Application Status</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="director-app-decision.html">Submitted Applications</a>
-      </li>
+        <a class="nav-link" href="tutor-dashboard.html">Dashboard</a>
       <li class="nav-item">
         <a class="nav-link" href="index.html">Sign Out</a>
       </li>
@@ -115,10 +105,7 @@
                };
                var title = {
                 text: "Visualization of Students' Ratting for Tutor 01"   
-              };
-                var credits = {
-                  enabled: false
-                };    
+              };      
               var tooltip = {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
               };
@@ -150,7 +137,7 @@
 
             ]
           }];     
-
+          
           var json = {};   
           json.chart = chart; 
           json.title = title;     
