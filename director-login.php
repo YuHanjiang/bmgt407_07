@@ -72,28 +72,29 @@ if (isset($_SESSION['submit'])) {
             </div>
 
             <form action="director-login.php" method="POST">
-                <div class="form-group">
-
+                <fieldset>
                     <?php
                     // if there is an errorMessage (from above), display it
-                    if (isset($errorMessage)){
-                        echo "<p>".$errorMessage."</p>";
+                    if (isset($errorMessage)) {
+                        echo "<p>" . $errorMessage . "</p>";
                     }
                     ?>
-                    <label for="email">Email:</label>
-                    <input class="form-control" type="email" id="email" name="email"
-                           aria-describedby="emailHelp" placeholder="Email Address">
-                </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input class="form-control" type="email" id="email" name="email"
+                               aria-describedby="emailHelp" placeholder="Email Address">
+                    </div>
 
-                <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input class="form-control" type="password" name="password" id="password"
-                           placeholder="Password">
-                </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input class="form-control" type="password" name="password" id="password"
+                               placeholder="Password">
+                    </div>
 
-                <div class="p-2">
-                    <button class="btn btn-danger btn-block" type="submit" name="submit">Login</button>
-                </div>
+                    <div class="p-2">
+                        <button class="btn btn-danger btn-block" type="submit" name="submit">Login</button>
+                    </div>
+                </fieldset>
             </form>
             <div class="p-3">
                 <div class="text-center">
