@@ -15,11 +15,11 @@ if (isset($_POST['submit'])) {
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
 
-    $checkQuery = "SELECT email from users where email = '{$email}'";
+    $checkQuery = "SELECT email from users where email = '$email'";
     if (getOneRow($checkQuery)) {
         echo '<script>alert("User Exists!")</script>';
     } else {
-        runQuery("INSERT INTO users VALUES ('{$email}', '{$pwd}', '{$firstName}', '{$lastName}', 2);");
+        runQuery("INSERT INTO users VALUES ('$email', '$pwd', '$firstName', '$lastName', 2);");
         echo '<script>alert("User registered successfully!")</script>';
         header("Location: index.php");
     }
@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
 
-            <form>
+            <form action="register.php" method="POST">
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-6">
