@@ -73,6 +73,13 @@ if (isset($_SESSION['submit'])) {
 
             <form action="director-login.php" method="POST">
                 <div class="form-group">
+
+                    <?php
+                    // if there is an errorMessage (from above), display it
+                    if (isset($errorMessage)){
+                        echo "<p>".$errorMessage."</p>";
+                    }
+                    ?>
                     <label for="email">Email:</label>
                     <input class="form-control" type="email" id="email" name="email"
                            aria-describedby="emailHelp" placeholder="Email Address">
