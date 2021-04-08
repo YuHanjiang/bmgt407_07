@@ -1,5 +1,30 @@
 <?php
+require_once('dbhelper.php');
 session_start();
+
+if (isset($_SESSION['username'])) {
+    header("Location: index.php");
+}
+
+if (isset($_POST['submit'])) {
+    if ($_POST['password'] != $_POST['repeatPassword']) {
+        echo '<script>alert("Please enter the same password twice")</script>';
+    }
+    $email = $_POST['email'];
+    $pwd = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+
+    $checkQuery = "SELECT email from users where email = '{$email}'";
+    if (getOneRow($checkQuery)) {
+        echo '<script>alert("User Exists!")</script>';
+    } else {
+        runQuery("INSERT INTO users VALUES ('{$email}', '{$pwd}', '{$firstName}', '{$lastName}');");
+        echo '<script>alert("User registered successfully!")</script>';
+        header("Location: index.php");
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,40 +80,42 @@ session_start();
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="firstName">First Name:</label>
-                            <input class="form-control" type="text" id="firstName" placeholder="First Name">
+                            <input class="form-control" type="text" name="firstName" id="firstName"
+                                   placeholder="First Name" required>
                         </div>
                         <div class="col-sm-6">
                             <label for="lastName">Last Name:</label>
-                            <input class="form-control" type="text" id="lastName" placeholder="Last Name">
+                            <input class="form-control" type="text" name="lastName" id="lastName"
+                                   placeholder="Last Name" required>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="loginEmail">Email:</label>
-                    <input class="form-control" type="email" id="loginEmail"
-                           aria-describedby="emailHelp" placeholder="Email Address">
+                    <label for="email">Email:</label>
+                    <input class="form-control" type="email" id="email" name="email"
+                           aria-describedby="emailHelp" placeholder="Email Address" required>
                 </div>
 
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-6">
-                            <label for="loginPassword">Password:</label>
-                            <input class="form-control" type="password" id="loginPassword"
-                                   placeholder="Password">
+                            <label for="password">Password:</label>
+                            <input class="form-control" type="password" id="password" name="password"
+                                   placeholder="Password" required>
                         </div>
 
                         <div class="col-sm-6">
                             <label for="repeatPassword">Repeat Password:</label>
-                            <input class="form-control" type="password" id="repeatPassword"
-                                   placeholder="Repeat password">
+                            <input class="form-control" type="password" id="repeatPassword" name="repeatPassword"
+                                   placeholder="Repeat password" required>
                         </div>
                     </div>
 
                 </div>
                 <!--insert register information to student information-->
                 <div class="p-2">
-                    <a href="index.html" class="btn btn-danger btn-block" type="submit">Register</a>
+                    <button class="btn btn-danger btn-block" type="submit" name="submit">Register</button>
                 </div>
             </form>
 

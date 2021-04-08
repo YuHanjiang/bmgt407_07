@@ -83,13 +83,13 @@ if (isset($_POST['submit'])) {
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input class="form-control" type="email" id="email" name="email"
-                               aria-describedby="emailHelp" placeholder="Email Address">
+                               aria-describedby="emailHelp" placeholder="Email Address" required>
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password:</label>
                         <input class="form-control" type="password" name="password" id="password"
-                               placeholder="Password">
+                               placeholder="Password" required>
                     </div>
 
                     <div class="p-2">
