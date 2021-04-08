@@ -56,30 +56,8 @@ if (isset($_SESSION['submit'])) {
 </head>
 
 <body>
-<nav class="navbar navbar-expand-sm bg-danger navbar-dark">
-    <ul class="navbar-nav">
-        <a class="navbar-brand">
-            <img src="assets/img/logo.png" alt="Logo" style="height:30px;">
-        </a>
-        <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" href="#" id="login-dropdown" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-                Login
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="student-login.html">Student Login</a>
-                <a class="dropdown-item" href="tutor-login.html">Tutor Login</a>
-                <a class="dropdown-item active" href="director-login.html">Director Login</a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="public-hire.html">Become a Tutor</a>
-        </li>
-    </ul>
-</nav>
+
+<?php require_once('nav-bar.php') ?>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -95,19 +73,19 @@ if (isset($_SESSION['submit'])) {
 
             <form action="director-login.php" method="post">
                 <div class="form-group">
-                    <label for="loginEmail">Email:</label>
-                    <input class="form-control" type="email" id="loginEmail"
+                    <label for="email">Email:</label>
+                    <input class="form-control" type="email" id="email" name="email"
                            aria-describedby="emailHelp" placeholder="Email Address">
                 </div>
 
                 <div class="form-group">
-                    <label for="loginPassword">Password:</label>
-                    <input class="form-control" type="password" id="loginPassword"
+                    <label for="password">Password:</label>
+                    <input class="form-control" type="password" name="password" id="password"
                            placeholder="Password">
                 </div>
 
                 <div class="p-2">
-                    <button class="btn btn-danger btn-block" type="submit">Login</button>
+                    <button class="btn btn-danger btn-block" type="submit" name="submit">Login</button>
                 </div>
             </form>
             <div class="p-3">
