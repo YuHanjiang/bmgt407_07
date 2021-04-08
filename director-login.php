@@ -6,13 +6,11 @@ if (isset($_SESSION['username'])) {
     header('Location: index.php');
 }
 
-if (isset($_SESSION['submit'])) {
+if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $pwd = $_POST['password'];
     $query = "SELECT email, password FROM users WHERE email = '{$email}' and accountType = 0";
     $record = getOneRow($query);
-
-    echo "<script>alert('{$email}')</script>";
 
     if ($record['email'] == $email and password_verify($pwd, $record['password'])) {
         $_SESSION['username'] = $email;
