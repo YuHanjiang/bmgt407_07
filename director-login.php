@@ -1,3 +1,26 @@
+<?php
+require_once('dbhelper.php');
+session_start();
+
+if (isset($_SESSION['username'])) {
+    header('Location: index.php');
+}
+
+if (isset($_SESSION['submit'])) {
+    $email = $_POST['email'];
+    $pwd = $_POST['password'];
+    $query = "SELECT email, password FROM users WHERE username = '{$username}' and accountType = 0";
+    $record = getOneRow($query);
+
+    if ($record['email'] == $email and password_verify($pwd, $record['password'])) {
+        $_SESSION['username'] = $email;
+
+        header('Location: index.php');
+    } else {
+        $errorMessage = "Invalid input";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,7 +93,7 @@
                 </div>
             </div>
 
-            <form>
+            <form action="director-login.php" method="post">
                 <div class="form-group">
                     <label for="loginEmail">Email:</label>
                     <input class="form-control" type="email" id="loginEmail"
@@ -84,15 +107,15 @@
                 </div>
 
                 <div class="p-2">
-                    <a href="director-homepage.html" class="btn btn-danger btn-block" type="submit">Login</a>
+                    <button class="btn btn-danger btn-block" type="submit">Login</button>
                 </div>
             </form>
             <div class="p-3">
                 <div class="text-center">
-                    <a class="small" href="forgot_password.html">Forgot Password</a>
+                    <a class="small" href="forgot_password.php">Forgot Password</a>
                 </div>
                 <div class="text-center">
-                    <a class="small" href="register.html">Create an Account</a>
+                    <a class="small" href="register.php">Create an Account</a>
                 </div>
             </div>
         </div>
