@@ -25,7 +25,7 @@
                         <a class="nav-link" href="app-decision.php">Submitted Applications</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Sign Out</a>
+                        <a class="nav-link" href="sign-out.php">Sign Out</a>
                     </li>';
             } else if ($_SESSION['accountType'] == 'student') {
                 echo '<a class="navbar-brand">
@@ -41,7 +41,7 @@
                         <a class="nav-link" href="hire.php">Become a Tutor</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Sign Out</a>
+                        <a class="nav-link" href="sign-out.php">Sign Out</a>
                     </li>';
             } else if ($_SESSION['accountType'] == 'tutor') {
                 echo '<a class="navbar-brand">
@@ -57,7 +57,7 @@
                         <a class="nav-link" href="dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Sign Out</a>
+                        <a class="nav-link" href="sign-out.php">Sign Out</a>
                     </li>';
             }
             //else, meaning if I am not logged in
@@ -74,7 +74,7 @@
                         <a class="dropdown-item" href = "director-login.php" > Director Login </a>
                     </div>
                     </li>';
-            echo '<li class="nav-item"><a class="nav-link" href = "public-hire.php"> Become a Tutor </a>
+            echo '<li class="nav-item"><a class="nav-link" href = "hire.php"> Become a Tutor </a>
         </li > ';
         }
         ?>
