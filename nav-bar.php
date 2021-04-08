@@ -2,6 +2,32 @@
     <ul class="navbar-nav">
         <?php
         if (isset($_SESSION['username'])) {
+            if ($_SESSION['accountType'] == 'director') {
+                echo '<a class="navbar-brand">
+                        <img src="assets/img/logo.png" alt="Logo" style="height:30px;">
+                    </a>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="director-homepage.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="director-schedule.php">Schedule</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="director-calendar.php">Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="director-dashboard.php">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="director-status.php">Application Status</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="director-app-decision.php">Submitted Applications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Sign Out</a>
+                    </li>';
+            }
             echo '<li> <a class="navbar-link" href="directory.php"> Directory</a> </li>';
             echo '<li> <a class="navbar-link" href="register_admin.php"> Create New User</a> </li>';
             echo '<li> <a class="navbar-link" href="logout.php"> Logout </a> </li>';
