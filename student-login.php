@@ -66,12 +66,12 @@ if (isset($_POST['submit'])) {
 
                 <div class="form-group">
                     <label for="password">Password:</label>
-                    <input class="form-control" type="password" id="password"
+                    <input class="form-control" type="password" id="password" name="password"
                            placeholder="Password">
                 </div>
 
                 <div class="p-2">
-                    <button class="btn btn-danger btn-block" type="submit">Login</button>
+                    <button class="btn btn-danger btn-block" type="submit" name="submit">Login</button>
                 </div>
             </form>
             <div class="p-3">
