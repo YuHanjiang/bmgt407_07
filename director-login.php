@@ -9,7 +9,7 @@ if (isset($_SESSION['username'])) {
 if (isset($_SESSION['submit'])) {
     $email = $_POST['email'];
     $pwd = $_POST['password'];
-    $query = "SELECT email, password FROM users WHERE username = '{$username}' and accountType = 0";
+    $query = "SELECT email, password FROM users WHERE email = '{$email}' and accountType = 0";
     $record = getOneRow($query);
 
     if ($record['email'] == $email and password_verify($pwd, $record['password'])) {
