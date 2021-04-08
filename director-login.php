@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
 
         header('Location: index.php');
     } else {
-        $errorMessage = "Invalid input";
+        echo '<script>alert("Wrong email or password, please try again.")</script>';
     }
 }
 ?>
@@ -74,12 +74,6 @@ if (isset($_POST['submit'])) {
 
             <form action="director-login.php" method="POST">
                 <fieldset>
-                    <?php
-                    // if there is an errorMessage (from above), display it
-                    if (isset($errorMessage)) {
-                        echo "<p>" . $errorMessage . "</p>";
-                    }
-                    ?>
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <input class="form-control" type="email" id="email" name="email"

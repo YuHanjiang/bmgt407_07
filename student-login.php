@@ -1,18 +1,26 @@
 <?php
-    require_once('dbhelper.php');
-    session_start();
+require_once('dbhelper.php');
+session_start();
 
-    if(isset($_SESSION['username'])) {
+if (isset($_SESSION['username'])) {
+    header('Location: index.php');
+}
+
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
+    $pwd = $_POST['password'];
+    $query = "SELECT email, password FROM users WHERE email = '$email' and accountType = 2";
+    $record = getOneRow($query);
+
+    if ($record['email'] == $email and password_verify($pwd, $record['password'])) {
+        $_SESSION['username'] = $email;
+        $_SESSION['accountType'] = 'student';
+
         header('Location: index.php');
+    } else {
+        echo '<script>alert("Wrong email or password, please try again.")</script>';
     }
-
-    if (isset($_SESSION['submit'])) {
-        $email = $_POST['email'];
-        $pwd = $_POST['password'];
-        $query = "SELECT email, password FROM users WHERE username = '{$username}' and accountType = 2";
-        $record = getOneRow($query);
-
-    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
