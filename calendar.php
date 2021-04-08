@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,34 +23,7 @@
 
 <body>
 
-<nav class="navbar navbar-expand-sm bg-danger navbar-dark">
-    <ul class="navbar-nav">
-        <a class="navbar-brand">
-            <img src="assets/img/logo.png" alt="Logo" style="height:30px;">
-        </a>
-        <li class="nav-item">
-            <a class="nav-link" href="director-homepage.html">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="director-schedule.html">Schedule</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="director-calendar.html">Calendar</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="director-dashboard.html">Dashboard</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="director-status.html">Application Status</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="director-app-decision.html">Submitted Applications</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="index.html">Sign Out</a>
-        </li>
-    </ul>
-</nav>
+<?php require_once('nav-bar.php') ?>
 
 <br>
 

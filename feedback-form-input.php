@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,30 +29,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm bg-danger navbar-dark">
-    <ul class="navbar-nav">
-        <a class="navbar-brand">
-            <img src="assets/img/logo.png" alt="Logo" style="height:30px;">
-        </a>
-        <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="login-dropdown" data-toggle="dropdown" aria-haspopup="true"
-               aria-expanded="false">
-                Login
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="student-login.html">Student Login</a>
-                <a class="dropdown-item" href="tutor-login.html">Tutor Login</a>
-                <a class="dropdown-item" href="director-login.html">Director Login</a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="public-hire.html">Become a Tutor</a>
-        </li>
-    </ul>
-</nav>
+<?php require_once('nav-bar.php') ?>
 
 <div class="container" style="margin-top: 50px">
     <div class="form-container" style="width:600px">
