@@ -8,7 +8,7 @@
 function makeTheConnection() {
 
 	// FILL IN YOUR DATABASE NAME
-	$db = "bmgt407_2021s_07";
+	$db = "bmgt407_2021s_07_db";
 	
 	// UNCOMMENT THIS IF YOU ARE USING MYSQL
 	$connection = "mysql:host=bmgt407.rhsmith.umd.edu;dbname=".$db; 
