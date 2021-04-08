@@ -12,7 +12,6 @@ if (isset($_SESSION['submit'])) {
     $query = "SELECT email, password FROM users WHERE username = '{$username}' and accountType = 0";
     $record = getOneRow($query);
 
-    echo $record;
     if ($record['email'] == $email and password_verify($pwd, $record['password'])) {
         $_SESSION['username'] = $email;
 
@@ -72,7 +71,7 @@ if (isset($_SESSION['submit'])) {
                 </div>
             </div>
 
-            <form action="director-login.php" method="post">
+            <form action="director-login.php" method="POST">
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input class="form-control" type="email" id="email" name="email"
