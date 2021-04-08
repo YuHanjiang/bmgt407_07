@@ -1,5 +1,30 @@
 <?php
+require_once('dbhelper.php');
 session_start();
+
+// Check if the user is currently logged in.
+if (isset($_SESSION['username'])) {
+    header('Location: index.php');
+}
+
+// Code to process information from the login form.
+// A note on the accountType: Think of accountType as a dictionary
+// accountType = {'director': 0; 'tutor': 1; 'student': 2};
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
+    $pwd = $_POST['password'];
+    $query = "SELECT email, password FROM users WHERE email = '$email' and accountType = 1";
+    $record = getOneRow($query);
+
+    if ($record['email'] == $email and password_verify($pwd, $record['password'])) {
+        $_SESSION['username'] = $email;
+        $_SESSION['accountType'] = 'student';
+
+        header('Location: index.php');
+    } else {
+        echo '<script>alert("Wrong email or password, please try again.")</script>';
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,27 +77,27 @@ session_start();
 
             <form>
                 <div class="form-group">
-                    <label for="loginEmail">Email:</label>
-                    <input class="form-control" type="email" id="loginEmail"
-                           aria-describedby="emailHelp" placeholder="Email Address">
+                    <label for="email">Email:</label>
+                    <input class="form-control" type="email" id="email" name="email"
+                           aria-describedby="emailHelp" placeholder="Email Address" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="loginPassword">Password:</label>
-                    <input class="form-control" type="password" id="loginPassword"
-                           placeholder="Password">
+                    <label for="password">Password:</label>
+                    <input class="form-control" type="password" id="password" name="password"
+                           placeholder="Password" required>
                 </div>
 
                 <div class="p-2">
-                    <a href="tutor-homepage.html" class="btn btn-danger btn-block" type="submit">Login</a>
+                    <button class="btn btn-danger btn-block" type="submit" name="submit">Login</button>
                 </div>
             </form>
             <div class="p-3">
                 <div class="text-center">
-                    <a class="small" href="forgot_password.html">Forgot Password</a>
+                    <a class="small" href="forgot_password.php">Forgot Password</a>
                 </div>
                 <div class="text-center">
-                    <a class="small" href="register.html">Create an Account</a>
+                    <a class="small" href="register.php">Create an Account</a>
                 </div>
             </div>
         </div>
