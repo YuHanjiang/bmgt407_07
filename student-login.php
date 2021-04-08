@@ -1,3 +1,19 @@
+<?php
+    require_once('dbhelper.php');
+    session_start();
+
+    if(isset($_SESSION['username'])) {
+        header('Location: index.php');
+    }
+
+    if (isset($_SESSION['submit'])) {
+        $email = $_POST['email'];
+        $pwd = $_POST['password'];
+        $query = "SELECT email, password FROM users WHERE username = '{$username}' and accountType = 2";
+        $record = getOneRow($query);
+
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,30 +34,8 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-sm bg-danger navbar-dark">
-    <ul class="navbar-nav">
-        <a class="navbar-brand">
-            <img src="assets/img/logo.png" alt="Logo" style="height:30px;">
-        </a>
-        <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" href="#" id="login-dropdown" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false">
-                Login
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item active" href="student-login.html">Student Login</a>
-                <a class="dropdown-item" href="tutor-login.html">Tutor Login</a>
-                <a class="dropdown-item" href="director-login.html">Director Login</a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="public-hire.html">Become a Tutor</a>
-        </li>
-    </ul>
-</nav>
+
+<?php require_once('nav-bar.php') ?>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -55,29 +49,29 @@
                 </div>
             </div>
 
-            <form>
+            <form action="student-login.php" method="POST">
                 <div class="form-group">
-                    <label for="loginEmail">Email:</label>
-                    <input class="form-control" type="email" id="loginEmail"
+                    <label for="email">Email:</label>
+                    <input class="form-control" type="email" name="email" id="email"
                            aria-describedby="emailHelp" placeholder="Email Address">
                 </div>
 
                 <div class="form-group">
-                    <label for="loginPassword">Password:</label>
-                    <input class="form-control" type="password" id="loginPassword"
+                    <label for="password">Password:</label>
+                    <input class="form-control" type="password" id="password"
                            placeholder="Password">
                 </div>
 
                 <div class="p-2">
-                    <a href="student-homepage.html" class="btn btn-danger btn-block" type="submit">Login</a>
+                    <button class="btn btn-danger btn-block" type="submit">Login</button>
                 </div>
             </form>
             <div class="p-3">
                 <div class="text-center">
-                    <a class="small" href="forgot_password.html">Forgot Password</a>
+                    <a class="small" href="forgot_password.php">Forgot Password</a>
                 </div>
                 <div class="text-center">
-                    <a class="small" href="register.html">Create an Account</a>
+                    <a class="small" href="register.php">Create an Account</a>
                 </div>
             </div>
         </div>
