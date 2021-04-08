@@ -92,7 +92,7 @@ if (isset($_SESSION['submit'])) {
                     </div>
 
                     <div class="p-2">
-                        <button class="btn btn-danger btn-block" type="submit" name="submit">Login</button>
+                        <button class="btn btn-danger btn-block" type="submit" name="submit" id="submit">Login</button>
                     </div>
                 </fieldset>
             </form>
