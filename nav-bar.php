@@ -74,7 +74,7 @@
                         <a class="dropdown-item" href = "director-login.php" > Director Login </a>
                     </div>
                     </li>';
-            echo '<li class="nav-item"><a class="nav-link" href="register.php"> Student Register </a></li>';
+            echo '<li class="nav-item"><a class="nav-link" href="register.php"> Registration </a></li>';
             echo '<li class="nav-item"><a class="nav-link" href = "hire.php"> Become a Tutor </a></li>';
         }
         ?>
