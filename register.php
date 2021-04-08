@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
     if (getOneRow($checkQuery)) {
         echo '<script>alert("User Exists!")</script>';
     } else {
-        runQuery("INSERT INTO users VALUES ('{$email}', '{$pwd}', '{$firstName}', '{$lastName}');");
+        runQuery("INSERT INTO users VALUES ('{$email}', '{$pwd}', '{$firstName}', '{$lastName}', 2);");
         echo '<script>alert("User registered successfully!")</script>';
         header("Location: index.php");
     }
