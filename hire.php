@@ -162,11 +162,10 @@ session_start();
                 <input type="file" class="form-control-file" id="exampleFormControlFile1">
                 <br>
                 <div class="p-2">
-                    <a href="public-hire-confirmation.html" class="btn btn-danger btn-block" type="submit">Register</a>
+                    <button class="btn btn-danger btn-block" type="submit" name="submit">Submit</button>
                 </div>
 
             </form>
-            <!-- This page will go into tutor information table in the DB -->
         </div>
     </div>
 </div>

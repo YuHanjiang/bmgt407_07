@@ -2,7 +2,7 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="assets/css/page-dim.css">
@@ -94,8 +94,7 @@ session_start();
                         <button class="btn btn-primary btn-block" type="submit">Submit</button>
                     </div-->
                     <div class="p-2">
-                        <a href="director-confirmation-page.html" class="btn btn-danger btn-block"
-                           type="submit">Submit</a>
+                        <button class="btn btn-danger btn-block" name="submit" type="submit">Submit</button>
                     </div>
                 </form>
             </div>
