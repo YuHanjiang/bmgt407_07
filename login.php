@@ -70,7 +70,7 @@ if (isset($_POST['submit'])) {
             </picture>
             <div class="p-2">
                 <div class="text-center">
-                    <h4>Director Login</h4>
+                    <h4>Login</h4>
                 </div>
             </div>
 
@@ -89,7 +89,7 @@ if (isset($_POST['submit'])) {
                     </div>
 
                     <div class="form-group">
-                        <h4>Account Type</h4>
+                        <a>Account Type:</a><br>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="type" id="type" value="2"
                                    checked="checked">

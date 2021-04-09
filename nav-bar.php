@@ -64,18 +64,9 @@
         } else {
             echo '<a class="navbar-brand"><img src="assets/img/logo.png" alt="Logo" style="height:30px;"></a>';
             echo '<li class="nav-item"> <a class="nav-link" href="index.php">Home</a> </li>';
-            echo '<li class="nav-item dropdown" >
-                    <a class="nav-link dropdown-toggle" href = "#" id = "login-dropdown" data-toggle = "dropdown" 
-                    aria-haspopup = "true"
-                    aria-expanded = "false"> Login </a>
-                    <div class="dropdown-menu" aria-labelledby = "navbarDropdownMenuLink" >
-                        <a class="dropdown-item" href = "student-login.php" > Student Login </a>
-                        <a class="dropdown-item" href = "tutor-login.php" > Tutor Login </a>
-                        <a class="dropdown-item" href = "director-login.php" > Director Login </a>
-                    </div>
-                    </li>';
-            echo '<li class="nav-item"><a class="nav-link" href="register.php"> Registration </a></li>';
-            echo '<li class="nav-item"><a class="nav-link" href = "hire.php"> Become a Tutor </a></li>';
+            echo '<li class="nav-item"> <a class="nav-link" href="login.php">Login</a></li>';
+            echo '<li class="nav-item"><a class="nav-link" href="register.php">Registration</a></li>';
+            echo '<li class="nav-item"><a class="nav-link" href = "hire.php">Become a Tutor</a></li>';
         }
         ?>
     </ul>
