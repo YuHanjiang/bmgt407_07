@@ -74,7 +74,7 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
 
-            <form action="director-login.php" method="POST">
+            <form action="login.php" method="POST">
                 <fieldset>
                     <div class="form-group">
                         <label for="email">Email:</label>
