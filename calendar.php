@@ -157,7 +157,7 @@ session_start();
                 dp.events.add(new DayPilot.Event({
                     start: args.start,
                     end: args.end,
-                    id: data.id,
+                    id: data.id + 1,
                     text: name
                 }));
                 console.log("Created.");
