@@ -4,13 +4,14 @@ require_once '_db.php';
 $json = file_get_contents('php://input');
 $params = json_decode($json);
 
-$insert = "INSERT INTO events (name, start, end) VALUES (:name, :start, :end)";
+$insert = "INSERT INTO events (name, start, end, resource) VALUES (:name, :start, :end, :resource)";
 
 $stmt = $db->prepare($insert);
 
 $stmt->bindParam(':start', $params->start);
 $stmt->bindParam(':end', $params->end);
 $stmt->bindParam(':name', $params->text);
+$stmt->bindParam(':resource', $params->resource);
 $stmt->execute();
 
 class Result {}

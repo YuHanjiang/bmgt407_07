@@ -149,7 +149,8 @@ session_start();
             data: {
                 start: args.start,
                 end: args.end,
-                text: name
+                text: name,
+                resource: '<?php echo $_SESSION['username'];?>'
             },
             success: function (ajax) {
                 var data = ajax.data;
