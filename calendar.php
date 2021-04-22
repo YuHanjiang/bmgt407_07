@@ -179,17 +179,5 @@ session_start();
 
 </script>
 
-<script type="text/javascript">
-    var elements = {
-        theme: document.querySelector("#theme")
-    };
-
-    elements.theme.addEventListener("change", function () {
-        dp.theme = this.value;
-        dp.update();
-    });
-
-</script>
-
 </body>
 </html>
