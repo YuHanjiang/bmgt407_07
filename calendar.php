@@ -153,6 +153,7 @@ session_start();
             },
             success: function (ajax) {
                 var data = ajax.data;
+                console.log(data);
                 dp.events.add(new DayPilot.Event({
                     start: args.start,
                     end: args.end,
