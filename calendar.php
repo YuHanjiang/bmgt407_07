@@ -104,7 +104,7 @@ session_start();
 
     dp.onEventDeleted = function (args) {
         DayPilot.Http.ajax({
-            url: "backend_delete.php",
+            url: "assets/php/backend_delete.php",
             data: {
                 id: args.e.id()
             },
@@ -117,7 +117,7 @@ session_start();
 
     dp.onEventMoved = function (args) {
         DayPilot.Http.ajax({
-            url: "backend_move.php",
+            url: "assets/php/backend_move.php",
             data: {
                 id: args.e.id(),
                 newStart: args.newStart,
@@ -131,7 +131,7 @@ session_start();
 
     dp.onEventResized = function (args) {
         DayPilot.Http.ajax({
-            url: "backend_move.php",
+            url: "assets/php/backend_move.php",
             data: {
                 id: args.e.id(),
                 newStart: args.newStart,
@@ -152,7 +152,7 @@ session_start();
         }
 
         DayPilot.Http.ajax({
-            url: "backend_create.php",
+            url: "assets/php/backend_create.php",
             data: {
                 start: args.start,
                 end: args.end,
@@ -181,7 +181,7 @@ session_start();
     loadEvents();
 
     function loadEvents() {
-        dp.events.load("backend_events.php");
+        dp.events.load("assets/php/backend_events.php");
     }
 
 </script>
