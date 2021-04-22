@@ -18,13 +18,7 @@ session_start();
             crossorigin="anonymous"
     />
     <title>Calendar</title>
-
-    <meta name="referrer" content="no-referrer-when-downgrade"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="assets/helpers/v2/main.css?v=2021.1.248" type="text/css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"/>
-    <script src="assets/js/daypilot-all.min.js"></script>
-
+    <script src="assets/js/daypilot/daypilot-all.min.js"></script>
 
 </head>
 
@@ -36,19 +30,14 @@ session_start();
 <div class="row">
     <div class="col-8">
         <div class="container">
-            <div class="main">
-                <div style="display: flex">
-
-                    <div style="margin-right: 10px;">
-                        <div id="nav"></div>
-                    </div>
-
-                    <div style="flex-grow: 1;">
-
-                        <div id="dp"></div>
-                    </div>
-
+            <div style="display: flex">
+                <div style="margin-right: 10px;">
+                    <div id="nav"></div>
                 </div>
+                <div style="flex-grow: 1;">
+                    <div id="dp"></div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -88,57 +77,119 @@ session_start();
     </div>
 </div>
 
-
 <script type="text/javascript">
 
     var nav = new DayPilot.Navigator("nav");
     nav.showMonths = 3;
     nav.skipMonths = 3;
     nav.selectMode = "week";
-
-    var dp = new DayPilot.Calendar("dp");
-    dp.init();
-
+    nav.onTimeRangeSelected = function (args) {
+        dp.startDate = args.day;
+        dp.update();
+        loadEvents();
+    };
     nav.init();
 
+    var dp = new DayPilot.Calendar("dp");
     dp.viewType = "Week";
 
     dp.eventDeleteHandling = "Update";
 
-    dp.onTimeRangeSelected = function (args) {
-        var name = prompt("New event name:", "Event");
-        if (!name) return;
-        var e = new DayPilot.Event({
-            start: args.start,
-            end: args.end,
-            id: DayPilot.guid(),
-            text: name
+    dp.onEventDeleted = function (args) {
+        DayPilot.Http.ajax({
+            url: "assets/php/backend_delete.php",
+            data: {
+                id: args.e.id()
+            },
+            success: function () {
+                console.log("Deleted.");
+            }
+        })
+
+    };
+
+    dp.onEventMoved = function (args) {
+        DayPilot.Http.ajax({
+            url: "assets/php/backend_move.php",
+            data: {
+                id: args.e.id(),
+                newStart: args.newStart,
+                newEnd: args.newEnd
+            },
+            success: function () {
+                console.log("Moved.");
+            }
         });
-        dp.events.add(e);
+    };
+
+    dp.onEventResized = function (args) {
+        DayPilot.Http.ajax({
+            url: "assets/php/backend_move.php",
+            data: {
+                id: args.e.id(),
+                newStart: args.newStart,
+                newEnd: args.newEnd
+            },
+            success: function () {
+                console.log("Resized.");
+            }
+        });
+    };
+
+    // event creating
+    dp.onTimeRangeSelected = function (args) {
+        var name = prompt("New event name:", "Event")
         dp.clearSelection();
-    };
-
-    dp.eventDeleteHandling = "Update";
-    dp.onEventDelete = function (args) {
-        if (!confirm("Do you really want to delete this event?")) {
-            args.preventDefault();
+        if (!name) {
+            return;
         }
+
+        DayPilot.Http.ajax({
+            url: "assets/php/backend_create.php",
+            data: {
+                start: args.start,
+                end: args.end,
+                text: name
+            },
+            success: function (ajax) {
+                var data = ajax.data;
+                dp.events.add(new DayPilot.Event({
+                    start: args.start,
+                    end: args.end,
+                    id: data.id,
+                    text: name
+                }));
+                console.log("Created.");
+            }
+        });
+
     };
 
-    dp.headerDateFormat = "dddd";
+    dp.onEventClick = function (args) {
+        alert("clicked: " + args.e.id());
+    };
+
     dp.init();
 
-    var e = new DayPilot.Event({
-        start: new DayPilot.Date("2021-04-23T12:00:00"),
-        end: new DayPilot.Date("2021-04-23T12:00:00").addHours(3).addMinutes(15),
-        id: "1",
-        text: "Special event"
-    });
-    dp.events.add(e);
+    loadEvents();
+
+    function loadEvents() {
+        dp.events.load("assets/php/backend_events.php");
+    }
 
 </script>
 
-<script src="assets/helpers/v2/app.js?v=2021.1.248"></script>
+<script type="text/javascript">
+    var elements = {
+        theme: document.querySelector("#theme")
+    };
+
+    elements.theme.addEventListener("change", function () {
+        dp.theme = this.value;
+        dp.update();
+    });
+
+</script>
 
 </body>
 </html>
