@@ -79,9 +79,7 @@ if (isset($_POST['submit'])) {
                         <select class="form-control" id="course" required>
                             <?php
                             foreach ($courses as $course) {
-                                echo "<option>";
-                                echo "$course";
-                                echo "</option>";
+                                echo "<option>" . $course['courseName'] . "</option>";
                             }
                             ?>
                         </select>
