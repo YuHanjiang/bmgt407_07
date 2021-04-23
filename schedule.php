@@ -7,10 +7,12 @@ if (!isset($_SESSION['username'])) {
 
 $courses = getRows("SELECT courseName FROM course");
 $tutors = getRows("SELECT firstName, lastName, email from users where accountType = 1");
-$courseName = 'NotDefined';
-if (isset($_POST['courseSelect']) and $courseName = 'NotDefined') {
-    $courseName = $_POST['course'];
-} else if (isset($_POST['submit']) and $courseName != 'NotDefined') {
+$_SESSION['courseName'] = 'UNDEFINED';
+if (isset($_POST['courseSelect']) and $_SESSION['courseName'] = 'UNDEFINED') {
+    $_SESSION['courseName'] = $_POST['course'];
+} else if (isset($_POST['courseReselect'])) {
+    $_SESSION['courseName'] = 'UNDEFINED';
+} else if (isset($_POST['submit']) and $_SESSION['courseName'] != 'UNDEFINED') {
     $comp = preg_split("/\s+/", $_POST['tutor']);
     $tutorEmail = $comp[2];
     $studentEmail = $_SESSION['username'];
@@ -20,6 +22,7 @@ if (isset($_POST['courseSelect']) and $courseName = 'NotDefined') {
     $datetime = $_POST['sessionDate'] . " " . $_POST['sessionTime'];
     $checkQuery = "SELECT * from events where start = '$datetime' and name = '$courseName'";
     $avail = getOneRow($checkQuery);
+    $_SESSION['courseName'] = 'UNDEFINED';
     if ($avail) {
         runQuery("INSERT INTO appointment (course, tutor, date, time, comments, student)
             VALUES('$courseName', '$tutorEmail', '$date', '$time', '$comment', '$studentEmail')");
@@ -73,75 +76,80 @@ if (isset($_POST['courseSelect']) and $courseName = 'NotDefined') {
 
     <div class="col-4">
         <div class="container">
-            <div class="row justify-content-center">
-
-                <div class="p-2">
-                    <div class="text-center">
-                        <h4>Schedule Appointments</h4>
+            <div class="p-2">
+                <div class="text-center">
+                    <h4>Schedule Appointments</h4>
+                </div>
+            </div>
+            <form action="schedule.php" method="POST">
+                <div class="form-group">
+                    <label for="course">Course:</label>
+                    <select class="form-control" id="course" name="course" required>
+                        <?php
+                        if ($courseName = 'UNDEFINED') {
+                            foreach ($courses as $course) {
+                                echo "<option>" . $course['courseName'] . "</option>";
+                            }
+                        } else {
+                            echo "<option>" . $courseName . "</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="col-5">
+                        <div class="p-2">
+                            <button class="btn btn-danger btn-block" name="courseSelect" type="submit">Select
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="p-2">
+                            <button class="btn btn-danger btn-block" name="courseReselect" type="submit">Reselect
+                            </button>
+                        </div>
                     </div>
                 </div>
+            </form>
+            <form action="schedule.php" method="POST">
+                <div class="form-group">
+                    <label for="tutor">Tutor: </label>
+                    <select class="form-control" name="tutor" id="tutor" required>
+                        <?php
+                        foreach ($tutors as $tutor) {
+                            echo "<option>" . $tutor['firstName'] . " " . $tutor['lastName'] . " " . $tutor['email'] . "</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
 
-                <form action="schedule.php" method="POST">
-                    <div class="form-group">
-                        <label for="course">Course:</label>
-                        <select class="form-control" id="course" name="course" required>
-                            <?php
-                            if ($courseName = 'NotDefined') {
-                                foreach ($courses as $course) {
-                                    echo "<option>" . $course['courseName'] . "</option>";
-                                }
-                            } else {
-                                echo "<option>" . $courseName . "</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label for="session-date">Date: </label>
+                    <input type="date" name="sessionDate" id="session-date" required>
+                </div>
 
-                    <div class="p-2">
-                        <button class="btn btn-danger btn-block" name="courseSelect" type="submit">Select Course
-                        </button>
-                    </div>
-                </form>
-                <form action="schedule.php" method="POST">
-                    <div class="form-group">
-                        <label for="tutor">Tutor: </label>
-                        <select class="form-control" name="tutor" id="tutor" required>
-                            <?php
-                            foreach ($tutors as $tutor) {
-                                echo "<option>" . $tutor['firstName'] . " " . $tutor['lastName'] . " " . $tutor['email'] . "</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label for="session-time">Time: </label>
+                    <input type="time" name="sessionTime" id="session-time">
+                </div>
 
-                    <div class="form-group">
-                        <label for="session-date">Date: </label>
-                        <input type="date" name="sessionDate" id="session-date" required>
-                    </div>
+                <div class="form-group">
+                    <label for="comment">Comments:</label>
+                    <textarea class="form-control" id="comment" name="comment" required></textarea>
+                </div>
 
-                    <div class="form-group">
-                        <label for="session-time">Time: </label>
-                        <input type="time" name="sessionTime" id="session-time">
-                    </div>
+                <div class="form-group">
+                    <label for="file-upload">Upload file: </label>
+                    <input type="file" class="form-control-file" id="file-upload" required>
+                </div>
 
-                    <div class="form-group">
-                        <label for="comment">Comments:</label>
-                        <textarea class="form-control" id="comment" name="comment" required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="file-upload">Upload file: </label>
-                        <input type="file" class="form-control-file" id="file-upload" required>
-                    </div>
-
-                    <!--div class="form-group">
-                        <button class="btn btn-primary btn-block" type="submit">Submit</button>
-                    </div-->
-                    <div class="p-2">
-                        <button class="btn btn-danger btn-block" name="submit" type="submit">Submit</button>
-                    </div>
-                </form>
-            </div>
+                <!--div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                </div-->
+                <div class="p-2">
+                    <button class="btn btn-danger btn-block" name="submit" type="submit">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
