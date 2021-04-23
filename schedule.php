@@ -19,21 +19,7 @@ if (isset($_POST['submit'])) {
 
     runQuery("INSERT INTO appointment (course, tutor, date, time, comments, student) 
         VALUES('$courseName', '$tutorEmail', '$date', '$time', '$comment', '$studentEmail')");
-//    if ($_POST['password'] != $_POST['repeatPassword']) {
-//        echo '<script>alert("Please enter the same password twice")</script>';
-//    }
-//    $email = $_POST['email'];
-//    $pwd = password_hash($_POST['password'], PASSWORD_DEFAULT);
-//    $firstName = $_POST['firstName'];
-//    $lastName = $_POST['lastName'];
-//
-//    $checkQuery = "SELECT email from users where email = '$email'";
-//    if (getOneRow($checkQuery)) {
-//        echo '<script>alert("User Exists!")</script>';
-//    } else {
-//        runQuery("INSERT INTO users VALUES ('$email', '$pwd', '$firstName', '$lastName', 2);");
-//        header("Location: login.php");
-//    }
+    header("Location: confirmation-page.php");
 }
 ?>
 <!DOCTYPE html>
