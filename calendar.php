@@ -8,6 +8,8 @@ $appointments = getRows("SELECT * FROM appointment where tutor = '$username'");
 if (isset($_POST['delete'])) {
     $toDelete = $_POST['delete'];
     runQuery("DELETE from appointment where id = '$toDelete'");
+
+    header("Location: calendar.php");
 }
 ?>
 <!DOCTYPE html>
@@ -74,7 +76,9 @@ if (isset($_POST['delete'])) {
                             echo "<td>" . $appointment['student'] . "</td>";
                             echo "<td style=\"word-wrap: break-word;min-width: 100px;max-width: 100px;\">" .
                                 $appointment['comments'] . "</td>";
-                            echo "<td><button value=" . $appointment['id'] . " name='delete' type='submit'>" . "</button>" . "</td>";
+                            echo "<td><button class='btn btn-danger btn-block' 
+                                    value=" . $appointment['id'] . " name='delete' 
+                                    type='submit'>Complete</button>" . "</td>";
                             echo "</tr>";
                         }
                         ?>
