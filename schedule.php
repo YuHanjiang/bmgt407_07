@@ -10,7 +10,6 @@ $tutors = getRows("SELECT firstName, lastName, email from users where accountTyp
 if (isset($_POST['courseSelect']) and $_SESSION['courseName'] = 'UNDEFINED') {
     $_SESSION['courseName'] = $_POST['course'];
     $courseName = $_SESSION['courseName'];
-    echo "<script>alert('$courseName')</script>";
 } else if (isset($_POST['courseReselect'])) {
     $_SESSION['courseName'] = 'UNDEFINED';
 } else if (isset($_POST['submit']) and $_SESSION['courseName'] != 'UNDEFINED') {
@@ -89,7 +88,8 @@ if (isset($_POST['courseSelect']) and $_SESSION['courseName'] = 'UNDEFINED') {
                     <select class="form-control" id="course" name="course" required>
                         <?php
                         if ($_SESSION['courseName'] != 'UNDEFINED') {
-                            $courses = [$_SESSION['courseName']];
+                            $courseName = $_SESSION['courseName'];
+                            $courses = getRows("SELECT courseName FROM course where courseName = '$courseName'");
                         }
                         foreach ($courses as $course) {
                             echo "<option>" . $course['courseName'] . "</option>";
