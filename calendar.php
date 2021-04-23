@@ -167,7 +167,7 @@ session_start();
     };
 
     dp.onEventClick = function (args) {
-        alert("clicked: " + args.e.id());
+        alert("clicked: " + args.e.text());
     };
 
     dp.init();
