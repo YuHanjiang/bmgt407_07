@@ -122,9 +122,7 @@ session_start();
 
     var dp = new DayPilot.Calendar("dp");
     dp.viewType = "Week";
-
-    dp.eventDeleteHandling = "Update";
-
+    
     dp.init();
 
     loadEvents();
