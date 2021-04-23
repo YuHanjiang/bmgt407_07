@@ -2,7 +2,7 @@
 require_once('dbhelper.php');
 session_start();
 
-if (isset($_SESSION['username'])) {
+if ($_SESSION['accountType'] != 'director') {
     header("Location: index.php");
 }
 
