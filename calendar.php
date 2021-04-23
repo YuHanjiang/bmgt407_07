@@ -5,6 +5,10 @@ session_start();
 $username = $_SESSION['username'];
 $appointments = getRows("SELECT * FROM appointment where tutor = '$username'");
 
+if (isset($_POST['delete'])) {
+    $toDelete = $_POST['delete'];
+    runQuery("DELETE from appointment where id = '$toDelete'");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,29 +54,33 @@ $appointments = getRows("SELECT * FROM appointment where tutor = '$username'");
         <div class="container">
             <div class="p-3">
                 <h4>Upcoming Sessions: </h4>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Date</th>
-                        <th scope="col">Time</th>
-                        <th scope="col">Student</th>
-                        <th scope="col">Comments</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    foreach ($appointments as $appointment) {
-                        echo "<tr>";
-                        echo "<td>" . $appointment['date'] . "</td>";
-                        echo "<td>" . $appointment['time'] . "</td>";
-                        echo "<td>" . $appointment['student'] . "</td>";
-                        echo "<td style=\"word-wrap: break-word;min-width: 100px;max-width: 100px;\">" .
-                            $appointment['comments'] . "</td>";
-                        echo "</tr>";
-                    }
-                    ?>
-                    </tbody>
-                </table>
+                <form action="calendar.php" method="post">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Date</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Student</th>
+                            <th scope="col">Comments</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        foreach ($appointments as $appointment) {
+                            echo "<tr>";
+                            echo "<td>" . $appointment['date'] . "</td>";
+                            echo "<td>" . $appointment['time'] . "</td>";
+                            echo "<td>" . $appointment['student'] . "</td>";
+                            echo "<td style=\"word-wrap: break-word;min-width: 100px;max-width: 100px;\">" .
+                                $appointment['comments'] . "</td>";
+                            echo "<td><button value=" . $appointment['id'] . " name='delete' type='submit'>" . "</button>" . "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                </form>
             </div>
         </div>
     </div>
