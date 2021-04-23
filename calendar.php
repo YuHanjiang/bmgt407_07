@@ -1,5 +1,10 @@
 <?php
+require_once('dbhelper.php');
 session_start();
+
+$username = $_SESSION['username'];
+$appointments = getRows("SELECT * FROM appointment where userName = '$username'");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,36 +48,42 @@ session_start();
     </div>
     <div class="col-4">
         <div class="container">
-            <div class="row justify-content-center">
-                <a class="btn btn-danger btn-lg" href="https://calendar.google.com">Edit Calendar</a>
-            </div>
-            <div class="p-3">
-                <h4>Upcoming Sessions: </h4>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Time</th>
-                        <th scope="col">Student</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mar. 25</td>
-                        <td>15:00</td>
-                        <td>Student1</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Mar. 26</td>
-                        <td>10:00</td>
-                        <td>Student2</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            <a class="btn btn-danger btn-lg" href="https://calendar.google.com">Edit Calendar</a>
+        </div>
+        <div class="p-3">
+            <h4>Upcoming Sessions: </h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Student</th>
+                    <th scope="col">Comments</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                foreach ($appointments as $appointment) {
+
+                }
+                ?>
+
+                <tr>
+                    <td>Mar. 25</td>
+                    <td>15:00</td>
+                    <td>Student1</td>
+                    <td style="word-wrap: break-word;min-width: 100px;max-width: 100px;">
+                        aosdihasodihaaosidhoasdhoasidhoaisdhaosidhaosdihaosihaosihdaosidhaosihdsoih
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mar. 26</td>
+                    <td>10:00</td>
+                    <td>Student2</td>
+                    <td style="word-wrap: break-word;min-width: 100px;max-width: 100px;">aosidhaosdhaosidhaoisdhasoi</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

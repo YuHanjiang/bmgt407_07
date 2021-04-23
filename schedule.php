@@ -6,9 +6,20 @@ if (!isset($_SESSION['username'])) {
 }
 
 $courses = getRows("SELECT courseName FROM course");
-$tutors = getRows("SELECT firstName, lastName from users where accountType = 1");
+$tutors = getRows("SELECT firstName, lastName, email from users where accountType = 1");
 
 if (isset($_POST['submit'])) {
+    $courseName = $_POST['course'];
+    $tutorName = $_POST['tutor'];
+    $comp = preg_split('/\s+/', $tutorName);
+    $tutorEmail = $comp[2];
+    $studentEmail = $_SESSION['username'];
+    $date = $_POST['sessionDate'];
+    $time = $_POST['sessionTime'];
+    $comment = $_POST['comment'];
+
+    runQuery("INSERT INTO appointment (course, tutor, date, time, comments, student) 
+        VALUES('$courseName', '$tutorName', '$date', '$time', '$comment', '$studentEmail')");
 //    if ($_POST['password'] != $_POST['repeatPassword']) {
 //        echo '<script>alert("Please enter the same password twice")</script>';
 //    }
@@ -77,7 +88,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="form-group">
                         <label for="course">Course:</label>
-                        <select class="form-control" id="course" required>
+                        <select class="form-control" id="course" name="course" required>
                             <?php
                             foreach ($courses as $course) {
                                 echo "<option>" . $course['courseName'] . "</option>";
@@ -88,10 +99,10 @@ if (isset($_POST['submit'])) {
 
                     <div class="form-group">
                         <label for="tutor">Tutor: </label>
-                        <select class="form-control" id="tutor" required>
+                        <select class="form-control" name="tutor" id="tutor" required>
                             <?php
                             foreach ($tutors as $tutor) {
-                                echo "<option>" . $tutor['firstName'] . " " . $tutor['lastName'] . "</option>";
+                                echo "<option>" . $tutor['firstName'] . " " . $tutor['lastName'] . " " . $tutor['email'] . "</option>";
                             }
                             ?>
                         </select>
@@ -99,17 +110,17 @@ if (isset($_POST['submit'])) {
 
                     <div class="form-group">
                         <label for="session-date">Date: </label>
-                        <input type="date" id="session-date" required>
+                        <input type="date" name="sessionDate" id="session-date" required>
                     </div>
 
                     <div class="form-group">
                         <label for="session-time">Time: </label>
-                        <input type="time" id="session-time">
+                        <input type="time" name="sessionTime" id="session-time">
                     </div>
 
                     <div class="form-group">
                         <label for="comment">Comments:</label>
-                        <textarea class="form-control" id="comment" required></textarea>
+                        <textarea class="form-control" id="comment" name="comment" required></textarea>
                     </div>
 
                     <div class="form-group">
