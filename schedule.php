@@ -29,9 +29,13 @@ session_start();
 <div class="row">
     <div class="col-8">
         <div class="container">
-            <div class="row justify-content-center">
-                <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FNew_York&amp;src=Y19lbWQ3YzA0aGptdHZjcDdua2c0MWlsNmIxc0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%237CB342&amp;showTitle=0&amp;showNav=0&amp;showDate=0&amp;showTz=1&amp;showCalendars=0&amp;showTabs=1&amp;showPrint=0&amp;mode=WEEK"
-                        style="border-width:0" width="600" height="600"></iframe>
+            <div style="display: flex">
+                <div style="margin-right: 10px;">
+                    <div id="nav"></div>
+                </div>
+                <div style="flex-grow: 1;">
+                    <div id="dp"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -101,6 +105,34 @@ session_start();
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    var nav = new DayPilot.Navigator("nav");
+    nav.showMonths = 3;
+    nav.skipMonths = 3;
+    nav.selectMode = "week";
+    nav.onTimeRangeSelected = function (args) {
+        dp.startDate = args.day;
+        dp.update();
+        loadEvents();
+    };
+    nav.init();
+
+    var dp = new DayPilot.Calendar("dp");
+    dp.viewType = "Week";
+
+    dp.eventDeleteHandling = "Update";
+
+    dp.init();
+
+    loadEvents();
+
+    function loadEvents() {
+        dp.events.load("backend_events.php");
+    }
+
+</script>
 
 </body>
 </html>
