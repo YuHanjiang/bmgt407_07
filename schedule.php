@@ -16,10 +16,18 @@ if (isset($_POST['submit'])) {
     $date = $_POST['sessionDate'];
     $time = $_POST['sessionTime'];
     $comment = $_POST['comment'];
-
-    runQuery("INSERT INTO appointment (course, tutor, date, time, comments, student) 
-        VALUES('$courseName', '$tutorEmail', '$date', '$time', '$comment', '$studentEmail')");
-    header("Location: confirmation-page.php");
+    $datetime = $_POST['sessionDate'] . " " . $_POST['sessionTime'];
+    $checkQuery = "SELECT * from events where datetime = '$datetime' and course = '$courseName'";
+    $avail = getOneRow($checkQuery);
+    if ($avail) {
+        runQuery("INSERT INTO appointment (course, tutor, date, time, comments, student) 
+            VALUES('$courseName', '$tutorEmail', '$date', '$time', '$comment', '$studentEmail')");
+        $id = $avail['id'];
+        runQuery("DELETE from events where id = '$id'");
+        header("Location: confirmation-page.php");
+    } else {
+        echo "<script>alert('There is no such availability! Please try again')</script>";
+    }
 }
 ?>
 <!DOCTYPE html>
