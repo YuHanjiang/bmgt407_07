@@ -18,6 +18,7 @@ session_start();
             crossorigin="anonymous"
     />
     <title>Schedule</title>
+    <script src="assets/js/daypilot/daypilot-all.min.js"></script>
 
 </head>
 <body>
