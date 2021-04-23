@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
     $comment = $_POST['comment'];
 
     runQuery("INSERT INTO appointment (course, tutor, date, time, comments, student) 
-        VALUES('$courseName', '$tutorName', '$date', '$time', '$comment', '$studentEmail')");
+        VALUES('$courseName', '$tutorEmail', '$date', '$time', '$comment', '$studentEmail')");
 //    if ($_POST['password'] != $_POST['repeatPassword']) {
 //        echo '<script>alert("Please enter the same password twice")</script>';
 //    }
