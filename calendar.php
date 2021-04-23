@@ -3,7 +3,7 @@ require_once('dbhelper.php');
 session_start();
 
 $username = $_SESSION['username'];
-$appointments = getRows("SELECT * FROM appointment where userName = '$username'");
+$appointments = getRows("SELECT * FROM appointment where email = '$username'");
 
 ?>
 <!DOCTYPE html>
