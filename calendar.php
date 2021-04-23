@@ -64,24 +64,15 @@ $appointments = getRows("SELECT * FROM appointment where tutor = '$username'");
                 <tbody>
                 <?php
                 foreach ($appointments as $appointment) {
-
+                    echo "<tr>";
+                    echo "<td>" . $appointment['date'] . "</td>";
+                    echo "<td>" . $appointment['time'] . "</td>";
+                    echo "<td>" . $appointment['student'] . "</td>";
+                    echo "<td style=\"word-wrap: break-word;min-width: 100px;max-width: 100px;\">" .
+                        $appointment['comments'] . "</td>";
+                    echo "</tr>";
                 }
                 ?>
-
-                <tr>
-                    <td>Mar. 25</td>
-                    <td>15:00</td>
-                    <td>Student1</td>
-                    <td style="word-wrap: break-word;min-width: 100px;max-width: 100px;">
-                        aosdihasodihaaosidhoasdhoasidhoaisdhaosidhaosdihaosihaosihdaosidhaosihdsoih
-                    </td>
-                </tr>
-                <tr>
-                    <td>Mar. 26</td>
-                    <td>10:00</td>
-                    <td>Student2</td>
-                    <td style="word-wrap: break-word;min-width: 100px;max-width: 100px;">aosidhaosdhaosidhaoisdhasoi</td>
-                </tr>
                 </tbody>
             </table>
         </div>
