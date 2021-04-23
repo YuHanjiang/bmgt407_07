@@ -2,6 +2,8 @@
 require_once('dbhelper.php');
 session_start();
 
+$courses = getRows("SELECT courseName FROM course");
+
 if ($_SESSION['accountType'] != 'director') {
     header("Location: index.php");
 }
@@ -14,12 +16,14 @@ if (isset($_POST['submit'])) {
     $pwd = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
+    $courseName = $_POST['course'];
 
     $checkQuery = "SELECT email from users where email = '$email'";
     if (getOneRow($checkQuery)) {
         echo '<script>alert("User Exists!")</script>';
     } else {
         runQuery("INSERT INTO users VALUES ('$email', '$pwd', '$firstName', '$lastName', 1);");
+        runQuery("UPDATE course SET tutor = '$email' where courseName = '$courseName'");
         header("Location: login.php");
     }
 }
@@ -30,31 +34,31 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
     <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-        crossorigin="anonymous"
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
     />
     <title>Register</title>
     <script
-        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"
+            src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRÒVvoxMfooAo"
-        crossorigin="anonymous"
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRÒVvoxMfooAo"
+            crossorigin="anonymous"
     ></script>
     <script
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"
     ></script>
 </head>
 <body>
@@ -110,7 +114,17 @@ if (isset($_POST['submit'])) {
                                    placeholder="Repeat password" required>
                         </div>
                     </div>
+                </div>
 
+                <div class="form-group">
+                    <label for="course">Course:</label>
+                    <select class="form-control" id="course" name="course" required>
+                        <?php
+                        foreach ($courses as $course) {
+                            echo "<option>" . $course['courseName'] . "</option>";
+                        }
+                        ?>
+                    </select>
                 </div>
                 <!--insert register information to student information-->
                 <div class="p-2">
