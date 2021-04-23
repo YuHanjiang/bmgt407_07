@@ -1,5 +1,27 @@
 <?php
+require_once('dbhelper.php');
 session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: index.php");
+}
+
+if (isset($_POST['submit'])) {
+//    if ($_POST['password'] != $_POST['repeatPassword']) {
+//        echo '<script>alert("Please enter the same password twice")</script>';
+//    }
+//    $email = $_POST['email'];
+//    $pwd = password_hash($_POST['password'], PASSWORD_DEFAULT);
+//    $firstName = $_POST['firstName'];
+//    $lastName = $_POST['lastName'];
+//
+//    $checkQuery = "SELECT email from users where email = '$email'";
+//    if (getOneRow($checkQuery)) {
+//        echo '<script>alert("User Exists!")</script>';
+//    } else {
+//        runQuery("INSERT INTO users VALUES ('$email', '$pwd', '$firstName', '$lastName', 2);");
+//        header("Location: login.php");
+//    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +66,7 @@ session_start();
     <div class="col-4">
         <div class="container">
             <div class="row justify-content-center">
-                <form>
+                <form action="schedule.php" method="POST">
                     <div class="p-2">
                         <div class="text-center">
                             <h4>Schedule Appointments</h4>
