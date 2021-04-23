@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
     $time = $_POST['sessionTime'];
     $comment = $_POST['comment'];
     $datetime = $_POST['sessionDate'] . " " . $_POST['sessionTime'];
-    $checkQuery = "SELECT * from events where start = '$datetime' and course = '$courseName'";
+    $checkQuery = "SELECT * from events where start = '$datetime' and name = '$courseName'";
     $avail = getOneRow($checkQuery);
     if ($avail) {
         runQuery("INSERT INTO appointment (course, tutor, date, time, comments, student) 
