@@ -6,6 +6,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 $courses = getRows("SELECT courseName FROM course");
+$tutors = getRows("SELECT firstName, lastName from users where accountType = 1");
 
 if (isset($_POST['submit'])) {
 //    if ($_POST['password'] != $_POST['repeatPassword']) {
@@ -88,12 +89,11 @@ if (isset($_POST['submit'])) {
                     <div class="form-group">
                         <label for="tutor">Tutor: </label>
                         <select class="form-control" id="tutor" required>
-                            <option>Tutor1</option>
-                            <option>Tutor2</option>
-                            <option>Tutor3</option>
-                            <option>Tutor4</option>
-                            <option>Tutor4</option>
-                            <option>Tutor5</option>
+                            <?php
+                            foreach ($tutors as $tutor) {
+                                echo "<option>" . $tutor['firstName'] . $tutor['lastName'] . "</option>";
+                            }
+                            ?>
                         </select>
                     </div>
 
