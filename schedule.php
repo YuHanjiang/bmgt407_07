@@ -9,7 +9,7 @@ $courses = getRows("SELECT courseName FROM course");
 $tutors = getRows("SELECT firstName, lastName, email from users where accountType = 1");
 if (isset($_POST['courseSelect']) and $_SESSION['courseName'] = 'UNDEFINED') {
     $_SESSION['courseName'] = $_POST['course'];
-    $courseName = $_SESSION['courseName'];
+    $courseName = $_POST['course'][0];
     echo "<script>alert('$_SESSION]')</script>";
 } else if (isset($_POST['courseReselect'])) {
     $_SESSION['courseName'] = 'UNDEFINED';
