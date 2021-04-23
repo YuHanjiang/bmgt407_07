@@ -7,9 +7,10 @@ if (!isset($_SESSION['username'])) {
 
 $courses = getRows("SELECT courseName FROM course");
 $tutors = getRows("SELECT firstName, lastName, email from users where accountType = 1");
-
-if (isset($_POST['submit'])) {
+$courseName = 'NotDefined';
+if (isset($_POST['courseSelect']) and $courseName = 'NotDefined') {
     $courseName = $_POST['course'];
+} else if (isset($_POST['submit']) and $courseName != 'NotDefined') {
     $comp = preg_split("/\s+/", $_POST['tutor']);
     $tutorEmail = $comp[2];
     $studentEmail = $_SESSION['username'];
@@ -20,7 +21,7 @@ if (isset($_POST['submit'])) {
     $checkQuery = "SELECT * from events where start = '$datetime' and name = '$courseName'";
     $avail = getOneRow($checkQuery);
     if ($avail) {
-        runQuery("INSERT INTO appointment (course, tutor, date, time, comments, student) 
+        runQuery("INSERT INTO appointment (course, tutor, date, time, comments, student)
             VALUES('$courseName', '$tutorEmail', '$date', '$time', '$comment', '$studentEmail')");
         $id = $avail['id'];
         runQuery("DELETE from events where id = '$id'");
@@ -73,23 +74,35 @@ if (isset($_POST['submit'])) {
     <div class="col-4">
         <div class="container">
             <div class="row justify-content-center">
-                <form action="schedule.php" method="POST">
-                    <div class="p-2">
-                        <div class="text-center">
-                            <h4>Schedule Appointments</h4>
-                        </div>
+
+                <div class="p-2">
+                    <div class="text-center">
+                        <h4>Schedule Appointments</h4>
                     </div>
+                </div>
+
+                <form action="schedule.php" method="POST">
                     <div class="form-group">
                         <label for="course">Course:</label>
                         <select class="form-control" id="course" name="course" required>
                             <?php
-                            foreach ($courses as $course) {
-                                echo "<option>" . $course['courseName'] . "</option>";
+                            if ($courseName = 'NotDefined') {
+                                foreach ($courses as $course) {
+                                    echo "<option>" . $course['courseName'] . "</option>";
+                                }
+                            } else {
+                                echo "<option>" . $courseName . "</option>";
                             }
                             ?>
                         </select>
                     </div>
 
+                    <div class="p-2">
+                        <button class="btn btn-danger btn-block" name="courseSelect" type="submit">Select Course
+                        </button>
+                    </div>
+                </form>
+                <form action="schedule.php" method="POST">
                     <div class="form-group">
                         <label for="tutor">Tutor: </label>
                         <select class="form-control" name="tutor" id="tutor" required>
