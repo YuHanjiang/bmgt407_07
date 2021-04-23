@@ -5,6 +5,8 @@ if (!isset($_SESSION['username'])) {
     header("Location: index.php");
 }
 
+$courses = getRows("SELECT courseName FROM course");
+
 if (isset($_POST['submit'])) {
 //    if ($_POST['password'] != $_POST['repeatPassword']) {
 //        echo '<script>alert("Please enter the same password twice")</script>';
@@ -75,13 +77,13 @@ if (isset($_POST['submit'])) {
                     <div class="form-group">
                         <label for="course">Course:</label>
                         <select class="form-control" id="course" required>
-                            <option>BMGT220</option>
-                            <option>BMGT221</option>
-                            <option>BMGT230</option>
-                            <option>BMGT340</option>
-                            <option>BSCI170</option>
-                            <option>CHEM131</option>
-                            <option>CHEM135</option>
+                            <?php
+                            foreach ($courses as $course) {
+                                echo "<option>";
+                                echo "$course";
+                                echo "</option>";
+                            }
+                            ?>
                         </select>
                     </div>
 
@@ -144,7 +146,7 @@ if (isset($_POST['submit'])) {
 
     var dp = new DayPilot.Calendar("dp");
     dp.viewType = "Week";
-    
+
     dp.init();
 
     dp.onEventClick = function (args) {
