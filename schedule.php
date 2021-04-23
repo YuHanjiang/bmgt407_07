@@ -91,7 +91,7 @@ if (isset($_POST['submit'])) {
                         <select class="form-control" id="tutor" required>
                             <?php
                             foreach ($tutors as $tutor) {
-                                echo "<option>" . $tutor['firstName'] . $tutor['lastName'] . "</option>";
+                                echo "<option>" . $tutor['firstName'] . " " . $tutor['lastName'] . "</option>";
                             }
                             ?>
                         </select>
