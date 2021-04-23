@@ -62,11 +62,6 @@ if (isset($_POST['courseSelect']) and $_SESSION['courseName'] = 'UNDEFINED') {
 
 <br>
 
-<!--// DEbug-->
-<?php
-$courseName = $_SESSION['courseName'];
-echo "<script>alert('$courseName')</script>";
-?>
 <div class="row">
     <div class="col-8">
         <div class="container">
@@ -93,12 +88,11 @@ echo "<script>alert('$courseName')</script>";
                     <label for="course">Course:</label>
                     <select class="form-control" id="course" name="course" required>
                         <?php
-                        if ($_SESSION['courseName'] = 'UNDEFINED') {
-                            foreach ($courses as $course) {
-                                echo "<option>" . $course['courseName'] . "</option>";
-                            }
-                        } else {
-                            echo "<option>" . $_SESSION['courseName'] . "</option>";
+                        if ($_SESSION['courseName'] != 'UNDEFINED') {
+                            $courses = [$_SESSION['courseName']];
+                        }
+                        foreach ($courses as $course) {
+                            echo "<option>" . $course['courseName'] . "</option>";
                         }
                         ?>
                     </select>
@@ -123,16 +117,16 @@ echo "<script>alert('$courseName')</script>";
                     <label for="tutor">Tutor: </label>
                     <select class="form-control" name="tutor" id="tutor" required>
                         <?php
-                        if ($_SESSION['courseName'] = 'UNDEFINED') {
-                            foreach ($tutors as $tutor) {
-                                echo "<option>" . $tutor['firstName'] . " " . $tutor['lastName'] . " " .
-                                    $tutor['email'] . "</option>";
-                            }
-                        } else {
+                        if ($_SESSION['courseName'] != 'UNDEFINED') {
                             $courseName = $_SESSION['courseName'];
                             $tutors = getRows("SELECT firstName, lastName, email from users left join course on 
                                                     users.email = course.tutor where accountType = 1 and 
                                                                                     course.courseName = '$courseName'");
+                        }
+                        foreach ($tutors as $tutor) {
+                            echo "<option>" . $tutor['firstName'] . " " . $tutor['lastName'] . " " .
+                                $tutor['email'] . "</option>";
+
                         }
                         ?>
                     </select>
