@@ -25,11 +25,12 @@
                         <a class="nav-link" href="app-decision.php">Submitted Applications</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="sign-out.php">Sign Out</a>
+                        <a class="nav-link" href="tutor-registration.php">Add Tutor</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="tutor-registration.php">Add Tutor</a>
-                    </li>';
+                        <a class="nav-link" href="sign-out.php">Sign Out</a>
+                    </li>
+                    ';
             } else if ($_SESSION['accountType'] == 'student') {
                 echo '<a class="navbar-brand">
                         <img src="assets/img/logo.png" alt="Logo" style="height:30px;">
