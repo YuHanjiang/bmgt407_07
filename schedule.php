@@ -62,6 +62,11 @@ if (isset($_POST['courseSelect']) and $_SESSION['courseName'] = 'UNDEFINED') {
 
 <br>
 
+<!--// DEbug-->
+<?php
+$courseName = $_SESSION['courseName'];
+echo "<script>alert('$courseName')</script>";
+?>
 <div class="row">
     <div class="col-8">
         <div class="container">
