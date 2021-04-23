@@ -48,33 +48,32 @@ $appointments = getRows("SELECT * FROM appointment where tutor = '$username'");
     </div>
     <div class="col-4">
         <div class="container">
-            <a class="btn btn-danger btn-lg" href="https://calendar.google.com">Edit Calendar</a>
-        </div>
-        <div class="p-3">
-            <h4>Upcoming Sessions: </h4>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">Student</th>
-                    <th scope="col">Comments</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                foreach ($appointments as $appointment) {
-                    echo "<tr>";
-                    echo "<td>" . $appointment['date'] . "</td>";
-                    echo "<td>" . $appointment['time'] . "</td>";
-                    echo "<td>" . $appointment['student'] . "</td>";
-                    echo "<td style=\"word-wrap: break-word;min-width: 100px;max-width: 100px;\">" .
-                        $appointment['comments'] . "</td>";
-                    echo "</tr>";
-                }
-                ?>
-                </tbody>
-            </table>
+            <div class="p-3">
+                <h4>Upcoming Sessions: </h4>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Student</th>
+                        <th scope="col">Comments</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    foreach ($appointments as $appointment) {
+                        echo "<tr>";
+                        echo "<td>" . $appointment['date'] . "</td>";
+                        echo "<td>" . $appointment['time'] . "</td>";
+                        echo "<td>" . $appointment['student'] . "</td>";
+                        echo "<td style=\"word-wrap: break-word;min-width: 100px;max-width: 100px;\">" .
+                            $appointment['comments'] . "</td>";
+                        echo "</tr>";
+                    }
+                    ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

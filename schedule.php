@@ -6,7 +6,6 @@ if (!isset($_SESSION['username'])) {
 }
 
 $courses = getRows("SELECT courseName FROM course");
-$tutors = getRows("SELECT firstName, lastName, email from users where accountType = 1");
 if (isset($_POST['courseSelect']) and $_SESSION['courseName'] = 'UNDEFINED') {
     $_SESSION['courseName'] = $_POST['course'];
     $courseName = $_SESSION['courseName'];
@@ -117,16 +116,16 @@ if (isset($_POST['courseSelect']) and $_SESSION['courseName'] = 'UNDEFINED') {
                     <label for="tutor">Tutor: </label>
                     <select class="form-control" name="tutor" id="tutor" required>
                         <?php
-                        if ($_SESSION['courseName'] != 'UNDEFINED') {
-                            $courseName = $_SESSION['courseName'];
-                            $tutors = getRows("SELECT firstName, lastName, email from users left join course on 
+                        $courseName = $_SESSION['courseName'];
+                        $tutors = getRows("SELECT firstName, lastName, email from users left join course on 
                                                     users.email = course.tutor where accountType = 1 and 
                                                                                     course.courseName = '$courseName'");
-                        }
-                        foreach ($tutors as $tutor) {
-                            echo "<option>" . $tutor['firstName'] . " " . $tutor['lastName'] . " " .
-                                $tutor['email'] . "</option>";
+                        if ($tutors) {
+                            foreach ($tutors as $tutor) {
+                                echo "<option>" . $tutor['firstName'] . " " . $tutor['lastName'] . " " .
+                                    $tutor['email'] . "</option>";
 
+                            }
                         }
                         ?>
                     </select>
