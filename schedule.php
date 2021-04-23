@@ -125,6 +125,10 @@ session_start();
     
     dp.init();
 
+    dp.onEventClick = function (args) {
+        alert("clicked: " + args.e.text());
+    };
+
     loadEvents();
 
     function loadEvents() {
