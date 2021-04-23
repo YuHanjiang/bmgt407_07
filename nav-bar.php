@@ -26,6 +26,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="sign-out.php">Sign Out</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="tutor-registration.php">Add Tutor</a>
                     </li>';
             } else if ($_SESSION['accountType'] == 'student') {
                 echo '<a class="navbar-brand">
