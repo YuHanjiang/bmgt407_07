@@ -10,8 +10,7 @@ $tutors = getRows("SELECT firstName, lastName, email from users where accountTyp
 
 if (isset($_POST['submit'])) {
     $courseName = $_POST['course'];
-    $tutorName = $_POST['tutor'];
-    $comp = preg_split('/\s+/', $tutorName);
+    $comp = preg_split("/\s+/", $_POST['tutor']);
     $tutorEmail = $comp[2];
     $studentEmail = $_SESSION['username'];
     $date = $_POST['sessionDate'];
