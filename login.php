@@ -16,6 +16,7 @@ if (isset($_POST['submit'])) {
 
     if ($record['email'] == $email and password_verify($pwd, $record['password'])) {
         $_SESSION['username'] = $email;
+        $_SESSION['courseName'] = 'UNDEFINED';
         if ($type == 0) {
             $_SESSION['accountType'] = 'director';
         } else if ($type == 1) {
