@@ -46,6 +46,7 @@ if (isset($_POST['delete'])) {
                 <tr>
                     <th scope="col">Date</th>
                     <th scope="col">Time</th>
+                    <th scope="col">Tutor</th>
                     <th scope="col">Student</th>
                     <th scope="col">Comments</th>
                     <?php
