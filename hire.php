@@ -94,12 +94,12 @@ if (isset($_POST['submit'])) {
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-6">
-                            <label for="FirstName">First Name:</label>
+                            <label for="First Name">First Name:</label>
                             <input class="form-control" type="text" name="firstName" id="First Name"
                                    placeholder="First Name" required>
                         </div>
                         <div class="col-sm-6">
-                            <label for="LastName">Last Name:</label>
+                            <label for="Last Name">Last Name:</label>
                             <input class="form-control" type="text" name="lastName"
                                    id="Last Name" placeholder="Last Name" required>
                         </div>
@@ -108,7 +108,7 @@ if (isset($_POST['submit'])) {
 
                 <div class="form-group">
                     <label for="loginEmail">Email:</label>
-                    <input class="form-control" type="email" id="Email" name="email"
+                    <input class="form-control" type="email" id="loginEmail" name="email"
                            aria-describedby="emailHelp" placeholder="Email Address" required>
                 </div>
 
