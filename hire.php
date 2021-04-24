@@ -120,6 +120,7 @@ if (isset($_POST['submit'])) {
                                 <option value=""> --select--</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
+                                <option value="NoAnswer">I don't want to answer</option>
                             </select>
                         </div>
                         <div class="col-sm-6">
