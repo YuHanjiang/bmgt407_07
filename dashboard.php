@@ -1,5 +1,9 @@
 <?php
+require_once('dbhelper.php');
 session_start();
+
+$username = $_SESSION['username'];
+$Tutor = getRows("SELECT * FROM Tutor");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +47,7 @@ session_start();
                 <script>
                     $(document).ready(function () {
                         const title = {
-                            text: 'Tutor 01'
+                            text: 'Trending'
                         };
                         const xAxis = {
                             categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5']
@@ -60,7 +64,7 @@ session_start();
                         };
                         const series = [{
                             type: 'spline',
-                            name: 'Passing tutoring session',
+                            name: 'Tutoring Session',
                             data: [7, 10, 13, 9, 15]
                         }, {
                             type: 'spline',
@@ -113,23 +117,31 @@ session_start();
         <div class="p-3">
             <div class="text-center">
                 <h4>View Feedback Forms</h4>
-            </div>
+                <form action="dashboard.php" method="Post">     
             <table class="table">
-                <thead>
+                    <thead>
                 <tr>
-                    <th scope="col">Session Number</th>
+                    <th scope="col">UID</th>
                     <th scope="col">Tutor Name</th>
                     <th scope="col">Link</th>
                 </tr>
-                </thead>
+                    </thead>
                 <tbody>
-                <tr>
-                    <td>01</td>
-                    <td>Tutor 01</td>
-                    <td><a class="btn btn-danger" href="director-feedback-form.html">Feedback Form</a></td>
-                </tr>
+                <?php
+                foreach ($Tutor as $Tutor) {
+                    echo "<tr>";                              
+                    echo "<td>" . $Tutor['UID'] . "</td>";
+                    echo "<td>" . $Tutor['FirstName'] ."</td>";
+                    echo "<td>" . "<a class='btn btn-danger' href='feedback-form.php'>Feedback Form </a>" ."</td>";
+
+                    }
+                    echo "</tr>";
+                ?>
+
                 </tbody>
             </table>
+
+
         </div>
     </div>
 </div>

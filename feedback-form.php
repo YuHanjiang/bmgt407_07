@@ -1,5 +1,6 @@
 <?php
 require_once('dbhelper.php');
+
 session_start();
 
 $username = $_SESSION['username'];
@@ -91,7 +92,7 @@ $Rating = getRows("SELECT * FROM Rating");
                             plotShadow: false
                         };
                         const title = {
-                            text: "Visualization of Students' Ratting for Tutor 01"
+                            text: "Visualization of Students' Ratting for Tutor"
                         };
                         const tooltip = {
                             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -113,14 +114,15 @@ $Rating = getRows("SELECT * FROM Rating");
                             type: 'pie',
                             name: 'Browser share',
                             data: [
-                                ['Above Average', . $Rating['Above Average'] .],
+                                ['Above Average', 
+                                19 ],
                                 {
                                     name: 'Average',
                                     y: 23,
                                     sliced: true,
                                     selected: true
                                 },
-                                ['Below Average', 19],
+                                ['Below Average', 17],
 
                             ]
                         }];
