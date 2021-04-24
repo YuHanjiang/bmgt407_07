@@ -2,6 +2,7 @@
 require_once('dbhelper.php');
 require_once('filehelper.php');
 session_start();
+date_default_timezone_set('America/New_York');
 
 $Tutors = getRows("SELECT * FROM Tutor");
 if (isset($_POST['submit'])) {
