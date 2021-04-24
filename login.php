@@ -9,7 +9,14 @@ if (isset($_SESSION['username'])) {
 if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $pwd = $_POST['password'];
-    $type = $_POST['type'];
+    $type = -1;
+    if ($_POST['type'] = "Student") {
+        $type = 2;
+    } else if ($_POST['type'] = 'Tutor') {
+        $type = 1;
+    } else if ($_POST['type'] = 'Director') {
+        $type = 0;
+    }
 
     $query = "SELECT email, password FROM users WHERE email = '{$email}' and accountType = '$type'";
     $record = getOneRow($query);
@@ -36,32 +43,32 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
     <link
-        rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-        crossorigin="anonymous"
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
     />
 
     <title>Login</title>
     <script
-        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"
+            src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"
     ></script>
     <script
-        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRÒVvoxMfooAo"
-        crossorigin="anonymous"
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRÒVvoxMfooAo"
+            crossorigin="anonymous"
     ></script>
     <script
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"
     ></script>
 </head>
 
@@ -96,20 +103,12 @@ if (isset($_POST['submit'])) {
                     </div>
 
                     <div class="form-group">
-                        <a>Account Type:</a><br>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="type" id="type" value="2"
-                                   checked="checked">
-                            <label class="form-check-label" for="type">Student</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="type" id="type" value="1">
-                            <label class="form-check-label" for="type">Tutor</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="type" id="type" value="0">
-                            <label class="form-check-label" for="type">Director</label>
-                        </div>
+                        <label for="type">Account Type:</label>
+                        <select class="form-control" id="type" name="type" required>
+                            <option>Student</option>
+                            <option>Tutor</option>
+                            <option>Director</option>
+                        </select>
                     </div>
 
                     <div class="p-2">
