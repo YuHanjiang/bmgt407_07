@@ -2,7 +2,7 @@
 session_start();
 require_once('dbhelper.php');
 
-if (!isset($_SESSION['username'])) {
+if ($_SESSION['accountType'] != 'director') {
     header("Location: index.php");
 }
 
@@ -17,6 +17,7 @@ if (isset($_POST['accept'])) {
         $email = $tutor['TutorEmail'];
         $firstName = $tutor['firstName'];
         $lastName = $tutor['lastName'];
+        $course = $_POST['course'];
         $pwd = password_hash($email, PASSWORD_DEFAULT);
 
         if (getOneRow("SELECT * from users where email = '$email'")) {
@@ -25,6 +26,7 @@ if (isset($_POST['accept'])) {
             runQuery("INSERT INTO users (email, password, firstName, lastName, accountType) 
                     VALUES ('$email', '$pwd', '$firstName', '$lastName', 1)");
         }
+        runQuery("UPDATE course SET tutor = '$email' WHERE courseName = '$course'");
         header("Location: app-decision.php");
     } else {
         echo "<script>alert('Decision has been made!')</script>";
@@ -98,7 +100,7 @@ if (isset($_POST['accept'])) {
                                 <th>First Name</th>
                                 <td>Last Name</td>
                                 <td>Gender</td>
-                                <td>Desired Course to Tutor</td>
+                                <td>Course</td>
                                 <td>Email</td>
                                 <td>Phone Number</td>
                                 <td>Status</td>
@@ -115,7 +117,15 @@ if (isset($_POST['accept'])) {
                                 echo "<td>" . $Tutor['FirstName'] . "</td>";
                                 echo "<td>" . $Tutor['LastName'] . "</td>";
                                 echo "<td>" . $Tutor['Gender'] . "</td>";
-                                echo "<td>" . $Tutor['Course1'] . " " . $Tutor['Course2'] . $Tutor['Course3'] . "</td>";
+                                echo "<td><select class='form-control' name='course' style='width: 120px'>";
+                                echo "<option>" . $Tutor['Course1'] . "</option>";
+                                if ($Tutor['Course2']) {
+                                    echo "<option>" . $Tutor['Course2'] . "</option>";
+                                }
+                                if ($Tutor['Course3']) {
+                                    echo "<option>" . $Tutor['Course3'] . "</option>";
+                                }
+                                echo "</select></td>";
                                 echo "<td>" . $Tutor['TutorEmail'] . "</td>";
                                 echo "<td>" . $Tutor['Phone'] . "</td>";
                                 echo "<td>" . $Tutor['ApplicationStatus'] . "</td>";
