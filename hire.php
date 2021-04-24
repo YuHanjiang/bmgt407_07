@@ -3,7 +3,7 @@ require_once('dbhelper.php');
 session_start();
 
 $Tutors = getRows("SELECT * FROM Tutor");
-if (isset($_POST['submit']) ) {
+if (isset($_POST['submit'])) {
     $firstName = $_POST['FirstName'];
     $lastName = $_POST['LastName'];
     $email = $_POST['TutorEmail'];
@@ -17,16 +17,22 @@ if (isset($_POST['submit']) ) {
     $grade2 = $_POST['Course Grade 2'];
     $focus3 = $_POST['Course Focus 3'];
     $grade3 = $_POST['Course Grade 3'];
-    $workhours = $_POST['Work Hours'];
+    $workHours = $_POST['Work Hours'];
     $short_answer = $_POST['Short Answer'];
     $resume = $_FILES['resume'];
 
-    $resumeURL = uploadFile($resume,['file(resume)']);
+    $resumeURL = uploadFile($resume, 'assets/docs/resume');
 
-    runQuery("INSERT INTO Tutor (FirstName, LastName, TutorEmail, Gender, Grade, UID, Phone, Course Focus 1, Course Grade 1, Course Focus 2, Course Grade 2, Course Focus 3, Course Grade 3, Work Hours, Short Answer, resumeURL)
-        VALUES('$firstName', ' $lastName', '$email', '$gender', '$grade', '$UID', '$phone', '$focus1','$grade1', '$focus2','$grade2','$focus3','$grade3', '$workhours','$short_answer' ,'$resumeURL')");
-    $success = Ture;
-
+    if (getOneRow("select * from Tutor where TutorEmail = '$email'")) {
+        echo "<script>alert('You have already filed an application!')</script>";
+    } else {
+        runQuery("INSERT INTO Tutor (FirstName, LastName, TutorEmail, Gender, 'Grade Year', UID, Phone, 'Course Focus 1', 
+                   'Course Grade 1', 'Course Focus 2', 'Course Grade 2', 'Course Focus 3', 'Course Grade 3', 'Work Hours', 
+                   'Short Answer', resumeURL) VALUES('$firstName', ' $lastName', '$email', '$gender', '$grade', 
+                    '$UID', '$phone', '$focus1','$grade1', '$focus2','$grade2','$focus3','$grade3', '$workHours', 
+                    '$short_answer' ,'$resumeURL')");
+        header("Location: hire-confirmation.php");
+    }
 }
 ?>
 
@@ -102,7 +108,7 @@ if (isset($_POST['submit']) ) {
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="Gender">Gender:</label>
-                            <select class="form-control" name="Gender" id="Gender" >
+                            <select class="form-control" name="Gender" id="Gender">
                                 <option value=""> --select--</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -187,11 +193,11 @@ if (isset($_POST['submit']) ) {
                 <label for="Short Answer">What makes you a good candidate for this position? </label>
                 <textarea class="form-control" name="short-answer" id="Short Answer" required></textarea>
                 <br>
-                <label for="resumeURL" >Attach Your Resume</label>
+                <label for="resumeURL">Attach Your Resume</label>
                 <input type="file" class="form-control-file" name="resume" id="resumeURL" required>
                 <br>
                 <div class="p-2">
-                    <button class="btn btn-danger btn-block"type="submit" name="submit">Submit</button>
+                    <button class="btn btn-danger btn-block" type="submit" name="submit">Submit</button>
                 </div>
 
             </form>
