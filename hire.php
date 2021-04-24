@@ -28,9 +28,9 @@ if (isset($_POST['submit'])) {
     if (getOneRow("select * from Tutor where TutorEmail = '$email'")) {
         echo "<script>alert('You have already filed an application!')</script>";
     } else {
-        runQuery("INSERT INTO Tutor (FirstName, LastName, TutorEmail, Gender, 'Grade Year', UID, Phone, 
-                   'Course Focus 1', 'Course Grade 1', 'Course Focus 2', 'Course Grade 2', 'Course Focus 3', 
-                   'Course Grade 3', 'Work Hours', 'Short Answer', resumeURL, 'Application Status', 'Apply Date') 
+        runQuery("INSERT INTO Tutor (FirstName, LastName, TutorEmail, Gender, GradeYear, UID, Phone, 
+                   Course1, Grade1, Course2, Grade2, Course3, Grade3, WorkHours, ShortAnswer, resumeURL, 
+                   ApplicationStatus, ApplyDate) 
                    VALUES('$firstName', ' $lastName', '$email', '$gender', '$grade', '$UID', '$phone', '$focus1',
                           '$grade1', '$focus2','$grade2','$focus3','$grade3', '$workHours', '$short_answer' ,
                           '$resumeURL', 'In Process', $today)");
