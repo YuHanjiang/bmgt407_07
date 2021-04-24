@@ -1,5 +1,7 @@
 <?php
 session_start();
+$Tutor = getRows("select * From Tutor");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +23,8 @@ session_start();
 </head>
 <body>
 
-<?php require_once('nav-bar.php') ?>
+<?php require_once('nav-bar.php') 
+?>
 
 <!--only view by tutor director-->
 <br>
@@ -37,13 +40,18 @@ session_start();
                         <h3>Application Status Form</h3>
                     </div>
                     <!--Pullled information from tutor information DB-->
+                    <?php 
+                    //Check if there are uploads in the DB 
+                    if($Tutor) {
+
+                    ?>
                     <table>
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Gender</th>
                             <th>Grade Year</th>
-                            <th>Student ID</th>
+                            <th>UID</th>
                             <th>Phone Number</th>
                             <th>Apply Date</th>
                             <th>Course Focus 1</th>
@@ -52,49 +60,33 @@ session_start();
                             <th>Course Grade 2</th>
                             <th>Application Status</th>
                         </tr>
-                        <tr>
-                            <td>Tutor1</td>
-                            <td>tutor1@terpmail.umd.edu</td>
-                            <td>Female</td>
-                            <td>Junior</td>
-                            <td>16400000</td>
-                            <td>2400000000</td>
-                            <td>03122021</td>
-                            <td>BMGT220</td>
-                            <td>A</td>
-                            <td>BMGT233</td>
-                            <td>A+</td>
-                            <td>In Processing</td>
-                        </tr>
-                        <tr>
-                            <td>Tutor2</td>
-                            <td>tutor2@terpmail.umd.edu</td>
-                            <td>Male</td>
-                            <td>Freshman</td>
-                            <td>16980000</td>
-                            <td>3030000000</td>
-                            <td>03182021</td>
-                            <td>BMGT330</td>
-                            <td>A</td>
-                            <td>BMGT230</td>
-                            <td>A+</td>
-                            <td>Reject</td>
-                        </tr>
-                        <tr>
-                            <td>Tutor3</td>
-                            <td>tutor3@terpmail.umd.edu</td>
-                            <td>Female</td>
-                            <td>Junior</td>
-                            <td>16780000</td>
-                            <td>3300000000</td>
-                            <td>10222020</td>
-                            <td>ECON201</td>
-                            <td>A</td>
-                            <td>ECON330</td>
-                            <td>A+</td>
-                            <td>Accept</td>
-                        </tr>
+                        <?php
+                        //Begin loop through uploads
+                        foreach ($Tutor as $Tutor) {
+                            echo "<tr>";
+                            echo "<td>" . $Tutor['Name'] . "</td>";
+                            echo "<td>" . $Tutor['Email'] . "</td>";
+                            echo "<td>" . $Tutor['Gender'] . "</td>";
+                            echo "<td>" . $Tutor['Grade Year'] . "</td>";
+                            echo "<td>" . $Tutor['UID'] . "</td>";
+                            echo "<td>" . $Tutor['Phone Number'] . "</td>";
+                            echo "<td>" . $Tutor['Apply Date'] . "</td>";
+                            echo "<td>" . $Tutor['Course Focus 1'] . "</td>";
+                            echo "<td>" . $Tutor['Course Grade 1'] . "</td>";
+                            echo "<td>" . $Tutor['Course Focus 2'] . "</td>";
+                            echo "<td>" . $Tutor['Course Grade 2'] . "</td>";
+                            echo "<td>" . $Tutor['Application Status'] . "</td>";
+
+                            echo "</tr>";
+                        }
+
+                        ?>
                     </table>
+                    <?php
+                    } else {
+                        echo "<p>No tutors found.</p>";
+                    }
+                    ?>
                 </div>
             </div>
         </div>
