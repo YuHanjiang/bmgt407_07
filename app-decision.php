@@ -2,6 +2,10 @@
 session_start();
 require_once('dbhelper.php');
 
+if (!isset($_SESSION['username'])) {
+    header("Location: index.php");
+}
+
 $Tutors = getRows("select * From Tutor");
 
 if (isset($_POST['accept'])) {

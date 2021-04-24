@@ -2,6 +2,10 @@
 require_once('dbhelper.php');
 session_start();
 
+if (!isset($_SESSION['username'])) {
+    header("Location: index.php");
+}
+
 $username = $_SESSION['username'];
 $appointments = getRows("SELECT * FROM appointment where tutor = '$username' or student = '$username'");
 
@@ -49,6 +53,7 @@ if (isset($_POST['delete'])) {
                     <th scope="col">Tutor</th>
                     <th scope="col">Student</th>
                     <th scope="col">Comments</th>
+                    <th scope="col">File</th>
                     <?php
                     if ($_SESSION['accountType'] != 'student') {
                         echo '<th scope="col">Action</th>';
@@ -66,6 +71,7 @@ if (isset($_POST['delete'])) {
                     echo "<td>" . $appointment['student'] . "</td>";
                     echo "<td style=\"word-wrap: break-word;min-width: 100px;max-width: 100px;\">" .
                         $appointment['comments'] . "</td>";
+                    echo "<td><a class='btn btn-danger btn-block' href=" . $appointment['fileURL'] . ">File" . "</a></td>";
                     if ($_SESSION['accountType'] != 'student') {
                         echo "<td><button class='btn btn-danger btn-block' 
                                     value=" . $appointment['id'] . " name='delete' 

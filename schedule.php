@@ -1,6 +1,8 @@
 <?php
 require_once('dbhelper.php');
+require_once('filehelper.php');
 session_start();
+
 if (!isset($_SESSION['username'])) {
     header("Location: index.php");
 }
@@ -20,12 +22,14 @@ if (isset($_POST['courseSelect']) and $_SESSION['courseName'] = 'UNDEFINED') {
     $comment = $_POST['comment'];
     $datetime = $_POST['sessionDate'] . " " . $_POST['sessionTime'];
     $courseName = $_SESSION['courseName'];
+    $supp = $_FILES['supp'];
+    $suppURL = uploadFile($supp, 'assets/docs/supp');
     $checkQuery = "SELECT * from events where start = '$datetime' and name = '$courseName'";
     $avail = getOneRow($checkQuery);
     $_SESSION['courseName'] = 'UNDEFINED';
     if ($avail) {
-        runQuery("INSERT INTO appointment (course, tutor, date, time, comments, student)
-            VALUES('$courseName', '$tutorEmail', '$date', '$time', '$comment', '$studentEmail')");
+        runQuery("INSERT INTO appointment (course, tutor, date, time, comments, student, fileURL)
+            VALUES('$courseName', '$tutorEmail', '$date', '$time', '$comment', '$studentEmail', '$suppURL')");
         $id = $avail['id'];
         runQuery("DELETE from events where id = '$id'");
         header("Location: confirmation-page.php");
@@ -148,7 +152,7 @@ if (isset($_POST['courseSelect']) and $_SESSION['courseName'] = 'UNDEFINED') {
 
                 <div class="form-group">
                     <label for="file-upload">Upload file: </label>
-                    <input type="file" class="form-control-file" id="file-upload" required>
+                    <input type="file" class="form-control-file" name="supp" id="file-upload" required>
                 </div>
 
                 <!--div class="form-group">
@@ -180,6 +184,7 @@ if (isset($_POST['courseSelect']) and $_SESSION['courseName'] = 'UNDEFINED') {
 
     dp.init();
     dp.eventResizeHandling = "Disabled";
+    dp.eventMoveHandling = "Disabled"
 
     dp.onEventClick = function (args) {
         alert("clicked: " + args.e.text());
