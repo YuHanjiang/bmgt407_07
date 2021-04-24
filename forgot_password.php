@@ -3,12 +3,31 @@ session_start();
 require_once('dbhelper.php');
 
 if (isset($_POST['emailVer'])) {
-    $_SESSION['emailVerInt'] = rand(1000, 9999);
-    echo "Your Temporary Password is: ". $_SESSION['emailVerInt'];
+    $email = $_POST['loginEmail'];
+    if (getOneRow("SELECT * FROM users where email = '$email'")) {
+        $_SESSION['emailVerInt'] = rand(1000, 9999);
+        $_SESSION['resetEmail'] = $email;
+        echo "Your Temporary Password is: " . $_SESSION['emailVerInt'];
+    } else {
+        echo "<script>alert('Did not find this account.')</script>";
+    }
 }
 
-if (isset($_POST['submit'])) {
-
+if (isset($_POST['submit']) and isset($_SESSION['emailVerInt']) and isset($_SESSION['resetEmail'])) {
+    if ($_POST['tempPassword'] == $_SESSION['emailVerInt']) {
+        if ($_POST['newPassword'] == $_POST['checkPassword']) {
+            $pwd = password_hash($_POST['newPassword'], PASSWORD_DEFAULT);
+            $email = $_SESSION['resetEmail'];
+            runQuery("UPDATE users SET password = '$pwd' WHERE email = '$email'");
+        }
+    } else {
+        echo "<script>alert('Please enter the correct temporary password.')</script>";
+    }
+    unset($_SESSION['emailVerInt']);
+    unset($_SESSION['resetEmail']);
+    header("Location: forgot_password.php");
+} else if (isset($_POST['submit'])) {
+    echo "<script>alert('Please get a temporary password first')</script>";
 }
 ?>
 <!DOCTYPE html>
@@ -74,7 +93,7 @@ if (isset($_POST['submit'])) {
                    name="checkPassword" required>
         </div>
         <div class="p-2">
-            <a href="index.html" class="btn btn-danger btn-block" type="submit" name="submit">Submit</a>
+            <button class="btn btn-danger btn-block" type="submit" name="submit">Submit</button>
         </div>
     </form>
 </div>
