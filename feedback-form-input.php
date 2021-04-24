@@ -1,16 +1,22 @@
 <?php
 session_start();
+require_once("dbhelper.php");
+
+$tutors = getRows("SELECT * FROM users WHERE accountType = 1");
+$courses = getRows("SELECT * FROM course");
 
 if (isset($_POST['submit'])) {
-    $name = $_POST['your name'];
+    $name = $_POST['name'];
     $email = $_POST['email'];
-    $tutor = $_POST['tutor name'];
+    $tutor = $_POST['tutorEmail'];
     $comments = $_POST['comments'];
     $course = $_POST['course'];
-
-
-
-
+    $rating = $_POST['experience'];
+    $improve = $_POST['improve'];
+    runQuery("INSERT INTO feedback VALUES ('$tutor', '$name', '$rating', '$improve', '$course')");
+    echo "<script>alert('Thanks for your feedback')</script>";
+    header("Location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,87 +48,93 @@ if (isset($_POST['submit'])) {
 
 <?php require_once('nav-bar.php') ?>
 
-<div class="container" style="margin-top: 50px">
-    <div class="form-container" style="width:600px">
-        <h2>Feedback</h2>
-        <p>
-            Please provide your feedback below:
-        </p>
-        <form role="form" method="post" id="reused_form">
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <label>How do you rate your overall experience?</label>
-                    <p>
-                        <label class="radio-inline">
-                            <input type="radio" name="experience" id="overall-below-average" value="Below Average">
-                            Below Average
-                        </label>
+<div class="container" style="margin-top: 50px; width:600px">
+    <h2>Feedback</h2>
+    <p>
+        Please provide your feedback below:
+    </p>
+    <form action="feedback-form-input.php" method="POST">
+        <div class="form-group">
+            <label>How do you rate your overall experience?</label>
+            <p>
+                <label class="radio-inline">
+                    <input type="radio" name="experience" id="overall-below-average" value="Below Average">
+                    Below Average
+                </label>
 
-                        <label class="radio-inline">
-                            <input type="radio" name="experience" id="overall-average" value="Average">
-                            Average
-                        </label>
+                <label class="radio-inline">
+                    <input type="radio" name="experience" id="overall-average" value="Average">
+                    Average
+                </label>
 
-                        <label class="radio-inline">
-                            <input type="radio" name="experience" id="overall-above-average" value="Above Average">
-                            Above Average
-                        </label>
-                    </p>
-                </div>
-                <div class="col-sm-12 form-group">
-                    <label>Did grades on homeworks, assignments, or exams improve after your tutoring session?</label>
-                    <p>
-                        <label class="radio-inline">
-                            <input type="radio" name="experience" id="grades-yes" value="Below Average">
-                            Yes
-                        </label>
+                <label class="radio-inline">
+                    <input type="radio" name="experience" id="overall-above-average" value="Above Average">
+                    Above Average
+                </label>
+            </p>
+        </div>
+        <div class="form-group">
+            <label>Did grades on homeworks, assignments, or exams improve after your tutoring session?</label>
+            <p>
+                <label class="radio-inline">
+                    <input type="radio" name="improve" id="grades-yes" value="Yes">
+                    Yes
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="improve" id="grades-no" value="No">
+                    No
+                </label>
+            </p>
+        </div>
+        <div class="form-group">
+            <label for="comments">
+                Comments:</label>
+            <textarea class="form-control" name="comments" id="comments"
+                      placeholder="Your Comments" maxlength="6000" rows="7"></textarea>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="name">
+                    Your Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="email">
+                    Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="tutor-name">
+                    Tutor Name:</label>
+                <select class="form-control" name="tutorEmail" id="tutor-name" required>
+                    <?php
+                    foreach ($tutors as $tutor) {
+                        echo '<option value=' . $tutor['email'] . ">" . $tutor['firstName'] . " " .
+                            $tutor['lastName'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
 
-                        <label class="radio-inline">
-                            <input type="radio" name="experience" id="grades-no" value="Average">
-                            No
-                        </label>
-                    </p>
-                </div>
+            <div class="col-sm-6 form-group">
+                <label for="course">
+                    Course:</label>
+                <select class="form-control" name="course" id="course" required>
+                    <?php
+                    foreach ($courses as $course) {
+                        echo '<option>' . $course['courseName'] . '</option>';
+                    }
+                    ?>
+                </select>
             </div>
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <label for="comments">
-                        Comments:</label>
-                    <textarea class="form-control" name="comments" id="comments"
-                              placeholder="Your Comments" maxlength="6000" rows="7"></textarea>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-sm-6 form-group">
-                    <label for="name">
-                        Your Name:</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
-                </div>
-                <div class="col-sm-6 form-group">
-                    <label for="email">
-                        Email:</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 form-group">
-                    <label for="tutor-name">
-                        Tutor Name:</label>
-                    <input type="text" class="form-control" id="tutor-name" name="Tutor Name" required>
-                </div>
-
-                <div class="col-sm-6 form-group">
-                    <label for="course">
-                        Course:</label>
-                    <input type="text" class="form-control" id="course" name="Course" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-danger btn-block" type="submit">Submit</button>
-            </div>
-        </form>
-    </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-danger btn-block" type="submit" name="submit">Submit</button>
+        </div>
+    </form>
 </div>
 </body>
 </html>
