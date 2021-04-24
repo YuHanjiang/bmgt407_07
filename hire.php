@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
     $resume = $_FILES['resume'];
     $today = date("Y-m-d");
 
-    $resumeURL = uploadFile($resume, 'resume');
+    $resumeURL = uploadFile($resume, 'assets/docs/resume');
 
     if (getOneRow("select * from Tutor where TutorEmail = '$email'")) {
         echo "<script>alert('You have already filed an application!')</script>";
