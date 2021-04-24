@@ -1,6 +1,31 @@
 <?php
+require_once('dbhelper.php');
 session_start();
+
+$Tutors = getRows("SELECT * FROM Tutor");
+if (isset($_POST['submit']) ){
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $loginEmail = $_POST['loginEmail'];
+    $gender = $_POST['gender'];
+    $grade = $_POST['grade'];
+    $UID = $_POST['UID'];
+    $phone = $_POST['phone'];
+    $focus1 = $_POST['focus1'];
+    $grade1 = $_POST['grade1'];
+    $focus2 = $_POST['focus2'];
+    $grade2 = $_POST['grade2'];
+    $focus3 = $_POST['focus3'];
+    $grade3 = $_POST['grade3'];
+    $workhours = $_POST['work-hours'];
+    $short_answer = $_POST['short-answer'];
+    $resume = $_FILES['resume'];
+
+    runQuery("INSERT INTO Tutor (firstName, lastName, loginEmail, gender, grade, UID,phone,focus1,grade1,focus2,grade2,focus3,grade3,short-answer)
+        VALUES('$firstName', ' $lastName', '$loginEmail', '$gender', '$grade', '$UID', '$phone', '$focus1','$grade1', '$focus2','$grade2','$focus3','$grade3', '$workhours','$short_answer' )");
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,11 +79,11 @@ session_start();
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="firstName">First Name:</label>
-                            <input class="form-control" type="text" id="firstName" placeholder="First Name">
+                            <input class="form-control" type="text" id="firstName" placeholder="First Name" required>
                         </div>
                         <div class="col-sm-6">
                             <label for="lastName">Last Name:</label>
-                            <input class="form-control" type="text" id="lastName" placeholder="Last Name">
+                            <input class="form-control" type="text" id="lastName" placeholder="Last Name" required>
                         </div>
                     </div>
                 </div>
@@ -66,14 +91,14 @@ session_start();
                 <div class="form-group">
                     <label for="loginEmail">Email:</label>
                     <input class="form-control" type="email" id="loginEmail"
-                           aria-describedby="emailHelp" placeholder="Email Address">
+                           aria-describedby="emailHelp" placeholder="Email Address" required>
                 </div>
 
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="gender">Gender:</label>
-                            <select class="form-control" name="gender" id="gender">
+                            <select class="form-control" name="gender" id="gender" >
                                 <option value=""> --select--</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -81,7 +106,7 @@ session_start();
                         </div>
                         <div class="col-sm-6">
                             <label for="grade">Grade Year</label>
-                            <select class="form-control" name="Grade" id="grade">
+                            <select class="form-control" name="Grade" id="grade" required>
                                 <option value=""> --select--</option>
                                 <option value="freshman">Freshman</option>
                                 <option value="Sophomore">Sophomore</option>
@@ -97,12 +122,12 @@ session_start();
                         <div class="col-sm-6">
                             <label for="studentID">Student ID: </label>
                             <input class="form-control" type="Number" name="StudentID" id="studentID"
-                                   placeholder="StudentID">
+                                   placeholder="StudentID" required>
                         </div>
                         <div class="col-sm-6">
                             <label for="phone">Phone Number: </label>
                             <input class="form-control" type="Number" id="phone" name="Phone"
-                                   placeholder="Phone Number">
+                                   placeholder="Phone Number" required>
                         </div>
                     </div>
                 </div>
@@ -112,12 +137,12 @@ session_start();
                         <div class="col-sm-6">
                             <label for="focus1">Course Focus 1: </label>
                             <input class="form-control" type="text" name="Course1" id="focus1"
-                                   placeholder="Course Focus 1">
+                                   placeholder="Course Focus 1" required>
                         </div>
                         <div class="col-sm-6">
                             <label for="grade-1">Course Grade 1: </label>
                             <input class="form-control" type="text" name="Grade1" id="grade-1"
-                                   placeholder="Course Grade 1">
+                                   placeholder="Course Grade 1" required>
                         </div>
                     </div>
                 </div>
@@ -156,10 +181,10 @@ session_start();
                 <input class="form-control" id="work-hours" type="text" name="WorkHours" placeholder="Work Hours">
                 <br>
                 <label for="short-answer">What makes you a good candidate for this position? </label>
-                <textarea class="form-control" name="Short_answer" id="short-answer"></textarea>
+                <textarea class="form-control" name="short-answer" id="short-answer" required></textarea>
                 <br>
-                <label for="exampleFormControlFile1">Attach Your Resume</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                <label for="exampleFormControlFile1" >Attach Your Resume</label>
+                <input type="file" class="form-control-file" name="resume" id="exampleFormControlFile1" required>
                 <br>
                 <div class="p-2">
                     <button class="btn btn-danger btn-block" type="submit" name="submit">Submit</button>
