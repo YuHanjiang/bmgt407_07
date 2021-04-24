@@ -1,5 +1,15 @@
 <?php
 session_start();
+require_once('dbhelper.php');
+
+if (isset($_POST['emailVer'])) {
+    $_SESSION['emailVerInt'] = rand(1000, 9999);
+    echo "Your Temporary Password is: ". $_SESSION['emailVerInt'];
+}
+
+if (isset($_POST['submit'])) {
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,38 +42,39 @@ session_start();
 <?php require_once('nav-bar.php') ?>
 
 <div class="container" style="margin-top: 50px;width:600px">
-    <form>
+    <form action="forgot_password.php" method="POST">
         <div style="text-align: center;">
             <h2>Password Assistance</h2>
         </div>
         <div class="form-group">
             <label for="loginEmail">Email: Enter the email address associated with your account.</label>
-            <input class="form-control" type="email" id="loginEmail"
+            <input class="form-control" type="email" id="loginEmail" name="loginEmail"
                    aria-describedby="emailHelp" placeholder="Email Address">
         </div>
         <div class="form-group">
-            <button class="btn btn-danger btn-block" type="submit">Send verification to email</button>
+            <button class="btn btn-danger btn-block" type="submit" name="emailVer">Send verification to email</button>
         </div>
+    </form>
 
+    <form action="forgot_password.php" method="POST">
         <div class="form-group">
             <label for="TemporaryPassword">Temporary Password:</label>
             <input type="password" class="form-control" id="TemporaryPassword"
-                   name="Temporary Password" required>
+                   name="tempPassword" required>
         </div>
         <div class="form-group">
             <label for="NewPassword">
                 New Password:</label>
-            <input type="password" class="form-control" id="NewPassword" name="New Password" required>
+            <input type="password" class="form-control" id="NewPassword" name="newPassword" required>
         </div>
         <div class="form-group">
             <label for="Confirm New Password">
                 Confirm New Password:</label>
             <input type="password" class="form-control" id="Confirm New Password"
-                   name="Confirm New Password"
-                   required>
+                   name="checkPassword" required>
         </div>
         <div class="p-2">
-            <a href="index.html" class="btn btn-danger btn-block" type="submit">Submit</a>
+            <a href="index.html" class="btn btn-danger btn-block" type="submit" name="submit">Submit</a>
         </div>
     </form>
 </div>
