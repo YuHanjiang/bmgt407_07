@@ -71,7 +71,7 @@ $Tutors = getRows("select * From Tutor");
                             echo "<td>" . $Tutor['Gender'] . "</td>";
                             echo "<td>" . $Tutor['Course Focus 1'] . "</td>";
                             echo "<td>" . $Tutor['TutorEmail'] . "</td>";
-                            echo "<td>" . $Tutor['Phone Number'] . "</td>";
+                            echo "<td>" . $Tutor['Phone'] . "</td>";
                            
                             echo "</tr>";
                         }

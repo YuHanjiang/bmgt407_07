@@ -66,8 +66,8 @@ $Tutors = getRows("select * From Tutor");
                         //Begin loop through uploads
                         foreach ($Tutors as $Tutor) {
                             echo "<tr>";
-                            echo "<td>" . $Tutor['TutorFirstName'] . "</td>";
-                            echo "<td>" . $Tutor['TutorLastName'] . "</td>";
+                            echo "<td>" . $Tutor['FirstName'] . "</td>";
+                            echo "<td>" . $Tutor['LastName'] . "</td>";
                             echo "<td>" . $Tutor['TutorEmail'] . "</td>";
                             echo "<td>" . $Tutor['Gender'] . "</td>";
                             echo "<td>" . $Tutor['Grade Year'] . "</td>";
