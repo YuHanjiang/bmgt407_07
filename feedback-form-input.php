@@ -13,7 +13,8 @@ if (isset($_POST['submit'])) {
     $course = $_POST['course'];
     $rating = $_POST['experience'];
     $improve = $_POST['improve'];
-    runQuery("INSERT INTO feedback VALUES ('$tutor', '$name', '$rating', '$improve', '$course')");
+    runQuery("INSERT INTO feedback (tutor, student, rating, improve, course, comments) 
+                    VALUES ('$tutor', '$name', '$rating', '$improve', '$course', '$comments')");
     echo "<script>alert('Thanks for your feedback')</script>";
     header("Location: index.php");
 }
