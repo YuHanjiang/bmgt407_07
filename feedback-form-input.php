@@ -1,5 +1,16 @@
 <?php
 session_start();
+
+if (isset($_POST['submit'])) {
+    $name = $_POST['your name'];
+    $email = $_POST['email'];
+    $tutor = $_POST['tutor name'];
+    $comments = $_POST['comments'];
+    $course = $_POST['course'];
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
