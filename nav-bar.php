@@ -48,6 +48,9 @@
                         <a class="nav-link" href="upcoming-app.php">Sessions</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="feedback-form-input.php">Feedback</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="hire.php">Become a Tutor</a>
                     </li>
                     <li class="nav-item">
