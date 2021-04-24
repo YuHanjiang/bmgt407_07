@@ -11,16 +11,21 @@ if (isset($_POST['submit'])) {
         echo '<script>alert("Please enter the same password twice")</script>';
     }
     $email = $_POST['email'];
-    $pwd = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
 
-    $checkQuery = "SELECT email from users where email = '$email'";
-    if (getOneRow($checkQuery)) {
-        echo '<script>alert("User Exists!")</script>';
+    if (preg_match("/umd.edu$/", $email)) {
+        $pwd = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $firstName = $_POST['firstName'];
+        $lastName = $_POST['lastName'];
+
+        $checkQuery = "SELECT email from users where email = '$email'";
+        if (getOneRow($checkQuery)) {
+            echo '<script>alert("User Exists!")</script>';
+        } else {
+            runQuery("INSERT INTO users VALUES ('$email', '$pwd', '$firstName', '$lastName', 2);");
+            header("Location: login.php");
+        }
     } else {
-        runQuery("INSERT INTO users VALUES ('$email', '$pwd', '$firstName', '$lastName', 2);");
-        header("Location: login.php");
+        echo '<script>alert("Please enter a University of Maryland affiliated email")</script>';
     }
 }
 
