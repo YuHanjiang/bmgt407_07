@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
                    ApplicationStatus, ApplyDate) 
                    VALUES('$firstName', ' $lastName', '$email', '$gender', '$grade', '$UID', '$phone', '$focus1',
                           '$grade1', '$focus2','$grade2','$focus3','$grade3', '$workHours', '$short_answer' ,
-                          '$resumeURL', 'In Process', $today)");
+                          '$resumeURL', 'In Process', '$today')");
         header("Location: hire-confirmation.php");
     }
 }
