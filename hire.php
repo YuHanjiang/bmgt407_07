@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
     $workHours = $_POST['workHours'];
     $short_answer = $_POST['shortAnswer'];
     $resume = $_FILES['resume'];
-    $today = date("m/d/Y");
+    $today = date("Y/m/d/");
 
     $resumeURL = uploadFile($resume, 'resume');
 
