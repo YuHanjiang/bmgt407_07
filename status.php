@@ -49,7 +49,7 @@ $Tutors = getRows("select * From Tutor");
                     <table>
                         <tr>
                             <th>TutorName</th>
-                            <th>Email</th>
+                            <th>TutorEmail</th>
                             <th>Gender</th>
                             <th>Grade Year</th>
                             <th>UID</th>
@@ -66,7 +66,7 @@ $Tutors = getRows("select * From Tutor");
                         foreach ($Tutors as $Tutor) {
                             echo "<tr>";
                             echo "<td>" . $Tutor['TutorName'] . "</td>";
-                            echo "<td>" . $Tutor['Email'] . "</td>";
+                            echo "<td>" . $Tutor['TutorEmail'] . "</td>";
                             echo "<td>" . $Tutor['Gender'] . "</td>";
                             echo "<td>" . $Tutor['Grade Year'] . "</td>";
                             echo "<td>" . $Tutor['UID'] . "</td>";
