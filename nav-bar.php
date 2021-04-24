@@ -16,6 +16,9 @@
                         <a class="nav-link" href="calendar.php">Calendar</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="upcoming-app.php">Sessions</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
@@ -42,6 +45,9 @@
                         <a class="nav-link" href="schedule.php">Schedule</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="upcoming-app.php">Sessions</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="hire.php">Become a Tutor</a>
                     </li>
                     <li class="nav-item">
@@ -56,6 +62,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="calendar.php">Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="upcoming-app.php">Sessions</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="dashboard.php">Dashboard</a>
