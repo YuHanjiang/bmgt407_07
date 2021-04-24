@@ -60,6 +60,8 @@ $Tutors = getRows("select * From Tutor");
                             <th>Course Grade 1</th>
                             <th>Course Focus 2</th>
                             <th>Course Grade 2</th>
+                            <th>Course Focus 3</th>
+                            <th>Course Grade 3</th>
                             <th>Application Status</th>
                         </tr>
                         <?php
@@ -78,6 +80,8 @@ $Tutors = getRows("select * From Tutor");
                             echo "<td>" . $Tutor['Grade1'] . "</td>";
                             echo "<td>" . $Tutor['Course2'] . "</td>";
                             echo "<td>" . $Tutor['Grade2'] . "</td>";
+                            echo "<td>" . $Tutor['Course3'] . "</td>";
+                            echo "<td>" . $Tutor['Grade3'] . "</td>";
                             echo "<td>" . $Tutor['ApplicationStatus'] . "</td>";
 
                             echo "</tr>";
