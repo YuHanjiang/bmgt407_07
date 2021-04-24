@@ -1,5 +1,6 @@
 <?php
 require_once('dbhelper.php');
+require_once('filehelper.php');
 session_start();
 
 $Tutors = getRows("SELECT * FROM Tutor");
@@ -8,7 +9,7 @@ if (isset($_POST['submit'])) {
     $lastName = $_POST['lastName'];
     $email = $_POST['email'];
     $gender = $_POST['gender'];
-    $grade = $_POST['gradeYear'];
+    $grade = $_POST['grade'];
     $UID = $_POST['studentID'];
     $phone = $_POST['phone'];
     $focus1 = $_POST['course1'];
