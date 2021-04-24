@@ -72,7 +72,17 @@ $Tutors = getRows("select * From Tutor");
                             echo "<td>" . $Tutor['Course Focus 1'] . "</td>";
                             echo "<td>" . $Tutor['TutorEmail'] . "</td>";
                             echo "<td>" . $Tutor['Phone'] . "</td>";
-                           
+                            echo "<td>" . $Tutor['Resume'] . "</td>";
+                            echo "<td><button class='btn btn-danger btn-block' 
+                                    value=" . $Tutor['UID'] . " name='Accpt' 
+                                    type='submit'>" . 'Accept' . "</button>" . "</td>";
+                             echo "<td><button class='btn btn-danger btn-block' 
+                                    value=" . $Tutor['UID'] . " name='Reject' 
+                                    type='submit'>" . 'Reject' . "</button>" . "</td>";
+
+                             echo "<td><button class='btn btn-danger btn-block' 
+                                    value=" . $Tutor['UID'] . " name='Hold' 
+                                    type='submit'>" . 'Hold' . "</button>" . "</td>";
                             echo "</tr>";
                         }
 
@@ -84,30 +94,8 @@ $Tutors = getRows("select * From Tutor");
                         echo "<p>No tutors found.</p>";
                     }
                     ?>
-                        <tr>
-                           
-                            <td>
-                                <button type="submit" class="btn btn-danger">Accpt</button>
-                            </td>
-                            <td>
-                                <button type="submit" class="btn btn-danger">Reject</button>
-                            </td>
-                            <td>
-                                <button type="submit" class="btn btn-danger">Hold</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            
-                            <td>
-                                <button type="submit" class="btn btn-danger">Accpt</button>
-                            </td>
-                            <td>
-                                <button type="submit" class="btn btn-danger">Reject</button>
-                            </td>
-                            <td>
-                                <button type="submit" class="btn btn-danger">Hold</button>
-                            </td>
-                        </tr>
+                        
+                       
                     </table>
 
                 </div>

@@ -1,5 +1,9 @@
 <?php
+require_once('dbhelper.php');
 session_start();
+
+$username = $_SESSION['username'];
+$Rating = getRows("SELECT * FROM Rating");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,33 +46,37 @@ session_start();
                             <div class="text-center">
                                 <div class="text-center">
                                     <h3>Feedback Form</h3>
-                                    <div class="text-left text-bold">
-                                    </div>
-                                    <div class="text-left">
-                                        <label>Tutor Name: Tutor 01</label>
-                                    </div>
+                                    <form action="feedback-form.php" method="post">
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">UID</th>
+                                                <th scope="col">First Name</th>
+                                                <th scope="col">Above Average</th>
+                                                <th scope="col">Average</th>
+                                                <th scope="col">Below Average</th>
+                                            </tr>    
+                                            </thead>
+                                        <tbody>
+                                        <?php
+                                        foreach ($Rating as $Rating) {
+                                            echo "<tr>";                              
+                                            echo "<td>" . $Rating['UID'] . "</td>";
+                                            echo "<td>" . $Rating['FirstName'];
+                                            echo "<td>" . $Rating['Above Average'] . "</td>";
+                                            echo "<td>" . $Rating['Average'] . "</td>";
+                                            echo "<td>" . $Rating['Below Average'] . "</td>";
 
-                                    <div class="text-left">
-                                        <label>Session Number: 01</label>
-                                    </div>
-                                    <table>
-                                        <tr>
-                                            <th></th>
-                                            <th>Above Average</th>
-                                            <th>Average</th>
-                                            <th>Below Average</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Count</th>
-                                            <td>19</td>
-                                            <td>23</td>
-                                            <td>13</td>
-                                        </tr>
+                                            }
+                                            echo "</tr>";
+                                        ?>
+
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
                             <div class="p-2">
-                                <a href="tutor-dashboard.html" class="btn btn-danger">Back</a>
+                                <a href="dashboard.php" class="btn btn-danger">Back</a>
                             </div>
                         </div>
                     </div>
@@ -105,7 +113,7 @@ session_start();
                             type: 'pie',
                             name: 'Browser share',
                             data: [
-                                ['Above Average', 13],
+                                ['Above Average', . $Rating['Above Average'] .],
                                 {
                                     name: 'Average',
                                     y: 23,
