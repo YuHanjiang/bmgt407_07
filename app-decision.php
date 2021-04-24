@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once('dbhelper.php');
+$Tutors = getRows("select * From Tutor");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,9 +37,17 @@ session_start();
                 </div>
 
                 <div class="text-center">
-                    <h3>Submitted Applications</h3>
+                    <h3>Submitted Applications Form</h3>
                     <div class="text-left">
                     </div>
+
+                    <?php 
+                    //Check if there are uploads in the DB 
+                    if($Tutors) {
+
+                    ?>
+
+
                     <table>
                         <tr>
                             <th>First Name</th>
@@ -51,14 +61,31 @@ session_start();
                             <td> Reject</td>
                             <td> Hold</td>
                         </tr>
+
+                        <?php
+                        //Begin loop through uploads
+                        foreach ($Tutors as $Tutor) {
+                            echo "<tr>";
+                            echo "<td>" . $Tutor['FirstName'] . "</td>";
+                            echo "<td>" . $Tutor['LastName'] . "</td>";
+                            echo "<td>" . $Tutor['Gender'] . "</td>";
+                            echo "<td>" . $Tutor['Course Focus 1'] . "</td>";
+                            echo "<td>" . $Tutor['TutorEmail'] . "</td>";
+                            echo "<td>" . $Tutor['Phone Number'] . "</td>";
+                           
+                            echo "</tr>";
+                        }
+
+                        ?>
+
+                        </table>
+                    <?php
+                    } else {
+                        echo "<p>No tutors found.</p>";
+                    }
+                    ?>
                         <tr>
-                            <td>Bob</td>
-                            <td>Jones</td>
-                            <td>Female</td>
-                            <td>BMGT340</td>
-                            <td>bjones@umd.edu</td>
-                            <td> 123-456-7890</td>
-                            <td> Bob's Resume</td>
+                           
                             <td>
                                 <button type="submit" class="btn btn-danger">Accpt</button>
                             </td>
@@ -70,13 +97,7 @@ session_start();
                             </td>
                         </tr>
                         <tr>
-                            <td>Jenny</td>
-                            <td>Gerge</td>
-                            <td>Male</td>
-                            <td>BMGT220</td>
-                            <td>Jgergo@umd.edu</td>
-                            <td> 123-456-7890</td>
-                            <td> Jenny's Resume</td>
+                            
                             <td>
                                 <button type="submit" class="btn btn-danger">Accpt</button>
                             </td>

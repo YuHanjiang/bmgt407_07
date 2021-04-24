@@ -48,7 +48,8 @@ $Tutors = getRows("select * From Tutor");
                     ?>
                     <table>
                         <tr>
-                            <th>TutorName</th>
+                            <th>Tutor First Name</th>
+                            <th>Tutor Last Name</th>
                             <th>TutorEmail</th>
                             <th>Gender</th>
                             <th>Grade Year</th>
@@ -65,12 +66,13 @@ $Tutors = getRows("select * From Tutor");
                         //Begin loop through uploads
                         foreach ($Tutors as $Tutor) {
                             echo "<tr>";
-                            echo "<td>" . $Tutor['TutorName'] . "</td>";
+                            echo "<td>" . $Tutor['TutorFirstName'] . "</td>";
+                            echo "<td>" . $Tutor['TutorLastName'] . "</td>";
                             echo "<td>" . $Tutor['TutorEmail'] . "</td>";
                             echo "<td>" . $Tutor['Gender'] . "</td>";
                             echo "<td>" . $Tutor['Grade Year'] . "</td>";
                             echo "<td>" . $Tutor['UID'] . "</td>";
-                            echo "<td>" . $Tutor['Phone Number'] . "</td>";
+                            echo "<td>" . $Tutor['Phone'] . "</td>";
                             echo "<td>" . $Tutor['Apply Date'] . "</td>";
                             echo "<td>" . $Tutor['Course Focus 1'] . "</td>";
                             echo "<td>" . $Tutor['Course Grade 1'] . "</td>";
