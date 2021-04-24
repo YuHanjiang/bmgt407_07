@@ -48,40 +48,28 @@ $Tutors = getRows("select * From Tutor");
                     ?>
                     <table>
                         <tr>
-                            <th>Tutor First Name</th>
-                            <th>Tutor Last Name</th>
+                            <th>Tutor Name</th>
                             <th>TutorEmail</th>
                             <th>Gender</th>
                             <th>Grade Year</th>
                             <th>UID</th>
                             <th>Phone Number</th>
                             <th>Apply Date</th>
-                            <th>Course Focus 1</th>
-                            <th>Course Grade 1</th>
-                            <th>Course Focus 2</th>
-                            <th>Course Grade 2</th>
-                            <th>Course Focus 3</th>
-                            <th>Course Grade 3</th>
+                            <th>Course Focus</th>
                             <th>Application Status</th>
                         </tr>
                         <?php
                         //Begin loop through uploads
                         foreach ($Tutors as $Tutor) {
                             echo "<tr>";
-                            echo "<td>" . $Tutor['FirstName'] . "</td>";
-                            echo "<td>" . $Tutor['LastName'] . "</td>";
+                            echo "<td>" . $Tutor['FirstName'] . " " . $Tutor['LastName'] . "</td>";
                             echo "<td>" . $Tutor['TutorEmail'] . "</td>";
                             echo "<td>" . $Tutor['Gender'] . "</td>";
                             echo "<td>" . $Tutor['GradeYear'] . "</td>";
                             echo "<td>" . $Tutor['UID'] . "</td>";
                             echo "<td>" . $Tutor['Phone'] . "</td>";
                             echo "<td>" . $Tutor['ApplyDate'] . "</td>";
-                            echo "<td>" . $Tutor['Course1'] . "</td>";
-                            echo "<td>" . $Tutor['Grade1'] . "</td>";
-                            echo "<td>" . $Tutor['Course2'] . "</td>";
-                            echo "<td>" . $Tutor['Grade2'] . "</td>";
-                            echo "<td>" . $Tutor['Course3'] . "</td>";
-                            echo "<td>" . $Tutor['Grade3'] . "</td>";
+                            echo "<td>" . $Tutor['Course1'] . " " . $Tutor['Course2'] . $Tutor['Course3'] . "</td>";
                             echo "<td>" . $Tutor['ApplicationStatus'] . "</td>";
 
                             echo "</tr>";
