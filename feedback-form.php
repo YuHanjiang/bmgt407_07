@@ -4,7 +4,12 @@ require_once('dbhelper.php');
 session_start();
 
 $username = $_SESSION['username'];
-$Rating = getRows("SELECT * FROM Rating");
+$average = getOneRow("SELECT COUNT(*) FROM feedback WHERE rating = "Average"
+")
+$below_average = getOneRow("SELECT COUNT(*) FROM feedback WHERE rating = "Below Average"
+")
+$above_average = getOneRow("SELECT COUNT(*) FROM feedback WHERE rating = "Above average"
+")
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +70,7 @@ $Rating = getRows("SELECT * FROM Rating");
                                             echo "<td>" . $Rating['UID'] . "</td>";
                                             echo "<td>" . $Rating['FirstName'];
                                             echo "<td>" . $Rating['Above Average'] . "</td>";
-                                            echo "<td>" . $Rating['Average'] . "</td>";
+                                            echo "<td>" . $average['rating'] . "</td>";
                                             echo "<td>" . $Rating['Below Average'] . "</td>";
 
                                             }
