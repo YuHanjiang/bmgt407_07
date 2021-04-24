@@ -1,6 +1,7 @@
 <?php
 session_start();
-$Tutor = getRows("select * From Tutor");
+require_once('dbhelper.php');
+$Tutors = getRows("select * From Tutor");
 
 ?>
 <!DOCTYPE html>
@@ -42,12 +43,12 @@ $Tutor = getRows("select * From Tutor");
                     <!--Pullled information from tutor information DB-->
                     <?php 
                     //Check if there are uploads in the DB 
-                    if($Tutor) {
+                    if($Tutors) {
 
                     ?>
                     <table>
                         <tr>
-                            <th>Name</th>
+                            <th>TutorName</th>
                             <th>Email</th>
                             <th>Gender</th>
                             <th>Grade Year</th>
@@ -62,9 +63,9 @@ $Tutor = getRows("select * From Tutor");
                         </tr>
                         <?php
                         //Begin loop through uploads
-                        foreach ($Tutor as $Tutor) {
+                        foreach ($Tutors as $Tutor) {
                             echo "<tr>";
-                            echo "<td>" . $Tutor['Name'] . "</td>";
+                            echo "<td>" . $Tutor['TutorName'] . "</td>";
                             echo "<td>" . $Tutor['Email'] . "</td>";
                             echo "<td>" . $Tutor['Gender'] . "</td>";
                             echo "<td>" . $Tutor['Grade Year'] . "</td>";
