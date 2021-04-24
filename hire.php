@@ -4,21 +4,21 @@ session_start();
 
 $Tutors = getRows("SELECT * FROM Tutor");
 if (isset($_POST['submit'])) {
-    $firstName = $_POST['FirstName'];
-    $lastName = $_POST['LastName'];
-    $email = $_POST['TutorEmail'];
-    $gender = $_POST['Gender'];
-    $grade = $_POST['Grade Year'];
-    $UID = $_POST['UID'];
-    $phone = $_POST['Phone'];
-    $focus1 = $_POST['Course Focus 1'];
-    $grade1 = $_POST['Course Grade 1'];
-    $focus2 = $_POST['Course Focus 2'];
-    $grade2 = $_POST['Course Grade 2'];
-    $focus3 = $_POST['Course Focus 3'];
-    $grade3 = $_POST['Course Grade 3'];
-    $workHours = $_POST['Work Hours'];
-    $short_answer = $_POST['Short Answer'];
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $email = $_POST['email'];
+    $gender = $_POST['gender'];
+    $grade = $_POST['gradeYear'];
+    $UID = $_POST['studentID'];
+    $phone = $_POST['phone'];
+    $focus1 = $_POST['course1'];
+    $grade1 = $_POST['grade1'];
+    $focus2 = $_POST['course2'];
+    $grade2 = $_POST['grade2'];
+    $focus3 = $_POST['course3'];
+    $grade3 = $_POST['grade3'];
+    $workHours = $_POST['workHours'];
+    $short_answer = $_POST['shortAnswer'];
     $resume = $_FILES['resume'];
 
     $resumeURL = uploadFile($resume, 'assets/docs/resume');
@@ -89,18 +89,20 @@ if (isset($_POST['submit'])) {
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="FirstName">First Name:</label>
-                            <input class="form-control" type="text" id="First Name" placeholder="First Name" required>
+                            <input class="form-control" type="text" name="firstName" id="First Name"
+                                   placeholder="First Name" required>
                         </div>
                         <div class="col-sm-6">
                             <label for="LastName">Last Name:</label>
-                            <input class="form-control" type="text" id="Last Name" placeholder="Last Name" required>
+                            <input class="form-control" type="text" name="lastName"
+                                   id="Last Name" placeholder="Last Name" required>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="loginEmail">Email:</label>
-                    <input class="form-control" type="email" id="Email"
+                    <input class="form-control" type="email" id="Email" name="email"
                            aria-describedby="emailHelp" placeholder="Email Address" required>
                 </div>
 
@@ -108,7 +110,7 @@ if (isset($_POST['submit'])) {
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="Gender">Gender:</label>
-                            <select class="form-control" name="Gender" id="Gender">
+                            <select class="form-control" name="gender" id="Gender">
                                 <option value=""> --select--</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -116,7 +118,7 @@ if (isset($_POST['submit'])) {
                         </div>
                         <div class="col-sm-6">
                             <label for="Grade">Grade Year</label>
-                            <select class="form-control" name="Grade" id="Grade" required>
+                            <select class="form-control" name="grade" id="Grade" required>
                                 <option value=""> --select--</option>
                                 <option value="freshman">Freshman</option>
                                 <option value="Sophomore">Sophomore</option>
@@ -131,12 +133,12 @@ if (isset($_POST['submit'])) {
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="UID">Student ID: </label>
-                            <input class="form-control" type="Number" name="StudentID" id="UID"
+                            <input class="form-control" type="Number" name="studentID" id="UID"
                                    placeholder="StudentID" required>
                         </div>
                         <div class="col-sm-6">
                             <label for="Phone">Phone Number: </label>
-                            <input class="form-control" type="Number" id="Phone" name="Phone"
+                            <input class="form-control" type="Number" id="Phone" name="phone"
                                    placeholder="Phone Number" required>
                         </div>
                     </div>
@@ -146,12 +148,12 @@ if (isset($_POST['submit'])) {
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="Course Focus 1">Course Focus 1: </label>
-                            <input class="form-control" type="text" name="Course1" id="Course Focus 1"
+                            <input class="form-control" type="text" name="course1" id="Course Focus 1"
                                    placeholder="Course Focus 1" required>
                         </div>
                         <div class="col-sm-6">
                             <label for="Course Grade 1">Course Grade 1: </label>
-                            <input class="form-control" type="text" name="Grade1" id="Course Grade 1"
+                            <input class="form-control" type="text" name="grade1" id="Course Grade 1"
                                    placeholder="Course Grade 1" required>
                         </div>
                     </div>
@@ -161,12 +163,12 @@ if (isset($_POST['submit'])) {
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="Course Focus 2">Course Focus 2: (Optional) </label>
-                            <input class="form-control" type="text" id="Course Focus 2" name="Course2"
+                            <input class="form-control" type="text" id="Course Focus 2" name="course2"
                                    placeholder="Course Focus 2">
                         </div>
                         <div class="col-sm-6">
                             <label for="Course Grade 2">Course Grade 2: (Optional) </label>
-                            <input class="form-control" type="text" id="Course Grade 2" name="Grade2"
+                            <input class="form-control" type="text" id="Course Grade 2" name="grade2"
                                    placeholder="Course Grade 2">
                         </div>
                     </div>
@@ -176,22 +178,22 @@ if (isset($_POST['submit'])) {
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="Course Focus 3">Course Focus 3: (Optional) </label>
-                            <input class="form-control" type="text" id="Course Focus 3" name="Course3"
+                            <input class="form-control" type="text" id="Course Focus 3" name="course3"
                                    placeholder="Course Focus 3">
                         </div>
                         <div class="col-sm-6">
                             <label for="Course Grade 3">Course Grade 3: (Optional)</label>
-                            <input class="form-control" type="text" id="Course Grade 3" name="Grade3"
+                            <input class="form-control" type="text" id="Course Grade 3" name="grade3"
                                    placeholder="Course Grade 3">
                         </div>
                     </div>
                 </div>
                 <br>
                 <label for="Work Hours">Work Hours: </label>
-                <input class="form-control" id="Work Hours" type="text" name="WorkHours" placeholder="Work Hours">
+                <input class="form-control" id="Work Hours" type="text" name="workHours" placeholder="Work Hours">
                 <br>
                 <label for="Short Answer">What makes you a good candidate for this position? </label>
-                <textarea class="form-control" name="short-answer" id="Short Answer" required></textarea>
+                <textarea class="form-control" name="shortAnswer" id="Short Answer" required></textarea>
                 <br>
                 <label for="resumeURL">Attach Your Resume</label>
                 <input type="file" class="form-control-file" name="resume" id="resumeURL" required>
