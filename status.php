@@ -70,15 +70,15 @@ $Tutors = getRows("select * From Tutor");
                             echo "<td>" . $Tutor['LastName'] . "</td>";
                             echo "<td>" . $Tutor['TutorEmail'] . "</td>";
                             echo "<td>" . $Tutor['Gender'] . "</td>";
-                            echo "<td>" . $Tutor['Grade Year'] . "</td>";
+                            echo "<td>" . $Tutor['GradeYear'] . "</td>";
                             echo "<td>" . $Tutor['UID'] . "</td>";
                             echo "<td>" . $Tutor['Phone'] . "</td>";
-                            echo "<td>" . $Tutor['Apply Date'] . "</td>";
-                            echo "<td>" . $Tutor['Course Focus 1'] . "</td>";
-                            echo "<td>" . $Tutor['Course Grade 1'] . "</td>";
-                            echo "<td>" . $Tutor['Course Focus 2'] . "</td>";
-                            echo "<td>" . $Tutor['Course Grade 2'] . "</td>";
-                            echo "<td>" . $Tutor['Application Status'] . "</td>";
+                            echo "<td>" . $Tutor['ApplyDate'] . "</td>";
+                            echo "<td>" . $Tutor['Course1'] . "</td>";
+                            echo "<td>" . $Tutor['Grade1'] . "</td>";
+                            echo "<td>" . $Tutor['Course2'] . "</td>";
+                            echo "<td>" . $Tutor['Grade2'] . "</td>";
+                            echo "<td>" . $Tutor['ApplicationStatus'] . "</td>";
 
                             echo "</tr>";
                         }
