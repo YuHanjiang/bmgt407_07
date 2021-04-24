@@ -20,17 +20,19 @@ if (isset($_POST['submit'])) {
     $workHours = $_POST['workHours'];
     $short_answer = $_POST['shortAnswer'];
     $resume = $_FILES['resume'];
+    $today = date("m/d/Y");
 
     $resumeURL = uploadFile($resume, 'assets/docs/resume');
 
     if (getOneRow("select * from Tutor where TutorEmail = '$email'")) {
         echo "<script>alert('You have already filed an application!')</script>";
     } else {
-        runQuery("INSERT INTO Tutor (FirstName, LastName, TutorEmail, Gender, 'Grade Year', UID, Phone, 'Course Focus 1', 
-                   'Course Grade 1', 'Course Focus 2', 'Course Grade 2', 'Course Focus 3', 'Course Grade 3', 'Work Hours', 
-                   'Short Answer', resumeURL) VALUES('$firstName', ' $lastName', '$email', '$gender', '$grade', 
-                    '$UID', '$phone', '$focus1','$grade1', '$focus2','$grade2','$focus3','$grade3', '$workHours', 
-                    '$short_answer' ,'$resumeURL')");
+        runQuery("INSERT INTO Tutor (FirstName, LastName, TutorEmail, Gender, 'Grade Year', UID, Phone, 
+                   'Course Focus 1', 'Course Grade 1', 'Course Focus 2', 'Course Grade 2', 'Course Focus 3', 
+                   'Course Grade 3', 'Work Hours', 'Short Answer', resumeURL, 'Application Status', 'Apply Date') 
+                   VALUES('$firstName', ' $lastName', '$email', '$gender', '$grade', '$UID', '$phone', '$focus1',
+                          '$grade1', '$focus2','$grade2','$focus3','$grade3', '$workHours', '$short_answer' ,
+                          '$resumeURL', 'In Process', $today)");
         header("Location: hire-confirmation.php");
     }
 }
