@@ -1,7 +1,11 @@
 <?php
 session_start();
 require_once('dbhelper.php');
+require_once('filehelper.php');
+
 $Tutors = getRows("select * From Tutor");
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,14 +44,6 @@ $Tutors = getRows("select * From Tutor");
                     <h3>Submitted Applications Form</h3>
                     <div class="text-left">
                     </div>
-
-                    <?php 
-                    //Check if there are uploads in the DB 
-                    if($Tutors) {
-
-                    ?>
-
-
                     <table>
                         <tr>
                             <th>First Name</th>
@@ -69,35 +65,24 @@ $Tutors = getRows("select * From Tutor");
                             echo "<td>" . $Tutor['FirstName'] . "</td>";
                             echo "<td>" . $Tutor['LastName'] . "</td>";
                             echo "<td>" . $Tutor['Gender'] . "</td>";
-                            echo "<td>" . $Tutor['Course Focus 1'] . "</td>";
+                            echo "<td>" . $Tutor['Course1'] . " " . $Tutor['Course2'] . $Tutor['Course3'] . "</td>";
                             echo "<td>" . $Tutor['TutorEmail'] . "</td>";
                             echo "<td>" . $Tutor['Phone'] . "</td>";
-                            echo "<td>" . $Tutor['Resume'] . "</td>";
+                            echo "<td><a class='btn btn-danger btn-block' href=" . $Tutor['resumeURL'] . ">Resume" . "</a></td>";
                             echo "<td><button class='btn btn-danger btn-block' 
-                                    value=" . $Tutor['UID'] . " name='Accpt' 
+                                    value=" . $Tutor['UID'] . " name='accept' 
                                     type='submit'>" . 'Accept' . "</button>" . "</td>";
-                             echo "<td><button class='btn btn-danger btn-block' 
-                                    value=" . $Tutor['UID'] . " name='Reject' 
+                            echo "<td><button class='btn btn-danger btn-block' 
+                                    value=" . $Tutor['UID'] . " name='reject' 
                                     type='submit'>" . 'Reject' . "</button>" . "</td>";
 
-                             echo "<td><button class='btn btn-danger btn-block' 
-                                    value=" . $Tutor['UID'] . " name='Hold' 
+                            echo "<td><button class='btn btn-danger btn-block' 
+                                    value=" . $Tutor['UID'] . " name='hold' 
                                     type='submit'>" . 'Hold' . "</button>" . "</td>";
                             echo "</tr>";
                         }
 
                         ?>
-
-                        </table>
-                    <?php
-                    } else {
-                        echo "<p>No tutors found.</p>";
-                    }
-                    ?>
-                        
-                       
-                    </table>
-
                 </div>
             </div>
         </div>
