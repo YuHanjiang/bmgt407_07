@@ -10,11 +10,11 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $pwd = $_POST['password'];
     $type = -1;
-    if ($_POST['type'] = "Student") {
+    if ($_POST['type'] == "Student") {
         $type = 2;
-    } else if ($_POST['type'] = 'Tutor') {
+    } else if ($_POST['type'] == 'Tutor') {
         $type = 1;
-    } else if ($_POST['type'] = 'Director') {
+    } else if ($_POST['type'] == 'Director') {
         $type = 0;
     }
 
