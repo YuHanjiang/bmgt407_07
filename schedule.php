@@ -179,6 +179,7 @@ if (isset($_POST['courseSelect']) and $_SESSION['courseName'] = 'UNDEFINED') {
     dp.viewType = "Week";
 
     dp.init();
+    dp.eventResizeHandling = "Disabled";
 
     dp.onEventClick = function (args) {
         alert("clicked: " + args.e.text());
