@@ -28,6 +28,8 @@ if (isset($_POST['submit'])) {
 
     if (getOneRow("select * from Tutor where TutorEmail = '$email'")) {
         echo "<script>alert('You have already filed an application!')</script>";
+    } else if (getOneRow("SELECT * from users where email='$email'")) {
+        echo "<script>alert('This email has already registered!')</script>";
     } else {
         runQuery("INSERT INTO Tutor (FirstName, LastName, TutorEmail, Gender, GradeYear, UID, Phone, 
                    Course1, Grade1, Course2, Grade2, Course3, Grade3, WorkHours, ShortAnswer, resumeURL, 
