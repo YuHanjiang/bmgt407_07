@@ -87,7 +87,7 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
             <!-- Begin my form -->
-            <form action="hire.php" method="POST">
+            <form action="hire.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-6">
