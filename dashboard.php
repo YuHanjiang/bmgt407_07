@@ -77,7 +77,7 @@ $Tutor = getRows("SELECT * FROM Tutor");
                             }
                         }, {
                             type: 'pie',
-                            name: 'Ratting',
+                            name: 'Rating',
                             data: [{
                                 name: 'Above Average',
                                 y: 13,
@@ -116,14 +116,13 @@ $Tutor = getRows("SELECT * FROM Tutor");
     <div class="col-4">
         <div class="p-3">
             <div class="text-center">
-                <h4>View Feedback Forms</h4>
+                <h4>Tutor List</h4>
                 <form action="dashboard.php" method="Post">     
             <table class="table">
                     <thead>
                 <tr>
                     <th scope="col">UID</th>
                     <th scope="col">Tutor Name</th>
-                    <th scope="col">Link</th>
                 </tr>
                     </thead>
                 <tbody>
@@ -132,14 +131,16 @@ $Tutor = getRows("SELECT * FROM Tutor");
                     echo "<tr>";                              
                     echo "<td>" . $Tutor['UID'] . "</td>";
                     echo "<td>" . $Tutor['FirstName'] ."</td>";
-                    echo "<td>" . "<a class='btn btn-danger' href='feedback-form.php'>Feedback Form </a>" ."</td>";
-
                     }
                     echo "</tr>";
                 ?>
 
                 </tbody>
             </table>
+            <div>
+        <td> <a class='btn btn-danger' href='feedback-form.php'>Feedback Form details </a> </td>
+
+            </div>
 
 
         </div>
