@@ -7,9 +7,27 @@ if ($_SESSION['accountType'] != 'tutor' and $_SESSION['accountType'] != 'directo
     header("Location: index.php");
 }
 
+$tutors = getRows("SELECT DISTINCT tutor FROM feedback");
+$tutorShow = 'all';
 $all_average = getOneRow("SELECT COUNT(*) as 'average' FROM feedback WHERE rating = 'Average'");
 $all_below_average = getOneRow("SELECT COUNT(*) as 'belowAverage' FROM feedback WHERE rating = 'Below Average'");
 $all_above_average = getOneRow("SELECT COUNT(*) as 'aboveAverage' FROM feedback WHERE rating = 'Above average'");
+
+if (isset($_POST['submit'])) {
+    $tutorShow = $_POST['tutorSelect'];
+    if ($tutorShow != 'all') {
+        $all_average = getOneRow("SELECT COUNT(*) as 'average' FROM feedback WHERE rating = 'Average' and 
+                                                                                  tutor = '$tutorShow'");
+        $all_below_average = getOneRow("SELECT COUNT(*) as 'belowAverage' FROM feedback 
+                                        WHERE rating = 'Below Average' and tutor = '$tutorShow'");
+        $all_above_average = getOneRow("SELECT COUNT(*) as 'aboveAverage' FROM feedback 
+                                            WHERE rating = 'Above average' and tutor = '$tutorShow'");
+    } else {
+        $all_average = getOneRow("SELECT COUNT(*) as 'average' FROM feedback WHERE rating = 'Average'");
+        $all_below_average = getOneRow("SELECT COUNT(*) as 'belowAverage' FROM feedback WHERE rating = 'Below Average'");
+        $all_above_average = getOneRow("SELECT COUNT(*) as 'aboveAverage' FROM feedback WHERE rating = 'Above average'");
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +83,6 @@ $all_above_average = getOneRow("SELECT COUNT(*) as 'aboveAverage' FROM feedback 
                                             </thead>
                                             <tbody>
                                             <?php
-                                            $tutors = getRows("SELECT DISTINCT tutor FROM feedback");
                                             foreach ($tutors as $tutor) {
                                                 echo "<tr>";
                                                 $tutorEmail = $tutor['tutor'];
@@ -84,9 +101,9 @@ $all_above_average = getOneRow("SELECT COUNT(*) as 'aboveAverage' FROM feedback 
                                                                                     FROM feedback 
                                                                                     WHERE rating = 'Above average' and
                                                                                     tutor = '$tutorEmail'");
-                                                echo "<td>" . $average['average'] . "</td>";
-                                                echo "<td>" . $below_average['belowAverage'] . "</td>";
-                                                echo "<td>" . $above_average['aboveAverage'] . "</td>";
+                                                echo "<td>" . $average['aboveAverage'] . "</td>";
+                                                echo "<td>" . $below_average['average'] . "</td>";
+                                                echo "<td>" . $above_average['belowAverage'] . "</td>";
 
                                             }
                                             echo "</tr>";
@@ -102,7 +119,33 @@ $all_above_average = getOneRow("SELECT COUNT(*) as 'aboveAverage' FROM feedback 
                         </div>
                     </div>
                 </div>
-
+                <form action="feedback-form.php" method="post">
+                    <div class="form-group">
+                        <label for="tutorSelect">Select a Tutor: </label>
+                        <select id="tutorSelect" class="form-control-sm" name="tutorSelect">
+                            <option value="all" <?php if ($tutorShow == 'all') {
+                                echo "selected='selected";
+                            } ?>>Show All
+                            </option>
+                            <?php
+                            foreach ($tutors as $tutor) {
+                                $tutorEmail = $tutor['tutor'];
+                                $tutorInfo = getOneRow("SELECT firstName, lastName FROM users 
+                                                                                WHERE email = '$tutorEmail'");
+                                $tutorName = $tutorInfo['firstName'] . " " . $tutorInfo['lastName'];
+                                echo "<option value=" . $tutorEmail . " ";
+                                if ($tutorShow == $tutorEmail) {
+                                    echo "selected='selected'";
+                                }
+                                echo ">" . $tutorName . "</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-danger" name="submit">Select</button>
+                    </div>
+                </form>
                 <div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
                 <script>
                     $(document).ready(function () {
@@ -112,7 +155,7 @@ $all_above_average = getOneRow("SELECT COUNT(*) as 'aboveAverage' FROM feedback 
                             plotShadow: false
                         };
                         const title = {
-                            text: "Visualization of Students' Ratting for Tutor"
+                            text: "Visualization of Students' Ratting for Tutors"
                         };
                         const tooltip = {
                             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
