@@ -101,9 +101,9 @@ if (isset($_POST['submit'])) {
                                                                                     FROM feedback 
                                                                                     WHERE rating = 'Above average' and
                                                                                     tutor = '$tutorEmail'");
-                                                echo "<td>" . $average['aboveAverage'] . "</td>";
-                                                echo "<td>" . $below_average['average'] . "</td>";
-                                                echo "<td>" . $above_average['belowAverage'] . "</td>";
+                                                echo "<td>" . $above_average['aboveAverage'] . "</td>";
+                                                echo "<td>" . $average['average'] . "</td>";
+                                                echo "<td>" . $below_average['belowAverage'] . "</td>";
 
                                             }
                                             echo "</tr>";
