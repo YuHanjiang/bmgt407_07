@@ -1,9 +1,16 @@
 <?php
 require_once('dbhelper.php');
+
 session_start();
 
-$username = $_SESSION['username'];
-$Tutor = getRows("SELECT * FROM Tutor");
+if ($_SESSION['accountType'] != 'tutor' and $_SESSION['accountType'] != 'director') {
+    header("Location: index.php");
+}
+
+$all_average = getOneRow("SELECT COUNT(*) as 'average' FROM feedback WHERE rating = 'Average'");
+$all_below_average = getOneRow("SELECT COUNT(*) as 'belowAverage' FROM feedback WHERE rating = 'Below Average'");
+$all_above_average = getOneRow("SELECT COUNT(*) as 'aboveAverage' FROM feedback WHERE rating = 'Above average'");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,17 +87,21 @@ $Tutor = getRows("SELECT * FROM Tutor");
                             name: 'Rating',
                             data: [{
                                 name: 'Above Average',
-                                y: 13,
+                                y: <?php
+                                    echo intval($all_above_average['aboveAverage']);
+                                    ?>,
                                 color: Highcharts.getOptions().colors[0]
                             },
                                 {
                                     name: 'Average',
-                                    y: 23,
+                                    y: <?php
+                                    echo intval($all_average['average']);
+                                    ?>,
                                     color: Highcharts.getOptions().colors[1]
                                 },
                                 {
                                     name: 'Below Average',
-                                    y: 19,
+                                    y: <?php echo intval($all_below_average['belowAverage']) ?>,
                                     color: Highcharts.getOptions().colors[2]
                                 }],
                             center: [100, 80],
@@ -121,16 +132,19 @@ $Tutor = getRows("SELECT * FROM Tutor");
             <table class="table">
                     <thead>
                 <tr>
-                    <th scope="col">UID</th>
+                    <th scope="col">Email</th>
                     <th scope="col">Tutor Name</th>
                 </tr>
                     </thead>
                 <tbody>
                 <?php
-                foreach ($Tutor as $Tutor) {
-                    echo "<tr>";                              
-                    echo "<td>" . $Tutor['UID'] . "</td>";
-                    echo "<td>" . $Tutor['FirstName'] ."</td>";
+                $tutors = getRows("SELECT DISTINCT tutor FROM feedback");
+                foreach ($tutors as $tutor) {
+                    echo "<tr>";  
+                    $tutorEmail = $tutor['tutor'];
+                    $tutorInfo = getOneRow("SELECT firstName FROM users WHERE email = '$tutorEmail'");  
+                    echo "<td>" . $tutorEmail . "</td>";
+                    echo "<td>" . $tutorInfo['firstName'];                          
                     }
                     echo "</tr>";
                 ?>
