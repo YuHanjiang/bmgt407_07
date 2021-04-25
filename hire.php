@@ -4,6 +4,7 @@ require_once('filehelper.php');
 session_start();
 date_default_timezone_set('America/New_York');
 
+$courses = getRows("SELECT courseName FROM course");
 $Tutors = getRows("SELECT * FROM Tutor");
 if (isset($_POST['submit'])) {
     $firstName = $_POST['firstName'];
@@ -155,8 +156,13 @@ if (isset($_POST['submit'])) {
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="Course Focus 1">Course Focus 1: </label>
-                            <input class="form-control" type="text" name="course1" id="Course Focus 1"
-                                   placeholder="Course Focus 1" required>
+                            <select class="form-control" name="course1" id="Course Focus 1" required>
+                                <?php
+                                foreach ($courses as $course) {
+                                    echo "<option>" . $course['courseName'] . "</option>";
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="col-sm-6">
                             <label for="Course Grade 1">Course Grade 1: </label>
@@ -170,8 +176,14 @@ if (isset($_POST['submit'])) {
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="Course Focus 2">Course Focus 2: (Optional) </label>
-                            <input class="form-control" type="text" id="Course Focus 2" name="course2"
-                                   placeholder="Course Focus 2">
+                            <select class="form-control" name="course2" id="Course Focus 2">
+                                <option selected="selected"></option>
+                                <?php
+                                foreach ($courses as $course) {
+                                    echo "<option>" . $course['courseName'] . "</option>";
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="col-sm-6">
                             <label for="Course Grade 2">Course Grade 2: (Optional) </label>
@@ -185,8 +197,14 @@ if (isset($_POST['submit'])) {
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="Course Focus 3">Course Focus 3: (Optional) </label>
-                            <input class="form-control" type="text" id="Course Focus 3" name="course3"
-                                   placeholder="Course Focus 3">
+                            <select class="form-control" name="course3" id="Course Focus 3">
+                                <option selected="selected"></option>
+                                <?php
+                                foreach ($courses as $course) {
+                                    echo "<option>" . $course['courseName'] . "</option>";
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="col-sm-6">
                             <label for="Course Grade 3">Course Grade 3: (Optional)</label>
