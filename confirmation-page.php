@@ -1,5 +1,8 @@
 <?php
 session_start();
+if ($_SESSION['accountType'] != 'director' and $_SESSION['accountType'] != 'student') {
+    header("Location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

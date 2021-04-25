@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['username'])) {
+if ($_SESSION['accountType'] != 'director' and $_SESSION['accountType'] != 'tutor') {
     header("Location: index.php");
 }
 ?>

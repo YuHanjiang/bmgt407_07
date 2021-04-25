@@ -2,6 +2,10 @@
 session_start();
 require_once("dbhelper.php");
 
+if ($_SESSION['accountType'] != 'student') {
+    header("Location: index.php");
+}
+
 $tutors = getRows("SELECT * FROM users WHERE accountType = 1");
 $courses = getRows("SELECT * FROM course");
 

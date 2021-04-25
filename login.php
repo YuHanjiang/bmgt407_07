@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
     $query = "SELECT email, password FROM users WHERE email = '{$email}' and accountType = '$type'";
     $record = getOneRow($query);
 
-    if ($record['email'] == $email and password_verify($pwd, $record['password'])) {
+    if (isset($record) and $record['email'] == $email and password_verify($pwd, $record['password'])) {
         $_SESSION['username'] = $email;
         $_SESSION['courseName'] = 'UNDEFINED';
         if ($type == 0) {

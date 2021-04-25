@@ -1,6 +1,10 @@
 <?php
 session_start();
 require_once('dbhelper.php');
+
+if ($_SESSION['accountType'] != 'director') {
+    header("Location: index.php");
+}
 $Tutors = getRows("select * From Tutor");
 
 ?>

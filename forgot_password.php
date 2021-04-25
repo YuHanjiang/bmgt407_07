@@ -1,7 +1,9 @@
 <?php
 session_start();
 require_once('dbhelper.php');
-
+if (isset($_SESSION['username'])) {
+    header("Location: index.php");
+}
 if (isset($_POST['emailVer'])) {
     $email = $_POST['loginEmail'];
     if (getOneRow("SELECT * FROM users where email = '$email'")) {

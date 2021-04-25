@@ -2,6 +2,10 @@
 require_once('dbhelper.php');
 session_start();
 
+if ($_SESSION['accountType'] != 'director') {
+    header("Location: index.php");
+}
+
 $courses = getRows("SELECT courseName FROM course");
 
 if ($_SESSION['accountType'] != 'director') {

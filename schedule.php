@@ -3,7 +3,7 @@ require_once('dbhelper.php');
 require_once('filehelper.php');
 session_start();
 
-if (!isset($_SESSION['username'])) {
+if ($_SESSION['accountType'] != 'director' and $_SESSION['accountType'] != 'student') {
     header("Location: index.php");
 }
 
