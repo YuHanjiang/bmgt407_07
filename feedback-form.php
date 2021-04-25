@@ -123,11 +123,15 @@ if (isset($_POST['submit'])) {
                     <div class="form-group">
                         <label for="tutorSelect">Select a Tutor: </label>
                         <select id="tutorSelect" class="form-control-sm" name="tutorSelect">
-                            <option value="all" <?php if ($tutorShow == 'all') {
-                                echo "selected='selected";
-                            } ?>>Show All
-                            </option>
                             <?php
+                            echo "<option value='all'";
+                            if ($tutorShow == 'all') {
+                                echo "selected='selected'>";
+                            } else {
+                                echo ">";
+                            }
+                            echo "Show All";
+                            echo "</option>";
                             foreach ($tutors as $tutor) {
                                 $tutorEmail = $tutor['tutor'];
                                 $tutorInfo = getOneRow("SELECT firstName, lastName FROM users 
