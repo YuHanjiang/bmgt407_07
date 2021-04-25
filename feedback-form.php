@@ -3,13 +3,13 @@ require_once('dbhelper.php');
 
 session_start();
 
-$username = $_SESSION['username'];
-$average = getOneRow("SELECT COUNT(*) FROM feedback WHERE rating = "Average"
-")
-$below_average = getOneRow("SELECT COUNT(*) FROM feedback WHERE rating = "Below Average"
-")
-$above_average = getOneRow("SELECT COUNT(*) FROM feedback WHERE rating = "Above average"
-")
+if ($_SESSION['accountType'] != 'tutor' and $_SESSION['accountType'] != 'director') {
+    header("Location: index.php");
+}
+
+$all_average = getOneRow("SELECT COUNT(*) as 'average' FROM feedback WHERE rating = 'Average'");
+$all_below_average = getOneRow("SELECT COUNT(*) as 'belowAverage' FROM feedback WHERE rating = 'Below Average'");
+$all_above_average = getOneRow("SELECT COUNT(*) as 'aboveAverage' FROM feedback WHERE rating = 'Above average'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,32 +53,47 @@ $above_average = getOneRow("SELECT COUNT(*) FROM feedback WHERE rating = "Above 
                                 <div class="text-center">
                                     <h3>Feedback Form</h3>
                                     <form action="feedback-form.php" method="post">
-                                        <table class="table">
+                                        <table>
                                             <thead>
                                             <tr>
-                                                <th scope="col">UID</th>
+                                                <th scope="col">Email</th>
                                                 <th scope="col">First Name</th>
                                                 <th scope="col">Above Average</th>
                                                 <th scope="col">Average</th>
                                                 <th scope="col">Below Average</th>
-                                            </tr>    
+                                            </tr>
                                             </thead>
-                                        <tbody>
-                                        <?php
-                                        foreach ($Rating as $Rating) {
-                                            echo "<tr>";                              
-                                            echo "<td>" . $Rating['UID'] . "</td>";
-                                            echo "<td>" . $Rating['FirstName'];
-                                            echo "<td>" . $Rating['Above Average'] . "</td>";
-                                            echo "<td>" . $average['rating'] . "</td>";
-                                            echo "<td>" . $Rating['Below Average'] . "</td>";
+                                            <tbody>
+                                            <?php
+                                            $tutors = getRows("SELECT DISTINCT tutor FROM feedback");
+                                            foreach ($tutors as $tutor) {
+                                                echo "<tr>";
+                                                $tutorEmail = $tutor['tutor'];
+                                                $tutorInfo = getOneRow("SELECT firstName FROM users 
+                                                                                WHERE email = '$tutorEmail'");
+                                                echo "<td>" . $tutorEmail . "</td>";
+                                                echo "<td>" . $tutorInfo['firstName'];
+                                                $average = getOneRow("SELECT COUNT(*) as 'average' FROM feedback 
+                                                                            WHERE rating = 'Average' and 
+                                                                                  tutor = '$tutorEmail'");
+                                                $below_average = getOneRow("SELECT COUNT(*) as 'belowAverage'
+                                                                                    FROM feedback 
+                                                                                    WHERE rating = 'Below Average' and
+                                                                                    tutor = '$tutorEmail'");
+                                                $above_average = getOneRow("SELECT COUNT(*) as 'aboveAverage' 
+                                                                                    FROM feedback 
+                                                                                    WHERE rating = 'Above average' and
+                                                                                    tutor = '$tutorEmail'");
+                                                echo "<td>" . $average['average'] . "</td>";
+                                                echo "<td>" . $below_average['belowAverage'] . "</td>";
+                                                echo "<td>" . $above_average['aboveAverage'] . "</td>";
 
                                             }
                                             echo "</tr>";
-                                        ?>
+                                            ?>
 
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
                                 </div>
                             </div>
                             <div class="p-2">
@@ -119,15 +134,19 @@ $above_average = getOneRow("SELECT COUNT(*) FROM feedback WHERE rating = "Above 
                             type: 'pie',
                             name: 'Browser share',
                             data: [
-                                ['Above Average', 
-                                19 ],
+                                ['Above Average', <?php
+                                    echo intval($all_above_average['aboveAverage']);
+                                    ?>
+                                ],
                                 {
                                     name: 'Average',
-                                    y: 23,
+                                    y: <?php
+                                    echo intval($all_average['average']);
+                                    ?>,
                                     sliced: true,
                                     selected: true
                                 },
-                                ['Below Average', 17],
+                                ['Below Average', <?php echo intval($all_below_average['belowAverage']) ?>],
 
                             ]
                         }];
