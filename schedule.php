@@ -115,7 +115,7 @@ if (isset($_POST['courseSelect']) and $_SESSION['courseName'] = 'UNDEFINED') {
                     </div>
                 </div>
             </form>
-            <form action="schedule.php" method="POST">
+            <form action="schedule.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="tutor">Tutor: </label>
                     <select class="form-control" name="tutor" id="tutor" required>
