@@ -6,9 +6,14 @@ session_start();
 if ($_SESSION['accountType'] != 'tutor' and $_SESSION['accountType'] != 'director') {
     header("Location: index.php");
 }
-
-$tutors = getRows("SELECT DISTINCT tutor FROM feedback");
-$tutorShow = 'all';
+if ($_SESSION['accountType'] == 'tutor') {
+    $currentEmail = $_SESSION['username'];
+    $tutors = getRows("SELECT DISTINCT tutor from feedback where tutor = '$currentEmail'");
+    $tutorShow = $currentEmail;
+} else {
+    $tutors = getRows("SELECT DISTINCT tutor FROM feedback");
+    $tutorShow = 'all';
+}
 $all_average = getOneRow("SELECT COUNT(*) as 'average' FROM feedback WHERE rating = 'Average'");
 $all_below_average = getOneRow("SELECT COUNT(*) as 'belowAverage' FROM feedback WHERE rating = 'Below Average'");
 $all_above_average = getOneRow("SELECT COUNT(*) as 'aboveAverage' FROM feedback WHERE rating = 'Above average'");
@@ -124,14 +129,16 @@ if (isset($_POST['submit'])) {
                         <label for="tutorSelect">Select a Tutor: </label>
                         <select id="tutorSelect" class="form-control-sm" name="tutorSelect">
                             <?php
-                            echo "<option value='all'";
-                            if ($tutorShow == 'all') {
-                                echo "selected='selected'>";
-                            } else {
-                                echo ">";
+                            if ($_SESSION['accountType'] == 'director') {
+                                echo "<option value='all'";
+                                if ($tutorShow == 'all') {
+                                    echo "selected='selected'>";
+                                } else {
+                                    echo ">";
+                                }
+                                echo "Show All";
+                                echo "</option>";
                             }
-                            echo "Show All";
-                            echo "</option>";
                             foreach ($tutors as $tutor) {
                                 $tutorEmail = $tutor['tutor'];
                                 $tutorInfo = getOneRow("SELECT firstName, lastName FROM users 
