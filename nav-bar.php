@@ -25,6 +25,9 @@
                         <a class="nav-link" href="app-decision.php">Submitted Applications</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="status.php">Tutor Information</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="sign-out.php">Sign Out</a>
                     </li>
                     ';

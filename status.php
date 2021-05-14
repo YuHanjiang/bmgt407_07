@@ -5,7 +5,8 @@ require_once('dbhelper.php');
 if ($_SESSION['accountType'] != 'director') {
     header("Location: index.php");
 }
-$Tutors = getRows("select * From Tutor");
+
+$Tutors = getRows("select * From users where accountType = 1");
 
 ?>
 <!DOCTYPE html>
@@ -52,29 +53,24 @@ $Tutors = getRows("select * From Tutor");
                     ?>
                     <table>
                         <tr>
-                            <th>Tutor Name</th>
-                            <th>TutorEmail</th>
-                            <th>Gender</th>
-                            <th>Grade Year</th>
-                            <th>UID</th>
-                            <th>Phone Number</th>
-                            <th>Apply Date</th>
-                            <th>Course Focus</th>
-                            <th>Application Status</th>
+                            <th>Tutor First Name</th>
+                            <th>Tutor Last Name</th>
+                            <th>Tutor Email</th>
+                            <th>Course</th>
                         </tr>
                         <?php
                         //Begin loop through uploads
                         foreach ($Tutors as $Tutor) {
                             echo "<tr>";
-                            echo "<td>" . $Tutor['FirstName'] . " " . $Tutor['LastName'] . "</td>";
-                            echo "<td>" . $Tutor['TutorEmail'] . "</td>";
-                            echo "<td>" . $Tutor['Gender'] . "</td>";
-                            echo "<td>" . $Tutor['GradeYear'] . "</td>";
-                            echo "<td>" . $Tutor['UID'] . "</td>";
-                            echo "<td>" . $Tutor['Phone'] . "</td>";
-                            echo "<td>" . $Tutor['ApplyDate'] . "</td>";
-                            echo "<td>" . $Tutor['Course1'] . " " . $Tutor['Course2'] . $Tutor['Course3'] . "</td>";
-                            echo "<td>" . $Tutor['ApplicationStatus'] . "</td>";
+                            echo "<td>" . $Tutor['firstName'] . "</td>";
+                            echo "<td>" . $Tutor['lastName'] . "</td>";
+                            echo "<td>" . $Tutor['email'] . "</td>";
+                            $courseName = 'Not Assigned';
+                            $tutorEmail = $Tutor['email'];
+                            $courseInfo = getOneRow("Select courseName from course where tutor = '$tutorEmail'");
+                            if ($courseInfo)
+                                $courseName = $courseInfo['courseName'];
+                            echo "<td>" . $courseName . "</td>";
 
                             echo "</tr>";
                         }
