@@ -129,7 +129,7 @@ if (isset($_POST['submit'])) {
                         <label for="tutorSelect">Select a Tutor: </label>
                         <select id="tutorSelect" class="form-control-sm" name="tutorSelect">
                             <?php
-                            if ($_SESSION['accountType'] == 'director') {
+                            if ($_SESSION['accountType'] == 'director' or $_SESSION['accountType'] == 'tutor') {
                                 echo "<option value='all'";
                                 if ($tutorShow == 'all') {
                                     echo "selected='selected'>";
