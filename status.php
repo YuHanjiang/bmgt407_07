@@ -14,6 +14,7 @@ if (isset($_POST['fire'])) {
     runQuery("UPDATE course set tutor = null where tutor = '$fireEmail'");
     runQuery("UPDATE users set accountType = 2 where email = '$fireEmail'");
     runQuery("DELETE from appointment where tutor = '$fireEmail'");
+    header("Location: status.php");
 }
 ?>
 <!DOCTYPE html>
