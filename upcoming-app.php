@@ -2,7 +2,7 @@
 require_once('dbhelper.php');
 session_start();
 
-if ($_SESSION['accountType'] != 'student' and $_SESSION['accountType'] != 'tutor') {
+if (!isset($_SESSION['username'])) {
     header("Location: index.php");
 }
 
