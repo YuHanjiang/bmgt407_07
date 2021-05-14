@@ -113,9 +113,10 @@ if ($courseInfo) {
 
     // event creating
     dp.onTimeRangeSelected = function (args) {
-        var name = prompt("Course Name:", '<?php echo $courseName ?>')
+        name = '<?php echo $courseName ?>';
         dp.clearSelection();
-        if (!name) {
+        if (name === 'None') {
+            alert('You have not assigned a course to tutor.');
             return;
         }
 
