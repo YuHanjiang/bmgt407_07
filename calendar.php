@@ -3,12 +3,6 @@ session_start();
 if ($_SESSION['accountType'] != 'director' and $_SESSION['accountType'] != 'tutor') {
     header("Location: index.php");
 }
-
-$courseInfo = getOneRow("SELECT tutor FROM course");
-$courseName = "NONE";
-if ($courseInfo) {
-    $courseName = $courseInfo['tutor'];
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -111,7 +105,7 @@ if ($courseInfo) {
 
     // event creating
     dp.onTimeRangeSelected = function (args) {
-        var name = prompt("Course Name:", '<?php echo $courseName>')
+        var name = prompt("New event name:", "Event")
         dp.clearSelection();
         if (!name) {
             return;
