@@ -43,7 +43,7 @@ $Tutors = getRows("select * From users where accountType = 1");
                 </picture>
                 <div class="p-2">
                     <div class="text-center">
-                        <h3>Application Status Form</h3>
+                        <h3>Tutor Information</h3>
                     </div>
                     <!--Pullled information from tutor information DB-->
                     <?php 
