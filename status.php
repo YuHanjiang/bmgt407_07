@@ -8,6 +8,13 @@ if ($_SESSION['accountType'] != 'director') {
 
 $Tutors = getRows("select * From users where accountType = 1");
 
+if (isset($_POST['fire'])) {
+    $fireEmail = $_POST['fire'];
+    runQuery("DELETE from feedback where tutor = '$fireEmail'");
+    runQuery("UPDATE course set tutor = null where tutor = '$fireEmail'");
+    runQuery("UPDATE users set accountType = 2 where email = '$fireEmail'");
+    runQuery("DELETE from appointment where tutor = '$fireEmail'");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +36,7 @@ $Tutors = getRows("select * From users where accountType = 1");
 </head>
 <body>
 
-<?php require_once('nav-bar.php') 
+<?php require_once('nav-bar.php')
 ?>
 
 <!--only view by tutor director-->
@@ -45,43 +52,37 @@ $Tutors = getRows("select * From users where accountType = 1");
                     <div class="text-center">
                         <h3>Tutor Information</h3>
                     </div>
-                    <!--Pullled information from tutor information DB-->
-                    <?php 
-                    //Check if there are uploads in the DB 
-                    if($Tutors) {
+                    <form action="status.php" method="post">
+                        <table>
+                            <tr>
+                                <th>Tutor First Name</th>
+                                <th>Tutor Last Name</th>
+                                <th>Tutor Email</th>
+                                <th>Course</th>
+                                <th>Fire</th>
+                            </tr>
+                            <?php
+                            //Begin loop through uploads
+                            foreach ($Tutors as $Tutor) {
+                                echo "<tr>";
+                                echo "<td>" . $Tutor['firstName'] . "</td>";
+                                echo "<td>" . $Tutor['lastName'] . "</td>";
+                                echo "<td>" . $Tutor['email'] . "</td>";
+                                $courseName = 'Not Assigned';
+                                $tutorEmail = $Tutor['email'];
+                                $courseInfo = getOneRow("Select courseName from course where tutor = '$tutorEmail'");
+                                if ($courseInfo)
+                                    $courseName = $courseInfo['courseName'];
+                                echo "<td>" . $courseName . "</td>";
+                                echo "<td><button class='btn btn-danger btn-block' 
+                                    value=" . $Tutor['email'] . " name='fire' 
+                                    type='submit'>" . 'Fire' . "</button>" . "</td>";
+                                echo "</tr>";
+                            }
 
-                    ?>
-                    <table>
-                        <tr>
-                            <th>Tutor First Name</th>
-                            <th>Tutor Last Name</th>
-                            <th>Tutor Email</th>
-                            <th>Course</th>
-                        </tr>
-                        <?php
-                        //Begin loop through uploads
-                        foreach ($Tutors as $Tutor) {
-                            echo "<tr>";
-                            echo "<td>" . $Tutor['firstName'] . "</td>";
-                            echo "<td>" . $Tutor['lastName'] . "</td>";
-                            echo "<td>" . $Tutor['email'] . "</td>";
-                            $courseName = 'Not Assigned';
-                            $tutorEmail = $Tutor['email'];
-                            $courseInfo = getOneRow("Select courseName from course where tutor = '$tutorEmail'");
-                            if ($courseInfo)
-                                $courseName = $courseInfo['courseName'];
-                            echo "<td>" . $courseName . "</td>";
-
-                            echo "</tr>";
-                        }
-
-                        ?>
-                    </table>
-                    <?php
-                    } else {
-                        echo "<p>No tutors found.</p>";
-                    }
-                    ?>
+                            ?>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>
