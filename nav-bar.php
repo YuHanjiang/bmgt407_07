@@ -22,9 +22,6 @@
                         <a class="nav-link" href="dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="status.php">Application Status</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="app-decision.php">Submitted Applications</a>
                     </li>
                     <li class="nav-item">

@@ -166,7 +166,7 @@ if (isset($_POST['submit'])) {
                             plotShadow: false
                         };
                         const title = {
-                            text: "Visualization of Students' Ratting for Tutors"
+                            text: "Visualization of Students' Rating for Tutors"
                         };
                         const tooltip = {
                             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
